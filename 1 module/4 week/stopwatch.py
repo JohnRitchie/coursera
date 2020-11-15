@@ -5,8 +5,8 @@
 
 # define helper function format that converts time
 # in tenths of seconds into formatted string A:BC.D
-def format(t):
-    pass
+# def format(t):
+#     pass
 
 # define event handlers for buttons; "Start", "Stop", "Reset"
 
