@@ -1,4 +1,4 @@
-# template for "Stopwatch: The Game"
+import simpleguitk as simplegui
 
 # define global variables
 
@@ -8,7 +8,17 @@
 # def format(t):
 #     pass
 
-# define event handlers for buttons; "Start", "Stop", "Reset"
+
+def timer_start():
+    pass
+
+
+def timer_stop():
+    pass
+
+
+def timer_restart():
+    pass
 
 
 # define event handler for timer with 0.1 sec interval
@@ -17,13 +27,13 @@
 # define draw handler
 
 
-# create frame
+frame = simplegui.create_frame("Stopwatch: The Game", 400, 400)
+frame.add_button("Start", timer_start(), 100)
+frame.add_button("Stop", timer_stop(), 100)
+frame.add_button("Restart", timer_restart(), 100)
 
 
-# register event handlers
-
-
-# start frame
+frame.start()
 
 
 # Please remember to review the grading rubric
