@@ -1,13 +1,16 @@
 import simpleguitk as simplegui
 
+
 counter = 0
 
 
-# define helper function format that converts time
-# in tenths of seconds into formatted string A:BC.D
-
-def format_time(time):
-    return time
+def format_time(total_deciseconds):
+    minutes = str(total_deciseconds // 600)
+    seconds = (total_deciseconds % 600) // 10
+    seconds = "0" + str(seconds) if seconds < 10 else str(seconds)
+    deciseconds = str((total_deciseconds % 600) % 10)
+    formated_time = minutes + ":" + seconds + "." + deciseconds
+    return formated_time
 
 
 def timer_start():
@@ -30,12 +33,11 @@ def timer_restart():
 def timer_handler():
     global counter
     counter += 1
-    print counter
 
 
 def draw_handler(canvas):
     current_time = format_time(counter)
-    canvas.draw_text(current_time, [200, 200], 48, "Red")
+    canvas.draw_text(current_time, [130, 200], 48, "Red")
 
 
 frame = simplegui.create_frame("Stopwatch: The Game", 400, 400)
