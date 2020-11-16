@@ -2,6 +2,8 @@ import simpleguitk as simplegui
 
 
 counter = 0
+successful_stops = 0
+total_stops = 0
 
 
 def format_time(total_deciseconds):
@@ -10,7 +12,13 @@ def format_time(total_deciseconds):
     seconds = "0" + str(seconds) if seconds < 10 else str(seconds)
     deciseconds = str((total_deciseconds % 600) % 10)
     formated_time = minutes + ":" + seconds + "." + deciseconds
+
     return formated_time
+
+
+def get_point(count):
+    point = True if (count % 10) == 0 else False
+    return point
 
 
 def timer_start():
@@ -19,14 +27,30 @@ def timer_start():
 
 def timer_stop():
     timer.stop()
+
     global counter
-    counter = 0
+    print counter  #todo: delete
+
+    global successful_stops
+    if get_point(counter):
+        successful_stops += 1
+
+    global total_stops
+    total_stops += 1
 
 
 def timer_restart():
     timer.stop()
+
     global counter
     counter = 0
+
+    global successful_stops
+    successful_stops = 0
+
+    global total_stops
+    total_stops = 0
+
     timer.start()
 
 
@@ -38,6 +62,9 @@ def timer_handler():
 def draw_handler(canvas):
     current_time = format_time(counter)
     canvas.draw_text(current_time, [130, 200], 48, "Red")
+
+    success_rate = str(successful_stops) + "/" + str(total_stops)
+    canvas.draw_text(success_rate, [280, 70], 30, "Green")
 
 
 frame = simplegui.create_frame("Stopwatch: The Game", 400, 400)
