@@ -50,8 +50,6 @@ def timer_restart():
     global total_stops
     total_stops = 0
 
-    timer.start()
-
 
 def timer_handler():
     global counter
@@ -75,6 +73,3 @@ frame.set_draw_handler(draw_handler)
 timer = simplegui.create_timer(100, timer_handler)
 
 frame.start()
-
-
-# Please remember to review the grading rubric
