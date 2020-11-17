@@ -16,7 +16,7 @@ def format_time(total_deciseconds):
     return formated_time
 
 
-def get_point(count):
+def isWin(count):
     point = True if (count % 10) == 0 else False
     return point
 
@@ -29,10 +29,9 @@ def timer_stop():
     timer.stop()
 
     global counter
-    print counter  #todo: delete
 
     global successful_stops
-    if get_point(counter):
+    if isWin(counter):
         successful_stops += 1
 
     global total_stops
