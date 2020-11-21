@@ -38,7 +38,7 @@ def timer_stop():
     total_stops += 1
 
 
-def timer_restart():
+def timer_reset():
     timer.stop()
 
     global counter
@@ -67,7 +67,7 @@ def draw_handler(canvas):
 frame = simplegui.create_frame("Stopwatch: The Game", 400, 400)
 frame.add_button("Start", timer_start, 100)
 frame.add_button("Stop", timer_stop, 100)
-frame.add_button("Restart", timer_restart, 100)
+frame.add_button("Reset", timer_reset, 100)
 frame.set_draw_handler(draw_handler)
 
 timer = simplegui.create_timer(100, timer_handler)
