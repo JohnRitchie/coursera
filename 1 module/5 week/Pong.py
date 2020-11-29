@@ -32,7 +32,7 @@ def new_game():
     global paddle1_pos, paddle2_pos, paddle1_vel, paddle2_vel  # these are numbers
     global score1, score2  # these are ints
 
-    spawn_ball('LEFT')
+    spawn_ball()
 
 
 def draw(canvas):
@@ -50,11 +50,11 @@ def draw(canvas):
     ball_pos[0] += ball_vel[0]
     ball_pos[1] += ball_vel[1]
 
-    if ball_pos[0] <= BALL_RADIUS:
-        ball_vel[0] = - ball_vel[0]
-    elif ball_pos[0] >= WIDTH - BALL_RADIUS:
-        ball_vel[0] = - ball_vel[0]
-    elif ball_pos[1] <= BALL_RADIUS:
+    # if ball_pos[0] <= BALL_RADIUS:
+    #     ball_vel[0] = - ball_vel[0]
+    # elif ball_pos[0] >= WIDTH - BALL_RADIUS:
+    #     ball_vel[0] = - ball_vel[0]
+    if ball_pos[1] <= BALL_RADIUS:
         ball_vel[1] = - ball_vel[1]
     elif ball_pos[1] >= HEIGHT - BALL_RADIUS:
         ball_vel[1] = - ball_vel[1]
