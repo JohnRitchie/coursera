@@ -64,6 +64,8 @@ def draw(canvas):
     # update paddle's vertical position, keep paddle on the screen
 
     # draw paddles
+    canvas.draw_line([PAD_WIDTH, 0], [PAD_WIDTH, PAD_HEIGHT], PAD_WIDTH, "White")
+    canvas.draw_line([WIDTH - PAD_WIDTH, 0], [WIDTH - PAD_WIDTH, PAD_HEIGHT], PAD_WIDTH, "White")
 
     # determine whether paddle and ball collide
 
