@@ -24,7 +24,7 @@ def spawn_ball(direction='RIGHT'):
     global ball_pos, ball_vel  # these are vectors stored as lists
     ball_pos = [WIDTH / 2, HEIGHT / 2]
     ball_vel[0] = random.randrange(2, 4) if direction == 'RIGHT' else random.randrange(-4, -2)
-    ball_vel[1] = random.randrange(-3, -1) if direction == 'RIGHT' else random.randrange(1, 3)
+    ball_vel[1] = random.randrange(-3, -1) if direction == 'RIGHT' else random.randrange(-3, -1)
 
 
 # define event handlers
