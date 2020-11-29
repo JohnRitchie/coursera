@@ -32,6 +32,9 @@ def new_game():
     global paddle1_pos, paddle2_pos, paddle1_vel, paddle2_vel  # these are numbers
     global score1, score2  # these are ints
 
+    paddle1_pos = paddle2_pos = (HEIGHT - PAD_HEIGHT)/2
+    paddle1_vel = paddle2_vel = 0
+
     spawn_ball()
 
 
@@ -63,8 +66,8 @@ def draw(canvas):
     # update paddle's vertical position, keep paddle on the screen
 
     # draw paddles
-    canvas.draw_line([PAD_WIDTH, 0], [PAD_WIDTH, PAD_HEIGHT], PAD_WIDTH, "White")
-    canvas.draw_line([WIDTH - PAD_WIDTH, 0], [WIDTH - PAD_WIDTH, PAD_HEIGHT], PAD_WIDTH, "White")
+    canvas.draw_line([HALF_PAD_WIDTH, paddle1_pos], [HALF_PAD_WIDTH, paddle1_pos + PAD_HEIGHT], PAD_WIDTH, "White")
+    canvas.draw_line([WIDTH - HALF_PAD_WIDTH, paddle1_pos], [WIDTH - HALF_PAD_WIDTH, paddle1_pos + PAD_HEIGHT], PAD_WIDTH, "White")
 
     # determine whether paddle and ball collide
 
