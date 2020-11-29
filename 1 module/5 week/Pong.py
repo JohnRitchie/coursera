@@ -54,11 +54,13 @@ def draw(canvas):
 
     if ball_pos[0] <= BALL_RADIUS + PAD_WIDTH:
         if paddle1_pos <= ball_pos[1] <= (paddle1_pos + PAD_HEIGHT):
+            ball_vel[0] *= 1.1
             ball_vel[0] = - ball_vel[0]
         else:
             spawn_ball('RIGHT')
     elif ball_pos[0] >= WIDTH - BALL_RADIUS - PAD_WIDTH:
         if paddle2_pos <= ball_pos[1] <= (paddle2_pos + PAD_HEIGHT):
+            ball_vel[0] *= 1.1
             ball_vel[0] = - ball_vel[0]
         else:
             spawn_ball('LEFT')
