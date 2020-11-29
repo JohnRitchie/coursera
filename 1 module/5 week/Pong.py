@@ -14,17 +14,24 @@ HALF_PAD_HEIGHT = PAD_HEIGHT / 2
 LEFT = False
 RIGHT = True
 
+ball_pos = []
+ball_vel = []
+
 
 # initialize ball_pos and ball_vel for new bal in middle of table
 # if direction is RIGHT, the ball's velocity is upper right, else upper left
-def spawn_ball(direction):
+def spawn_ball(direction=0):
     global ball_pos, ball_vel  # these are vectors stored as lists
+    ball_pos = [WIDTH / 2, HEIGHT / 2]
+    ball_vel = [0, 1]
 
 
 # define event handlers
 def new_game():
     global paddle1_pos, paddle2_pos, paddle1_vel, paddle2_vel  # these are numbers
     global score1, score2  # these are ints
+
+    spawn_ball()
 
 
 def draw(canvas):
@@ -38,6 +45,10 @@ def draw(canvas):
     # update ball
 
     # draw ball
+    global ball_pos, ball_vel
+    ball_pos[0] += ball_vel[0]
+    ball_pos[1] += ball_vel[1]
+    canvas.draw_circle(ball_pos, BALL_RADIUS, 2, "Red", "White")
 
     # update paddle's vertical position, keep paddle on the screen
 
