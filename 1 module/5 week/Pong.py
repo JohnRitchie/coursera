@@ -23,7 +23,7 @@ ball_vel = []
 def spawn_ball(direction=0):
     global ball_pos, ball_vel  # these are vectors stored as lists
     ball_pos = [WIDTH / 2, HEIGHT / 2]
-    ball_vel = [0, 1]
+    ball_vel = [3, -5]
 
 
 # define event handlers
@@ -48,6 +48,16 @@ def draw(canvas):
     global ball_pos, ball_vel
     ball_pos[0] += ball_vel[0]
     ball_pos[1] += ball_vel[1]
+
+    if ball_pos[0] <= BALL_RADIUS:
+        ball_vel[0] = - ball_vel[0]
+    elif ball_pos[0] >= WIDTH - BALL_RADIUS:
+        ball_vel[0] = - ball_vel[0]
+    elif ball_pos[1] <= BALL_RADIUS:
+        ball_vel[1] = - ball_vel[1]
+    elif ball_pos[1] >= HEIGHT - BALL_RADIUS:
+        ball_vel[1] = - ball_vel[1]
+
     canvas.draw_circle(ball_pos, BALL_RADIUS, 2, "Red", "White")
 
     # update paddle's vertical position, keep paddle on the screen
