@@ -63,11 +63,14 @@ def draw(canvas):
 
     canvas.draw_circle(ball_pos, BALL_RADIUS, 2, "Red", "White")
 
-    # update paddle's vertical position, keep paddle on the screen
+    # update paddle's vertical position,
+    # todo: keep paddle on the screen
+    paddle1_pos += paddle1_vel
+    paddle2_pos += paddle2_vel
 
     # draw paddles
     canvas.draw_line([HALF_PAD_WIDTH, paddle1_pos], [HALF_PAD_WIDTH, paddle1_pos + PAD_HEIGHT], PAD_WIDTH, "White")
-    canvas.draw_line([WIDTH - HALF_PAD_WIDTH, paddle1_pos], [WIDTH - HALF_PAD_WIDTH, paddle1_pos + PAD_HEIGHT], PAD_WIDTH, "White")
+    canvas.draw_line([WIDTH - HALF_PAD_WIDTH, paddle2_pos], [WIDTH - HALF_PAD_WIDTH, paddle2_pos + PAD_HEIGHT], PAD_WIDTH, "White")
 
     # determine whether paddle and ball collide
 
@@ -77,9 +80,31 @@ def draw(canvas):
 def keydown(key):
     global paddle1_vel, paddle2_vel
 
+    vel = 5
+
+    if key == simplegui.KEY_MAP["w"]:
+        paddle1_vel = -vel
+    elif key == simplegui.KEY_MAP["up"]:
+        paddle2_vel = -vel
+    elif key == simplegui.KEY_MAP["s"]:
+        paddle1_vel = vel
+    elif key == simplegui.KEY_MAP["down"]:
+        paddle2_vel = vel
+
 
 def keyup(key):
     global paddle1_vel, paddle2_vel
+
+    vel = 0
+
+    if key == simplegui.KEY_MAP["w"]:
+        paddle1_vel = vel
+    elif key == simplegui.KEY_MAP["up"]:
+        paddle2_vel = vel
+    elif key == simplegui.KEY_MAP["s"]:
+        paddle1_vel = vel
+    elif key == simplegui.KEY_MAP["down"]:
+        paddle2_vel = vel
 
 
 # create frame
