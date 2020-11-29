@@ -14,16 +14,17 @@ HALF_PAD_HEIGHT = PAD_HEIGHT / 2
 LEFT = False
 RIGHT = True
 
-ball_pos = []
-ball_vel = []
+ball_pos = [0, 0]
+ball_vel = [0, 0]
 
 
 # initialize ball_pos and ball_vel for new bal in middle of table
 # if direction is RIGHT, the ball's velocity is upper right, else upper left
-def spawn_ball(direction=0):
+def spawn_ball(direction='RIGHT'):
     global ball_pos, ball_vel  # these are vectors stored as lists
     ball_pos = [WIDTH / 2, HEIGHT / 2]
-    ball_vel = [3, -5]
+    ball_vel[0] = random.randrange(2, 4) if direction == 'RIGHT' else random.randrange(-4, -2)
+    ball_vel[1] = random.randrange(-3, -1) if direction == 'RIGHT' else random.randrange(1, 3)
 
 
 # define event handlers
@@ -31,7 +32,7 @@ def new_game():
     global paddle1_pos, paddle2_pos, paddle1_vel, paddle2_vel  # these are numbers
     global score1, score2  # these are ints
 
-    spawn_ball()
+    spawn_ball('LEFT')
 
 
 def draw(canvas):
