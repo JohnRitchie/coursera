@@ -64,9 +64,11 @@ def draw(canvas):
     canvas.draw_circle(ball_pos, BALL_RADIUS, 2, "Red", "White")
 
     # update paddle's vertical position,
-    # todo: keep paddle on the screen
-    paddle1_pos += paddle1_vel
-    paddle2_pos += paddle2_vel
+    # keep paddle on the screen
+    if 0 <= (paddle1_pos + paddle1_vel) <= HEIGHT - PAD_HEIGHT:
+        paddle1_pos += paddle1_vel
+    if 0 <= (paddle2_pos + paddle2_vel) <= HEIGHT - PAD_HEIGHT:
+        paddle2_pos += paddle2_vel
 
     # draw paddles
     canvas.draw_line([HALF_PAD_WIDTH, paddle1_pos], [HALF_PAD_WIDTH, paddle1_pos + PAD_HEIGHT], PAD_WIDTH, "White")
