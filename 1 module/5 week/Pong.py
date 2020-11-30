@@ -129,6 +129,7 @@ frame = simplegui.create_frame("Pong", WIDTH, HEIGHT)
 frame.set_draw_handler(draw)
 frame.set_keydown_handler(keydown)
 frame.set_keyup_handler(keyup)
+frame.add_button("Restart", new_game, 100)
 
 # start frame
 new_game()
