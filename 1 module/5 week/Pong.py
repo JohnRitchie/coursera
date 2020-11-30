@@ -41,10 +41,10 @@ def draw(canvas):
     canvas.draw_line([PAD_WIDTH, 0], [PAD_WIDTH, HEIGHT], 1, "White")
     canvas.draw_line([WIDTH - PAD_WIDTH, 0], [WIDTH - PAD_WIDTH, HEIGHT], 1, "White")
     canvas.draw_circle(ball_pos, BALL_RADIUS, 2, "Red", "White")
-    canvas.draw_line([HALF_PAD_WIDTH, paddle1_pos], [HALF_PAD_WIDTH, paddle1_pos + PAD_HEIGHT], PAD_WIDTH, "White")
-    canvas.draw_line([WIDTH - HALF_PAD_WIDTH, paddle2_pos], [WIDTH - HALF_PAD_WIDTH, paddle2_pos + PAD_HEIGHT], PAD_WIDTH, "White")
-    canvas.draw_text(score1, [80, 90], 40, "White")
-    canvas.draw_text(score2, [480, 90], 40, "White")
+    canvas.draw_line([HALF_PAD_WIDTH, paddle1_pos], [HALF_PAD_WIDTH, paddle1_pos + PAD_HEIGHT], PAD_WIDTH, "Yellow")
+    canvas.draw_line([WIDTH - HALF_PAD_WIDTH, paddle2_pos], [WIDTH - HALF_PAD_WIDTH, paddle2_pos + PAD_HEIGHT], PAD_WIDTH, "Red")
+    canvas.draw_text(str(score1), [80, 90], 40, "White")
+    canvas.draw_text(str(score2), [480, 90], 40, "White")
 
     ball_pos[0] += ball_vel[0]
     ball_pos[1] += ball_vel[1]
