@@ -35,6 +35,8 @@ def new_game():
 def draw(canvas):
     global score1, score2, paddle1_pos, paddle2_pos, ball_pos, ball_vel
 
+    canvas.draw_line([0, 0], [0, HEIGHT], WIDTH * 2, "Green")
+    canvas.draw_circle([WIDTH / 2, HEIGHT / 2], BALL_RADIUS, 2, "White", "Green")
     canvas.draw_line([WIDTH / 2, 0], [WIDTH / 2, HEIGHT], 1, "White")
     canvas.draw_line([PAD_WIDTH, 0], [PAD_WIDTH, HEIGHT], 1, "White")
     canvas.draw_line([WIDTH - PAD_WIDTH, 0], [WIDTH - PAD_WIDTH, HEIGHT], 1, "White")
