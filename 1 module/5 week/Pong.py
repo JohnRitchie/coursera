@@ -35,6 +35,8 @@ def new_game():
     paddle1_pos = paddle2_pos = (HEIGHT - PAD_HEIGHT)/2
     paddle1_vel = paddle2_vel = 0
 
+    score1 = score2 = 0
+
     spawn_ball()
 
 
@@ -57,12 +59,14 @@ def draw(canvas):
             ball_vel[0] *= 1.1
             ball_vel[0] = - ball_vel[0]
         else:
+            score2 += 1
             spawn_ball('RIGHT')
     elif ball_pos[0] >= WIDTH - BALL_RADIUS - PAD_WIDTH:
         if paddle2_pos <= ball_pos[1] <= (paddle2_pos + PAD_HEIGHT):
             ball_vel[0] *= 1.1
             ball_vel[0] = - ball_vel[0]
         else:
+            score1 += 1
             spawn_ball('LEFT')
 
     if ball_pos[1] <= BALL_RADIUS:
@@ -86,6 +90,8 @@ def draw(canvas):
     # determine whether paddle and ball collide
 
     # draw scores
+    canvas.draw_text(score1, [80, 90], 40, "White")
+    canvas.draw_text(score2, [480, 90], 40, "White")
 
 
 def keydown(key):
