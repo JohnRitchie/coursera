@@ -6,7 +6,10 @@ import random
 
 # helper function to initialize globals
 def new_game():
-    pass
+    global pairs_list
+
+    pairs_list = [random.randrange(0, 8) for _ in range(8)] * 2
+    random.shuffle(pairs_list)
 
 
 # define event handlers
@@ -17,7 +20,12 @@ def mouseclick(pos):
 
 # cards are logically 50x100 pixels in size
 def draw(canvas):
-    pass
+    global pairs_list
+
+    step = 0
+    for card in pairs_list:
+        canvas.draw_text(str(card), [30 + step, 62], 24, "White")
+        step += 45
 
 
 # create frame and add a button and labels
