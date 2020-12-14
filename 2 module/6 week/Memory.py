@@ -28,8 +28,8 @@ def draw(canvas):
     global pairs_list, exposed
 
     step = 0
-    for card in pairs_list:
-        canvas.draw_text(str(card), [20 + step, 62], 24, "White")
+    for card in range(16):
+        canvas.draw_text(str(pairs_list[card]), [20 + step, 62], 24, "White")
         canvas.draw_polygon([[step, 0], [50 + step, 0], [50 + step, 150], [step, 150]], 2, "White", "Green")
         step += 50
 
