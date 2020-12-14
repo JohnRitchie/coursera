@@ -26,7 +26,8 @@ def draw(canvas):
 
     step = 0
     for card in pairs_list:
-        canvas.draw_text(str(card), [30 + step, 62], 24, "White")
+        canvas.draw_text(str(card), [20 + step, 62], 24, "White")
+        canvas.draw_polygon([[step, 0], [50 + step, 0], [50 + step, 150], [step, 150]], 2, "White", "Green")
         step += 50
 
 
