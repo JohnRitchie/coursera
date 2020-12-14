@@ -3,6 +3,8 @@
 import simpleguitk as simplegui
 import random
 
+pairs_list = []
+
 
 # helper function to initialize globals
 def new_game():
