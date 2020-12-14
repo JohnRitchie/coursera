@@ -4,14 +4,17 @@ import simpleguitk as simplegui
 import random
 
 pairs_list = []
+exposed = {}
 
 
 # helper function to initialize globals
 def new_game():
-    global pairs_list
+    global pairs_list, exposed
 
     pairs_list = [random.randrange(0, 8) for _ in range(8)] * 2
     random.shuffle(pairs_list)
+
+    exposed = {key: False for key in range(16)}
 
 
 # define event handlers
@@ -22,7 +25,7 @@ def mouseclick(pos):
 
 # cards are logically 50x100 pixels in size
 def draw(canvas):
-    global pairs_list
+    global pairs_list, exposed
 
     step = 0
     for card in pairs_list:
