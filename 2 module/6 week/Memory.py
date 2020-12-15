@@ -5,29 +5,42 @@ import random
 
 cards = []
 exposed = {}
-state_1 = None
-state_2 = None
+state, card_1, card_2 = None, None, None
 
 
 # helper function to initialize globals
 def new_game():
-    global cards, exposed, state_1, state_2
+    global cards, exposed, state, card_1, card_2
 
     cards = [random.randrange(0, 8) for _ in range(8)] * 2
     random.shuffle(cards)
 
     exposed = {key: False for key in range(16)}
 
-    state_1 = 0
-    state_2 = 0
+    state = 0
+    card_1, card_2 = None, None
 
 
 # define event handlers
 def mouseclick(pos):
-    global cards, exposed, state_1, state_2
+    global cards, exposed, state, card_1, card_2
 
     card_index = pos[0] // 50
-    exposed[card_index] = True
+
+    if state == 0:
+        card_1 = card_index
+        exposed[card_1] = True
+        state = 1
+    elif state == 1:
+        card_2 = card_index
+        exposed[card_2] = True
+        state = 2
+    elif state == 2:
+        if not cards[card_1] == cards[card_2]:
+            exposed[card_1], exposed[card_2] = False, False
+        card_1 = card_index
+        exposed[card_1] = True
+        state = 1
 
 
 # card_indexs are logically 50x100 pixels in size
