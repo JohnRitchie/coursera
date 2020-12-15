@@ -1,43 +1,47 @@
-# implementation of card game - Memory
+# implementation of card_index game - Memory
 
 import simpleguitk as simplegui
 import random
 
-pairs_list = []
+cards = []
 exposed = {}
+state_1 = None
+state_2 = None
 
 
 # helper function to initialize globals
 def new_game():
-    global pairs_list, exposed
+    global cards, exposed, state_1, state_2
 
-    pairs_list = [random.randrange(0, 8) for _ in range(8)] * 2
-    random.shuffle(pairs_list)
+    cards = [random.randrange(0, 8) for _ in range(8)] * 2
+    random.shuffle(cards)
 
     exposed = {key: False for key in range(16)}
+
+    state_1 = 0
+    state_2 = 0
 
 
 # define event handlers
 def mouseclick(pos):
-    global pairs_list, exposed
+    global cards, exposed, state_1, state_2
 
-    print pairs_list[pos[0] // 50]
+    print cards[pos[0] // 50]
     exposed[pos[0] // 50] = True
     print exposed
 
 
-# cards are logically 50x100 pixels in size
+# card_indexs are logically 50x100 pixels in size
 def draw(canvas):
-    global pairs_list, exposed
+    global cards, exposed
 
-    step = 0
-    for card in range(16):
-        if exposed[card]:
-            canvas.draw_text(str(pairs_list[card]), [20 + step, 62], 24, "White")
+    for card_index in range(16):
+        card_pos = 50 * card_index
+
+        if exposed[card_index]:
+            canvas.draw_text(str(cards[card_index]), [20 + card_pos, 62], 24, "White")
         else:
-            canvas.draw_polygon([[step, 0], [50 + step, 0], [50 + step, 150], [step, 150]], 2, "White", "Green")
-
-        step += 50
+            canvas.draw_polygon([[card_pos, 0], [50 + card_pos, 0], [50 + card_pos, 150], [card_pos, 150]], 2, "White", "Green")
 
 
 # create frame and add a button and labels
