@@ -19,8 +19,11 @@ def new_game():
 
 # define event handlers
 def mouseclick(pos):
-    global pairs_list
+    global pairs_list, exposed
+
     print pairs_list[pos[0] // 50]
+    exposed[pos[0] // 50] = True
+    print exposed
 
 
 # cards are logically 50x100 pixels in size
