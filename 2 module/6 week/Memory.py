@@ -26,9 +26,8 @@ def new_game():
 def mouseclick(pos):
     global cards, exposed, state_1, state_2
 
-    print cards[pos[0] // 50]
-    exposed[pos[0] // 50] = True
-    print exposed
+    card_index = pos[0] // 50
+    exposed[card_index] = True
 
 
 # card_indexs are logically 50x100 pixels in size
