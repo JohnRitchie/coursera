@@ -13,7 +13,8 @@ def new_game():
     cards = [_ for _ in range(8)] * 2
     random.shuffle(cards)
 
-    exposed = {key: False for key in range(16)}
+    for key in range(16):
+        exposed[key] = False
 
     state, turns_counter = 0, 0
     card_1, card_2 = None, None
