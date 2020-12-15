@@ -57,6 +57,7 @@ def draw(canvas):
         else:
             canvas.draw_polygon([[card_pos, 0], [50 + card_pos, 0], [50 + card_pos, 150], [card_pos, 150]], 2, "White", "Green")
 
+    label.set_text("Turns = %s" % turns_counter)
 
 # create frame and add a button and labels
 frame = simplegui.create_frame("Memory", 800, 100)
