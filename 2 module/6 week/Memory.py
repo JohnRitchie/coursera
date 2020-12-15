@@ -13,7 +13,7 @@ turns_counter = 0
 def new_game():
     global cards, exposed, state, card_1, card_2, turns_counter
 
-    cards = [random.randrange(0, 8) for _ in range(8)] * 2
+    cards = [_ for _ in range(8)] * 2
     random.shuffle(cards)
 
     exposed = {key: False for key in range(16)}
