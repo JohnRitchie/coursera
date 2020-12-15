@@ -19,8 +19,8 @@ def new_game():
 
 # define event handlers
 def mouseclick(pos):
-    # add game state logic here
-    pass
+    global pairs_list
+    print pairs_list[pos[0] // 50]
 
 
 # cards are logically 50x100 pixels in size
