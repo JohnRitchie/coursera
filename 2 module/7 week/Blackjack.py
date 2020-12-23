@@ -99,9 +99,27 @@ class Deck:
 
 # define event handlers for buttons
 def deal():
-    global outcome, in_play
+    global outcome, in_play, deck, dealer_hand, player_hand
 
-    # your code goes here
+    deck = Deck()
+    deck.shuffle()
+    print "Deck:"
+    print deck
+
+    dealer_hand = Hand()
+    dealer_hand.add_card(deck.deal_card())
+    dealer_hand.add_card(deck.deal_card())
+    print "Dealer hand:"
+    print dealer_hand
+
+    player_hand = Hand()
+    player_hand.add_card(deck.deal_card())
+    player_hand.add_card(deck.deal_card())
+    print "Player hand:"
+    print player_hand
+
+    print "Deck:"
+    print deck
 
     in_play = True
 
