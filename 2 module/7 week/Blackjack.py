@@ -148,6 +148,10 @@ def hit():
         print "You have busted!"
         print player_hand.get_value()
 
+    if player_hand.get_value() > 21:
+        print "You have busted!"
+        print player_hand.get_value()
+
 
 def stand():
     pass  # replace with your code below
