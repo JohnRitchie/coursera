@@ -114,7 +114,6 @@ def deal():
 
     deck = Deck()
     deck.shuffle()
-    print "Deck:"
     print deck
 
     dealer_hand = Hand()
@@ -122,14 +121,15 @@ def deal():
     dealer_hand.add_card(deck.deal_card())
     print "Dealer hand:"
     print dealer_hand
+    print dealer_hand.get_value()
 
     player_hand = Hand()
     player_hand.add_card(deck.deal_card())
     player_hand.add_card(deck.deal_card())
     print "Player hand:"
     print player_hand
+    print player_hand.get_value()
 
-    print "Deck:"
     print deck
 
     in_play = True
