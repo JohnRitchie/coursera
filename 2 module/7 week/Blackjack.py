@@ -67,8 +67,19 @@ class Hand:
         self.cards.append(card)
 
     def get_value(self):
-        # count aces as 1, if the hand has an ace, then add 10 to hand value if it doesn't bust
-        pass  # compute the value of the hand, see Blackjack video
+        value = 0
+        has_ace = False
+
+        for card in self.cards:
+            rank = card.get_rank()
+            value += VALUES[rank]
+            if rank == 'A':
+                has_ace = True
+
+        if has_ace and value < 12:
+            value += 10
+
+        return value
 
     def draw(self, canvas, pos):
         pass  # draw a hand on the canvas, use the draw method for cards
