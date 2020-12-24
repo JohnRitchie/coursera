@@ -147,11 +147,11 @@ def hit():
         print player_hand.get_value()
         print deck
     else:
-        print "You have busted!"
+        print "You have busted! Dealer wins!"
         print player_hand.get_value()
 
     if player_hand.get_value() > 21:
-        print "You have busted!"
+        print "You have busted! Dealer wins!"
         print player_hand.get_value()
 
 
@@ -159,7 +159,7 @@ def stand():
     global player_hand, dealer_hand
 
     if player_hand.get_value() > 21:
-        print "You have busted!"
+        print "You have busted! Dealer wins!"
         print player_hand.get_value()
         return
 
@@ -167,7 +167,7 @@ def stand():
         dealer_hand.add_card(deck.deal_card())
 
     if dealer_hand.get_value() > 21:
-        print "Dealer have busted!"
+        print "Dealer have busted! You win!"
     else:
         if player_hand.get_value() <= dealer_hand.get_value():
             print "Dealer wins!"
