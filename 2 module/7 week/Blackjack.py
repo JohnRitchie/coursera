@@ -112,6 +112,8 @@ class Deck:
 def deal():
     global outcome, in_play, deck, dealer_hand, player_hand
 
+    print "New game!"
+
     deck = Deck()
     deck.shuffle()
     print deck
