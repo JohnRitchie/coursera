@@ -131,19 +131,21 @@ def deal():
 
 
 def hit():
-    global player_hand, outcome
+    global player_hand, outcome, in_play
 
     if player_hand.get_value() <= 21:
         player_hand.add_card(deck.deal_card())
     else:
         outcome = "You have busted!\nDealer wins!\nNew deal?"
+        in_play = False
 
     if player_hand.get_value() > 21:
         outcome = "You have busted!\nDealer wins!\nNew deal?"
+        in_play = False
 
 
 def stand():
-    global player_hand, dealer_hand, outcome
+    global player_hand, dealer_hand, outcome, in_play
 
     if player_hand.get_value() > 21:
         outcome = "You have busted!\nDealer wins!\nNew deal?"
@@ -159,6 +161,8 @@ def stand():
             outcome = "Dealer wins!\nNew deal?"
         else:
             outcome = "You win!\nNew deal?"
+
+    in_play = False
 
 
 # draw handler
