@@ -112,22 +112,27 @@ class Deck:
 
 # define event handlers for buttons
 def deal():
-    global outcome, in_play, deck, dealer_hand, player_hand
+    global outcome, in_play, deck, dealer_hand, player_hand, score
 
     outcome = "New game!\nHit or stand?"
 
-    deck = Deck()
-    deck.shuffle()
+    if in_play:
+        in_play = False
+        score -= 1
+        deal()
+    else:
+        deck = Deck()
+        deck.shuffle()
 
-    dealer_hand = Hand()
-    dealer_hand.add_card(deck.deal_card())
-    dealer_hand.add_card(deck.deal_card())
+        dealer_hand = Hand()
+        dealer_hand.add_card(deck.deal_card())
+        dealer_hand.add_card(deck.deal_card())
 
-    player_hand = Hand()
-    player_hand.add_card(deck.deal_card())
-    player_hand.add_card(deck.deal_card())
+        player_hand = Hand()
+        player_hand.add_card(deck.deal_card())
+        player_hand.add_card(deck.deal_card())
 
-    in_play = True
+        in_play = True
 
 
 def hit():
