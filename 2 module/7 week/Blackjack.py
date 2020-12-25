@@ -114,7 +114,7 @@ class Deck:
 def deal():
     global outcome, in_play, deck, dealer_hand, player_hand
 
-    outcome = "New game!"
+    outcome = "New game!\nHit or stand?"
 
     deck = Deck()
     deck.shuffle()
@@ -136,29 +136,29 @@ def hit():
     if player_hand.get_value() <= 21:
         player_hand.add_card(deck.deal_card())
     else:
-        outcome = "You have busted! Dealer wins! New deal?"
+        outcome = "You have busted!\nDealer wins!\nNew deal?"
 
     if player_hand.get_value() > 21:
-        outcome = "You have busted! Dealer wins! New deal?"
+        outcome = "You have busted!\nDealer wins!\nNew deal?"
 
 
 def stand():
     global player_hand, dealer_hand, outcome
 
     if player_hand.get_value() > 21:
-        outcome = "You have busted! Dealer wins! New deal?"
+        outcome = "You have busted!\nDealer wins!\nNew deal?"
         return
 
     while dealer_hand.get_value() < 17:
         dealer_hand.add_card(deck.deal_card())
 
     if dealer_hand.get_value() > 21:
-        outcome = "Dealer have busted! You win! New deal?"
+        outcome = "Dealer have busted!\nYou win!\nNew deal?"
     else:
         if player_hand.get_value() <= dealer_hand.get_value():
-            outcome = "Dealer wins! New deal?"
+            outcome = "Dealer wins!\nNew deal?"
         else:
-            outcome = "You win! New deal?"
+            outcome = "You win!\nNew deal?"
 
 
 # draw handler
@@ -169,7 +169,7 @@ def draw(canvas):
     dealer_hand.draw(canvas, [-50, 50])
 
     canvas.draw_text(outcome, (55, 300), 30, "Black")
-    canvas.draw_text("Blackjack", (335, 55), 40, "Black")
+    canvas.draw_text("Blackjack", (335, 60), 40, "Black")
     canvas.draw_text(player_hand.get_value(), (10, 470), 30, "Red")
     canvas.draw_text(dealer_hand.get_value(), (10, 120), 30, "Red")
 
