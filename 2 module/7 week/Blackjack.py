@@ -174,8 +174,8 @@ def draw(canvas):
 
     canvas.draw_text(outcome, (55, 300), 30, "Black")
     canvas.draw_text("Blackjack", (335, 60), 40, "Black")
-    canvas.draw_text(player_hand.get_value(), (10, 470), 30, "Red")
-    canvas.draw_text(dealer_hand.get_value(), (10, 120), 30, "Red")
+    canvas.draw_text("Player\n" + str(player_hand.get_value()), (10, 445), 30, "Red")
+    canvas.draw_text("Dealer\n" + str(dealer_hand.get_value()), (10, 100), 30, "Red")
 
     if in_play:
         dealer_hand.cards[0].draw_back(canvas, [60, 50])
