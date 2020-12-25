@@ -1,5 +1,3 @@
-# Mini-project #6 - Blackjack
-
 import simpleguitk as simplegui
 import random
 
@@ -8,27 +6,20 @@ CARD_CENTER = (36, 48)
 card_images = simplegui.load_image("http://storage.googleapis.com/codeskulptor-assets/cards_jfitz.png")
 card_back = simplegui.load_image("http://storage.googleapis.com/codeskulptor-assets/card_jfitz_back.png")
 
-# initialize some useful global variables
 in_play = False
 outcome = ""
 score = 0
+deck, dealer_hand, player_hand = None, None, None
 
-# define globals for cards
 SUITS = ('C', 'S', 'H', 'D')
 RANKS = ('A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K')
 VALUES = {'A': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, 'T': 10, 'J': 10, 'Q': 10, 'K': 10}
 
 
-# define card class
 class Card:
     def __init__(self, suit, rank):
-        if (suit in SUITS) and (rank in RANKS):
-            self.suit = suit
-            self.rank = rank
-        else:
-            self.suit = None
-            self.rank = None
-            outcome = "Invalid card: ", suit, rank
+        self.suit = suit
+        self.rank = rank
 
     def __str__(self):
         return self.suit + self.rank
@@ -47,10 +38,10 @@ class Card:
 
     def draw_back(self, canvas, pos):
         card_loc = (CARD_CENTER[0], CARD_CENTER[1])
-        canvas.draw_image(card_back, card_loc, CARD_SIZE, [pos[0] + CARD_CENTER[0] + 1, pos[1] + CARD_CENTER[1] + 1], CARD_SIZE)
+        canvas.draw_image(card_back, card_loc, CARD_SIZE, [pos[0] + CARD_CENTER[0] + 1, pos[1] + CARD_CENTER[1] + 1],
+                          CARD_SIZE)
 
 
-# define hand class
 class Hand:
     def __init__(self):
         self.cards = []
@@ -87,7 +78,6 @@ class Hand:
             card.draw(canvas, pos)
 
 
-# define deck class
 class Deck:
     def __init__(self):
         self.deck = [SUIT + RANK for SUIT in SUITS for RANK in RANKS]
@@ -110,7 +100,6 @@ class Deck:
         return card
 
 
-# define event handlers for buttons
 def deal():
     global outcome, in_play, deck, dealer_hand, player_hand, score
 
@@ -176,7 +165,6 @@ def stand():
     in_play = False
 
 
-# draw handler
 def draw(canvas):
     global player_hand, dealer_hand, in_play, score
 
@@ -193,18 +181,13 @@ def draw(canvas):
         dealer_hand.cards[0].draw_back(canvas, [60, 50])
 
 
-# initialization frame
 frame = simplegui.create_frame("Blackjack", 900, 600)
 frame.set_canvas_background("Green")
 
-# create buttons and canvas callback
 frame.add_button("Deal", deal, 200)
 frame.add_button("Hit", hit, 200)
 frame.add_button("Stand", stand, 200)
 frame.set_draw_handler(draw)
 
-# get things rolling
 deal()
 frame.start()
-
-# remember to review the gradic rubric
