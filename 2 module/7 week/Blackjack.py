@@ -82,7 +82,9 @@ class Hand:
         return value
 
     def draw(self, canvas, pos):
-        pass  # draw a hand on the canvas, use the draw method for cards
+        for card in self.cards:
+            pos[0] = pos[0] + CARD_SIZE[0] + 40
+            card.draw(canvas, pos)
 
 
 # define deck class
@@ -184,10 +186,10 @@ def stand():
 
 # draw handler
 def draw(canvas):
-    # test to make sure that card.draw works, replace with your code below
+    global player_hand, dealer_hand
 
-    card = Card("S", "A")
-    card.draw(canvas, [300, 300])
+    player_hand.draw(canvas, [-50, 400])
+    dealer_hand.draw(canvas, [-50, 50])
 
 
 # initialization frame
