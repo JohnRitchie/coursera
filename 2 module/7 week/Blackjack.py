@@ -32,7 +32,7 @@ class Card:
         else:
             self.suit = None
             self.rank = None
-            print "Invalid card: ", suit, rank
+            outcome =  "Invalid card: ", suit, rank
 
     def __str__(self):
         return self.suit + self.rank
@@ -114,74 +114,51 @@ class Deck:
 def deal():
     global outcome, in_play, deck, dealer_hand, player_hand
 
-    print "New game!"
+    outcome = "New game!"
 
     deck = Deck()
     deck.shuffle()
-    print deck
 
     dealer_hand = Hand()
     dealer_hand.add_card(deck.deal_card())
     dealer_hand.add_card(deck.deal_card())
-    print "Dealer hand:"
-    print dealer_hand
-    print dealer_hand.get_value()
 
     player_hand = Hand()
     player_hand.add_card(deck.deal_card())
     player_hand.add_card(deck.deal_card())
-    print "Player hand:"
-    print player_hand
-    print player_hand.get_value()
-
-    print deck
 
     in_play = True
 
 
 def hit():
-    global player_hand
+    global player_hand, outcome
 
     if player_hand.get_value() <= 21:
         player_hand.add_card(deck.deal_card())
-        print "Player hand:"
-        print player_hand
-        print player_hand.get_value()
-        print deck
     else:
-        print "You have busted! Dealer wins!"
-        print player_hand.get_value()
+        outcome = "You have busted! Dealer wins! New deal?"
 
     if player_hand.get_value() > 21:
-        print "You have busted! Dealer wins!"
-        print player_hand.get_value()
+        outcome = "You have busted! Dealer wins! New deal?"
 
 
 def stand():
-    global player_hand, dealer_hand
+    global player_hand, dealer_hand, outcome
 
     if player_hand.get_value() > 21:
-        print "You have busted! Dealer wins!"
-        print player_hand.get_value()
+        outcome = "You have busted! Dealer wins! New deal?"
         return
 
     while dealer_hand.get_value() < 17:
         dealer_hand.add_card(deck.deal_card())
 
     if dealer_hand.get_value() > 21:
-        print "Dealer have busted! You win!"
+        outcome = "Dealer have busted! You win! New deal?"
     else:
         if player_hand.get_value() <= dealer_hand.get_value():
-            print "Dealer wins!"
+            outcome = "Dealer wins! New deal?"
         else:
-            print "You win!"
-
-    print "Player hand:"
-    print player_hand
-    print player_hand.get_value()
-    print "Dealer hand:"
-    print dealer_hand
-    print dealer_hand.get_value()
+            outcome = "You win! New deal?"
 
 
 # draw handler
@@ -191,9 +168,14 @@ def draw(canvas):
     player_hand.draw(canvas, [-50, 400])
     dealer_hand.draw(canvas, [-50, 50])
 
+    canvas.draw_text(outcome, (55, 300), 30, "Black")
+    canvas.draw_text("Blackjack", (335, 55), 40, "Black")
+    canvas.draw_text(player_hand.get_value(), (10, 470), 30, "Red")
+    canvas.draw_text(dealer_hand.get_value(), (10, 120), 30, "Red")
+
 
 # initialization frame
-frame = simplegui.create_frame("Blackjack", 600, 600)
+frame = simplegui.create_frame("Blackjack", 900, 600)
 frame.set_canvas_background("Green")
 
 # create buttons and canvas callback
