@@ -131,24 +131,27 @@ def deal():
 
 
 def hit():
-    global player_hand, outcome, in_play
+    global player_hand, outcome, in_play, score
 
     if player_hand.get_value() <= 21:
         player_hand.add_card(deck.deal_card())
     else:
         outcome = "You have busted!\nDealer wins!\nNew deal?"
         in_play = False
+        score -= 1
 
     if player_hand.get_value() > 21:
         outcome = "You have busted!\nDealer wins!\nNew deal?"
         in_play = False
+        score -= 1
 
 
 def stand():
-    global player_hand, dealer_hand, outcome, in_play
+    global player_hand, dealer_hand, outcome, in_play, score
 
     if player_hand.get_value() > 21:
         outcome = "You have busted!\nDealer wins!\nNew deal?"
+        score -= 1
         return
 
     while dealer_hand.get_value() < 17:
@@ -156,18 +159,21 @@ def stand():
 
     if dealer_hand.get_value() > 21:
         outcome = "Dealer have busted!\nYou win!\nNew deal?"
+        score += 1
     else:
         if player_hand.get_value() <= dealer_hand.get_value():
             outcome = "Dealer wins!\nNew deal?"
+            score -= 1
         else:
             outcome = "You win!\nNew deal?"
+            score += 1
 
     in_play = False
 
 
 # draw handler
 def draw(canvas):
-    global player_hand, dealer_hand, in_play
+    global player_hand, dealer_hand, in_play, score
 
     player_hand.draw(canvas, [-50, 400])
     dealer_hand.draw(canvas, [-50, 50])
@@ -176,6 +182,7 @@ def draw(canvas):
     canvas.draw_text("Blackjack", (335, 60), 40, "Black")
     canvas.draw_text("Player\n" + str(player_hand.get_value()), (10, 445), 30, "Red")
     canvas.draw_text("Dealer\n" + str(dealer_hand.get_value()), (10, 100), 30, "Red")
+    canvas.draw_text("Score: " + str(score), (355, 300), 30, "Red")
 
     if in_play:
         dealer_hand.cards[0].draw_back(canvas, [60, 50])
