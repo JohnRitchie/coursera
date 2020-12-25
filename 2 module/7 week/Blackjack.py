@@ -3,13 +3,9 @@
 import simpleguitk as simplegui
 import random
 
-# load card sprite - 936x384 - source: jfitz.com
 CARD_SIZE = (72, 96)
 CARD_CENTER = (36, 48)
 card_images = simplegui.load_image("http://storage.googleapis.com/codeskulptor-assets/cards_jfitz.png")
-
-CARD_BACK_SIZE = (72, 96)
-CARD_BACK_CENTER = (36, 48)
 card_back = simplegui.load_image("http://storage.googleapis.com/codeskulptor-assets/card_jfitz_back.png")
 
 # initialize some useful global variables
@@ -32,7 +28,7 @@ class Card:
         else:
             self.suit = None
             self.rank = None
-            outcome =  "Invalid card: ", suit, rank
+            outcome = "Invalid card: ", suit, rank
 
     def __str__(self):
         return self.suit + self.rank
@@ -48,6 +44,10 @@ class Card:
                     CARD_CENTER[1] + CARD_SIZE[1] * SUITS.index(self.suit))
         canvas.draw_image(card_images, card_loc, CARD_SIZE, [pos[0] + CARD_CENTER[0], pos[1] + CARD_CENTER[1]],
                           CARD_SIZE)
+
+    def draw_back(self, canvas, pos):
+        card_loc = (CARD_CENTER[0], CARD_CENTER[1])
+        canvas.draw_image(card_back, card_loc, CARD_SIZE, [pos[0] + CARD_CENTER[0] + 1, pos[1] + CARD_CENTER[1] + 1], CARD_SIZE)
 
 
 # define hand class
@@ -163,7 +163,7 @@ def stand():
 
 # draw handler
 def draw(canvas):
-    global player_hand, dealer_hand
+    global player_hand, dealer_hand, in_play
 
     player_hand.draw(canvas, [-50, 400])
     dealer_hand.draw(canvas, [-50, 50])
@@ -172,6 +172,9 @@ def draw(canvas):
     canvas.draw_text("Blackjack", (335, 60), 40, "Black")
     canvas.draw_text(player_hand.get_value(), (10, 470), 30, "Red")
     canvas.draw_text(dealer_hand.get_value(), (10, 120), 30, "Red")
+
+    if in_play:
+        dealer_hand.cards[0].draw_back(canvas, [60, 50])
 
 
 # initialization frame
