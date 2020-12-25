@@ -108,42 +108,44 @@ def deal():
 def hit():
     global player_hand, outcome, in_play, score
 
-    if player_hand.get_value() <= 21:
-        player_hand.add_card(deck.deal_card())
-    else:
-        outcome = "You have busted!\nDealer wins!\nNew deal?"
-        in_play = False
-        score -= 1
+    if in_play:
+        if player_hand.get_value() <= 21:
+            player_hand.add_card(deck.deal_card())
+        else:
+            outcome = "You have busted!\nDealer wins!\nNew deal?"
+            in_play = False
+            score -= 1
 
-    if player_hand.get_value() > 21:
-        outcome = "You have busted!\nDealer wins!\nNew deal?"
-        in_play = False
-        score -= 1
+        if player_hand.get_value() > 21:
+            outcome = "You have busted!\nDealer wins!\nNew deal?"
+            in_play = False
+            score -= 1
 
 
 def stand():
     global player_hand, dealer_hand, outcome, in_play, score
 
-    if player_hand.get_value() > 21:
-        outcome = "You have busted!\nDealer wins!\nNew deal?"
-        score -= 1
-        return
-
-    while dealer_hand.get_value() < 17:
-        dealer_hand.add_card(deck.deal_card())
-
-    if dealer_hand.get_value() > 21:
-        outcome = "Dealer have busted!\nYou win!\nNew deal?"
-        score += 1
-    else:
-        if player_hand.get_value() <= dealer_hand.get_value():
-            outcome = "Dealer wins!\nNew deal?"
+    if in_play:
+        if player_hand.get_value() > 21:
+            outcome = "You have busted!\nDealer wins!\nNew deal?"
             score -= 1
-        else:
-            outcome = "You win!\nNew deal?"
-            score += 1
+            return
 
-    in_play = False
+        while dealer_hand.get_value() < 17:
+            dealer_hand.add_card(deck.deal_card())
+
+        if dealer_hand.get_value() > 21:
+            outcome = "Dealer have busted!\nYou win!\nNew deal?"
+            score += 1
+        else:
+            if player_hand.get_value() <= dealer_hand.get_value():
+                outcome = "Dealer wins!\nNew deal?"
+                score -= 1
+            else:
+                outcome = "You win!\nNew deal?"
+                score += 1
+
+        in_play = False
 
 
 def draw(canvas):
