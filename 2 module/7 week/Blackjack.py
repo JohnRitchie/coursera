@@ -21,9 +21,6 @@ class Card:
         self.suit = suit
         self.rank = rank
 
-    def __str__(self):
-        return self.suit + self.rank
-
     def get_suit(self):
         return self.suit
 
@@ -45,14 +42,6 @@ class Card:
 class Hand:
     def __init__(self):
         self.cards = []
-
-    def __str__(self):
-        str_cards = "Hand contains:"
-        for card in self.cards:
-            str_cards += " "
-            str_cards += str(card)
-
-        return str_cards
 
     def add_card(self, card):
         self.cards.append(card)
@@ -81,14 +70,6 @@ class Hand:
 class Deck:
     def __init__(self):
         self.deck = [SUIT + RANK for SUIT in SUITS for RANK in RANKS]
-
-    def __str__(self):
-        str_deck = "Deck contains:"
-        for card in self.deck:
-            str_deck += " "
-            str_deck += str(card)
-
-        return str_deck
 
     def shuffle(self):
         return random.shuffle(self.deck)
