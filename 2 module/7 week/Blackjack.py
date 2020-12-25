@@ -181,6 +181,7 @@ def stand():
     print dealer_hand
     print dealer_hand.get_value()
 
+
 # draw handler
 def draw(canvas):
     # test to make sure that card.draw works, replace with your code below
