@@ -20,6 +20,7 @@ print type(c3)
 ###################################################
 # Output to console
 
+
 # SA
 # S A
 # <class '__main__.Card'>
