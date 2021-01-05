@@ -114,6 +114,10 @@ class Ship:
             canvas.draw_image(ship_image, self.image_center, self.image_size, self.pos, self.image_size, self.angle)
 
     def update(self):
+        friction = 0.9
+        self.vel[0] *= friction
+        self.vel[1] *= friction
+
         self.pos[0] += self.vel[0]
         self.pos[1] += self.vel[1]
         if self.pos[0] > 800:
@@ -127,11 +131,10 @@ class Ship:
 
         self.angle += self.angle_vel
 
-        deceleration = 0.1
         if self.thrust:
             forward_vector = angle_to_vector(self.angle)
-            self.vel[0] += (forward_vector[0] * deceleration)
-            self.vel[1] += (forward_vector[1] * deceleration)
+            self.vel[0] += (forward_vector[0])
+            self.vel[1] += (forward_vector[1])
 
     def update_angle_vel(self, orientation):
         if orientation == "left":
