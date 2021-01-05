@@ -114,8 +114,9 @@ class Ship:
         self.pos[0] += self.vel[0]
         self.pos[1] += self.vel[1]
 
+        self.angle += self.angle_vel
 
-# Sprite class
+
 class Sprite:
     def __init__(self, pos, vel, ang, ang_vel, image, info, sound=None):
         self.pos = [pos[0], pos[1]]
