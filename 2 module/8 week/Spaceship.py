@@ -116,6 +116,12 @@ class Ship:
 
         self.angle += self.angle_vel
 
+    def update_angle_vel(self, orientation):
+        if orientation == "left":
+            self.angle_vel -= 0.3
+        elif orientation == "right":
+            self.angle_vel += 0.3
+
 
 class Sprite:
     def __init__(self, pos, vel, ang, ang_vel, image, info, sound=None):
@@ -170,16 +176,26 @@ def rock_spawner():
     pass
 
 
-# initialize frame
-frame = simplegui.create_frame("Asteroids", WIDTH, HEIGHT)
+def keydown(key):
+    if key == simplegui.KEY_MAP["left"]:
+        my_ship.update_angle_vel("left")
+    elif key == simplegui.KEY_MAP["right"]:
+        my_ship.update_angle_vel("right")
 
-# initialize ship and two sprites
+
+def keyup(key):
+    if key == simplegui.KEY_MAP["left"] or key == simplegui.KEY_MAP["right"]:
+        my_ship.angle_vel = 0
+
+
 my_ship = Ship([WIDTH / 2, HEIGHT / 2], [0, 0], 0, ship_image, ship_info)
 a_rock = Sprite([WIDTH / 3, HEIGHT / 3], [1, 1], 0, 0, asteroid_image, asteroid_info)
 a_missile = Sprite([2 * WIDTH / 3, 2 * HEIGHT / 3], [-1, 1], 0, 0, missile_image, missile_info, missile_sound)
 
-# register handlers
+frame = simplegui.create_frame("Asteroids", WIDTH, HEIGHT)
 frame.set_draw_handler(draw)
+frame.set_keydown_handler(keydown)
+frame.set_keyup_handler(keyup)
 
 timer = simplegui.create_timer(1000.0, rock_spawner)
 
