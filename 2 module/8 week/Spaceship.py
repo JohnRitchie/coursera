@@ -128,8 +128,11 @@ class Ship:
     def update_thrust(self, mode):
         if mode == "on":
             self.thrust = True
+            ship_thrust_sound.rewind()
+            ship_thrust_sound.play()
         elif mode == "off":
             self.thrust = False
+            ship_thrust_sound.pause()
 
 
 class Sprite:
