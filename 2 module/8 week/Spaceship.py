@@ -73,22 +73,17 @@ explosion_info = ImageInfo([64, 64], [128, 128], 17, 24, True)
 explosion_image = simplegui.load_image(
     "http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/explosion_alpha.png")
 
-# TODO
 # sound assets purchased from sounddogs.com, please do not redistribute
-# soundtrack = simplegui.load_sound(
-#     "http://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/soundtrack.mp3")
-# missile_sound = simplegui.load_sound(
-#     "http://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/missile.mp3")
-# missile_sound.set_volume(.5)
-# ship_thrust_sound = simplegui.load_sound(
-#     "http://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/thrust.mp3")
-# explosion_sound = simplegui.load_sound(
-#     "http://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/explosion.mp3")
+soundtrack = simplegui.load_sound(
+     "http://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/soundtrack.ogg")
+missile_sound = simplegui.load_sound(
+     "http://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/missile.ogg")
+missile_sound.set_volume(.5)
+ship_thrust_sound = simplegui.load_sound(
+     "http://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/thrust.ogg")
+explosion_sound = simplegui.load_sound(
+     "http://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/explosion.ogg")
 
-
-# alternative upbeat soundtrack by composer and former IIPP student Emiel Stopler
-# please do not redistribute without permission from Emiel at http://www.filmcomposer.nl
-# soundtrack = simplegui.load_sound("https://storage.googleapis.com/codeskulptor-assets/ricerocks_theme.mp3")
 
 # helper functions to handle transformations
 def angle_to_vector(ang):
@@ -179,8 +174,7 @@ frame = simplegui.create_frame("Asteroids", WIDTH, HEIGHT)
 # initialize ship and two sprites
 my_ship = Ship([WIDTH / 2, HEIGHT / 2], [0, 0], 0, ship_image, ship_info)
 a_rock = Sprite([WIDTH / 3, HEIGHT / 3], [1, 1], 0, 0, asteroid_image, asteroid_info)
-# TODO
-a_missile = Sprite([2 * WIDTH / 3, 2 * HEIGHT / 3], [-1, 1], 0, 0, missile_image, missile_info)
+a_missile = Sprite([2 * WIDTH / 3, 2 * HEIGHT / 3], [-1, 1], 0, 0, missile_image, missile_info, missile_sound)
 
 # register handlers
 frame.set_draw_handler(draw)
