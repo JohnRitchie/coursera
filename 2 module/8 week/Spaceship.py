@@ -125,7 +125,6 @@ class Ship:
             self.vel[0] += (forward_vector[0] * deceleration)
             self.vel[1] += (forward_vector[1] * deceleration)
 
-
     def update_angle_vel(self, orientation):
         if orientation == "left":
             self.angle_vel -= 0.3
