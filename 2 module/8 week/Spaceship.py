@@ -199,7 +199,7 @@ class Sprite:
 
 
 def draw(canvas):
-    global time
+    global time, lives, score
 
     # animiate background
     time += 1
@@ -210,6 +210,8 @@ def draw(canvas):
                       [WIDTH, HEIGHT])
     canvas.draw_image(debris_image, center, size, (wtime - WIDTH / 2, HEIGHT / 2), (WIDTH, HEIGHT))
     canvas.draw_image(debris_image, center, size, (wtime + WIDTH / 2, HEIGHT / 2), (WIDTH, HEIGHT))
+    canvas.draw_text('Lives: ' + str(lives), (30, 30), 25, "Red")
+    canvas.draw_text('Score: ' + str(score), (645, 30), 25, "Red")
 
     # draw ship and sprites
     my_ship.draw(canvas)
