@@ -1,9 +1,7 @@
-# program template for Spaceship
 import simpleguitk as simplegui
 import math
 import random
 
-# globals for user interface
 WIDTH = 800
 HEIGHT = 600
 score = 0
@@ -51,11 +49,9 @@ nebula_info = ImageInfo([400, 300], [800, 600])
 nebula_image = simplegui.load_image(
     "http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/nebula_blue.f2014.png")
 
-# splash image
 splash_info = ImageInfo([200, 150], [400, 300])
 splash_image = simplegui.load_image("http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/splash.png")
 
-# ship image
 ship_info = ImageInfo([45, 45], [90, 90], 35)
 ship_image = simplegui.load_image("http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/double_ship.png")
 
@@ -85,7 +81,6 @@ explosion_sound = simplegui.load_sound(
      "http://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/explosion.ogg")
 
 
-# helper functions to handle transformations
 def angle_to_vector(ang):
     return [math.cos(ang), math.sin(ang)]
 
@@ -94,7 +89,6 @@ def dist(p, q):
     return math.sqrt((p[0] - q[0]) ** 2 + (p[1] - q[1]) ** 2)
 
 
-# Ship class
 class Ship:
     def __init__(self, pos, vel, angle, image, info):
         self.pos = [pos[0], pos[1]]
@@ -201,7 +195,6 @@ class Sprite:
 def draw(canvas):
     global time, lives, score
 
-    # animiate background
     time += 1
     wtime = (time / 4) % WIDTH
     center = debris_info.get_center()
@@ -213,18 +206,15 @@ def draw(canvas):
     canvas.draw_text('Lives: ' + str(lives), (30, 30), 25, "Red")
     canvas.draw_text('Score: ' + str(score), (645, 30), 25, "Red")
 
-    # draw ship and sprites
     my_ship.draw(canvas)
     a_rock.draw(canvas)
     a_missile.draw(canvas)
 
-    # update ship and sprites
     my_ship.update()
     a_rock.update()
     a_missile.update()
 
 
-# timer handler that spawns a rock
 def rock_spawner():
     global a_rock
 
@@ -261,6 +251,5 @@ frame.set_keyup_handler(keyup)
 
 timer = simplegui.create_timer(1000.0, rock_spawner)
 
-# get things rolling
 timer.start()
 frame.start()
