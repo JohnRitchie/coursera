@@ -109,9 +109,9 @@ class Ship:
 
     def draw(self, canvas):
         if self.thrust:
-            canvas.draw_image(ship_image, [135, self.image_center[1]], self.image_size, self.pos, self.image_size, self.angle)
+            canvas.draw_image(self.image, [135, self.image_center[1]], self.image_size, self.pos, self.image_size, self.angle)
         else:
-            canvas.draw_image(ship_image, self.image_center, self.image_size, self.pos, self.image_size, self.angle)
+            canvas.draw_image(self.image, self.image_center, self.image_size, self.pos, self.image_size, self.angle)
 
     def update(self):
         friction = 0.9
