@@ -170,10 +170,21 @@ class Sprite:
             sound.play()
 
     def draw(self, canvas):
-        canvas.draw_circle(self.pos, self.radius, 1, "Red", "Red")
+        canvas.draw_image(self.image, self.image_center, self.image_size, self.pos, self.image_size, self.angle)
 
     def update(self):
-        pass
+        self.pos[0] += self.vel[0]
+        self.pos[1] += self.vel[1]
+        if self.pos[0] > 800:
+            self.pos[0] = 0
+        elif self.pos[0] < 0:
+            self.pos[0] = 800
+        elif self.pos[1] > 600:
+            self.pos[1] = 0
+        elif self.pos[1] < 0:
+            self.pos[1] = 600
+
+        self.angle += self.angle_vel
 
 
 def draw(canvas):
