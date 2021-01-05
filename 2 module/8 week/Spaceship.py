@@ -108,7 +108,10 @@ class Ship:
         self.radius = info.get_radius()
 
     def draw(self, canvas):
-        canvas.draw_image(ship_image, self.image_center, self.image_size, self.pos, self.image_size, self.angle)
+        if self.thrust:
+            canvas.draw_image(ship_image, [135, self.image_center[1]], self.image_size, self.pos, self.image_size, self.angle)
+        else:
+            canvas.draw_image(ship_image, self.image_center, self.image_size, self.pos, self.image_size, self.angle)
 
     def update(self):
         self.pos[0] += self.vel[0]
@@ -121,6 +124,12 @@ class Ship:
             self.angle_vel -= 0.3
         elif orientation == "right":
             self.angle_vel += 0.3
+
+    def update_thrust(self, mode):
+        if mode == "on":
+            self.thrust = True
+        elif mode == "off":
+            self.thrust = False
 
 
 class Sprite:
@@ -181,11 +190,15 @@ def keydown(key):
         my_ship.update_angle_vel("left")
     elif key == simplegui.KEY_MAP["right"]:
         my_ship.update_angle_vel("right")
+    elif key == simplegui.KEY_MAP["up"]:
+        my_ship.update_thrust("on")
 
 
 def keyup(key):
     if key == simplegui.KEY_MAP["left"] or key == simplegui.KEY_MAP["right"]:
         my_ship.angle_vel = 0
+    elif key == simplegui.KEY_MAP["up"]:
+        my_ship.update_thrust("off")
 
 
 my_ship = Ship([WIDTH / 2, HEIGHT / 2], [0, 0], 0, ship_image, ship_info)
