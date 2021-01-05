@@ -153,6 +153,15 @@ class Ship:
             self.thrust = False
             ship_thrust_sound.pause()
 
+    def shoot(self):
+        global a_missile
+
+        forward_vector = angle_to_vector(self.angle)
+        missile_pos = [self.pos[0] + forward_vector[0] * self.radius, self.pos[1] + forward_vector[1] * self.radius]
+        missile_vel = [self.vel[0] + forward_vector[0] * 5, self.vel[1] + forward_vector[1] * 5]
+        a_missile = Sprite(missile_pos, missile_vel, self.angle, 0, missile_image, missile_info,
+                           missile_sound)
+
 
 class Sprite:
     def __init__(self, pos, vel, ang, ang_vel, image, info, sound=None):
@@ -228,6 +237,8 @@ def keydown(key):
         my_ship.update_angle_vel("right")
     elif key == simplegui.KEY_MAP["up"]:
         my_ship.update_thrust("on")
+    elif key == simplegui.KEY_MAP["space"]:
+        my_ship.shoot()
 
 
 def keyup(key):
