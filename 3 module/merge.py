@@ -3,56 +3,43 @@ Merge function for 2048 game.
 """
 
 
+def slide_to_left(line):
+    """
+    Function that slide numbers in line to the left and zeros to the right.
+    """
+
+    result_line = [0 for _ in range(len(line))]
+
+    index_list = 0
+    for number in line:
+        if number > 0:
+            result_line[index_list] = number
+            index_list += 1
+
+    return result_line
+
+
 def merge(line):
     """
     Function that merges a single row or column in 2048.
     """
-    # replace with your code
-
-    # result = [0 for _ in range(len(line))]
 
     copy_line = line[:]
-    tmp_list = [0 for _ in range(len(line))]
-
-    index_list = 0
-    for number in copy_line:
-        if number > 0:
-            tmp_list[index_list] = number
-            index_list += 1
-
+    
     for indx in range(len(line)):
-        index_list = 0
-        for number in tmp_list:
-            if number > 0:
-                tmp_list[index_list] = number
-                index_list += 1
 
-        if indx == (len(line) - 1):
-            break
+        slided_list = slide_to_left(copy_line)
 
-        number = tmp_list[indx]
+        number = slided_list[indx]
         next_number_index = indx + 1
-        next_number = tmp_list[next_number_index]
-
-        print tmp_list
+        if next_number_index == (len(line)):
+            break
+        next_number = slided_list[next_number_index]
 
         if number == next_number:
-            tmp_list[indx] = number + next_number
-            tmp_list[next_number_index] = 0
+            slided_list[indx] = number + next_number
+            slided_list[next_number_index] = 0
 
-        print tmp_list
+        copy_line = slided_list
 
-    # index_list = 0
-    # for number in tmp_list:
-    #     if number > 0:
-    #         result[index_list] = number
-    #         index_list += 1
-
-    return tmp_list
-
-
-# l = [8, 16]
-# 8, 8, 8, 2 => 8, 16, 2, 0
-# 4, 4, 8, 8 => 8, 16, 0, 0
-l = [4, 4, 8, 8]
-print merge(l)
+    return slided_list
