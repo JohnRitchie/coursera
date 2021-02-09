@@ -1,7 +1,6 @@
 """
 Clone of 2048 game.
 """
-
 try:
     import poc_2048_gui
 except ImportError:
