@@ -29,7 +29,7 @@ OFFSETS = {UP: (1, 0),
 
 def slide_to_left(line):
     """
-    Function that slide numbers in line to the left and zeros to the right.
+    Helper function that slide numbers in line to the left and zeros to the right.
     """
 
     result_line = [0 for _ in range(len(line))]
