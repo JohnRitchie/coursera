@@ -1,14 +1,17 @@
 """
 Clone of 2048 game.
 """
+import sys
+sys.path.append('C:\\Users\\vlazarenko\\Desktop\\coursera\\3 module\\ext')
+
 try:
     import poc_2048_gui
 except ImportError:
-    import poc_2048_gui as poc_2048_gui
+    import ext.poc_2048_gui as poc_2048_gui
 try:
     import poc_simpletest
 except ImportError:
-    import poc_simpletest as poc_simpletest
+    import ext.poc_simpletest as poc_simpletest
 
 # Directions, DO NOT MODIFY
 UP = 1
