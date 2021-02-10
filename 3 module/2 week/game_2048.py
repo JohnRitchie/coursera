@@ -2,7 +2,9 @@
 Clone of 2048 game.
 """
 import sys
-sys.path.append('C:\\Users\\vlazarenko\\Desktop\\coursera\\3 module\\ext')
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).parent.absolute()).replace("2 week", "ext"))
 
 try:
     import poc_2048_gui
