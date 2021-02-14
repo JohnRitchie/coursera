@@ -1,6 +1,7 @@
 """
 Clone of 2048 game.
 """
+import random
 import sys
 from pathlib import Path
 
@@ -89,7 +90,8 @@ class TwentyFortyEight:
         """
         self._cells = [[0 for dummy_col in range(self.grid_width)]
                        for dummy_row in range(self.grid_height)]
-        self.new_tile()
+        # self.new_tile()
+        print self._cells
         self.new_tile()
 
     def __str__(self):
@@ -127,8 +129,13 @@ class TwentyFortyEight:
         square.  The tile should be 2 90% of the time and
         4 10% of the time.
         """
-        # replace with your code
-        pass
+        _null_indexes_list = []
+        for row in range(len(self._cells)):
+            for col in self._cells[row]:
+                if col == 0:
+                    _null_indexes_list.append((row, col))
+
+        print _null_indexes_list
 
     def set_tile(self, row, col, value):
         """
@@ -145,4 +152,5 @@ class TwentyFortyEight:
         return 0
 
 
-poc_2048_gui.run_gui(TwentyFortyEight(4, 4))
+# poc_2048_gui.run_gui(TwentyFortyEight(2, 2))
+game = TwentyFortyEight(2, 2)
