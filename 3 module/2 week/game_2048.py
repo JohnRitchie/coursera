@@ -77,8 +77,9 @@ class TwentyFortyEight:
     """
 
     def __init__(self, grid_height, grid_width):
-        # replace with your code
-        pass
+        self.grid_height = grid_height
+        self.grid_width = grid_width
+        self.reset()
 
     def reset(self):
         """
