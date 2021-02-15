@@ -91,7 +91,6 @@ class TwentyFortyEight:
         self._cells = [[0 for dummy_col in range(self.grid_width)]
                        for dummy_row in range(self.grid_height)]
         # self.new_tile()
-        print self._cells
         self.new_tile()
 
     def __str__(self):
@@ -129,13 +128,16 @@ class TwentyFortyEight:
         square.  The tile should be 2 90% of the time and
         4 10% of the time.
         """
-        _null_indexes_list = []
+        _null_coordinates_list = []
         for row in range(len(self._cells)):
-            for col in self._cells[row]:
-                if col == 0:
-                    _null_indexes_list.append((row, col))
+            for col in range(len(self._cells[row])):
+                if self._cells[row][col] == 0:
+                    _null_coordinates_list.append((row, col))
 
-        print _null_indexes_list
+        row = _null_coordinates_list[random.randrange(len(_null_coordinates_list))][0]
+        col = _null_coordinates_list[random.randrange(len(_null_coordinates_list))][1]
+        self._cells[row][col] = 2
+        print self._cells
 
     def set_tile(self, row, col, value):
         """
@@ -152,5 +154,5 @@ class TwentyFortyEight:
         return 0
 
 
-# poc_2048_gui.run_gui(TwentyFortyEight(2, 2))
-game = TwentyFortyEight(2, 2)
+# poc_2048_gui.run_gui(TwentyFortyEight(4, 4))
+game = TwentyFortyEight(4, 4)
