@@ -78,8 +78,8 @@ class TwentyFortyEight:
     """
 
     def __init__(self, grid_height, grid_width):
-        self.grid_height = grid_height
-        self.grid_width = grid_width
+        self._grid_height = grid_height
+        self._grid_width = grid_width
         self._cells = None
         self.reset()
 
@@ -88,8 +88,8 @@ class TwentyFortyEight:
         Reset the game so the grid is empty except for two
         initial tiles.
         """
-        self._cells = [[0 for dummy_col in range(self.grid_width)]
-                       for dummy_row in range(self.grid_height)]
+        self._cells = [[0 for dummy_col in range(self._grid_width)]
+                       for dummy_row in range(self._grid_height)]
         self.new_tile()
         self.new_tile()
 
@@ -105,14 +105,14 @@ class TwentyFortyEight:
         Get the height of the board.
         """
         # replace with your code
-        return 0
+        return self._grid_height
 
     def get_grid_width(self):
         """
         Get the width of the board.
         """
         # replace with your code
-        return 0
+        return self._grid_width
 
     def move(self, direction):
         """
