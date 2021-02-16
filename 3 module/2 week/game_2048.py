@@ -90,7 +90,7 @@ class TwentyFortyEight:
         """
         self._cells = [[0 for dummy_col in range(self.grid_width)]
                        for dummy_row in range(self.grid_height)]
-        # self.new_tile()
+        self.new_tile()
         self.new_tile()
 
     def __str__(self):
@@ -134,10 +134,17 @@ class TwentyFortyEight:
                 if self._cells[row][col] == 0:
                     _null_coordinates_list.append((row, col))
 
-        row = _null_coordinates_list[random.randrange(len(_null_coordinates_list))][0]
-        col = _null_coordinates_list[random.randrange(len(_null_coordinates_list))][1]
-        self._cells[row][col] = 2
-        print self._cells
+        _row = _null_coordinates_list[random.randrange(len(_null_coordinates_list))][0]
+        _col = _null_coordinates_list[random.randrange(len(_null_coordinates_list))][1]
+
+        _percentage_of_2 = int(float(len(_null_coordinates_list)) * 9 / 10)
+        _percentage_of_4 = len(_null_coordinates_list) - _percentage_of_2
+
+        _rand_nums_list = [2 for _ in range(_percentage_of_2)]
+        for _ in range(_percentage_of_4):
+            _rand_nums_list.append(4)
+
+        self._cells[_row][_col] = random.choice(_rand_nums_list)
 
     def set_tile(self, row, col, value):
         """
