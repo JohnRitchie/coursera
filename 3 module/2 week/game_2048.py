@@ -97,8 +97,7 @@ class TwentyFortyEight:
         """
         Return a string representation of the grid for debugging.
         """
-        # replace with your code
-        return ""
+        return 'TwentyFortyEight Grid is: {}'.format(self._cells)
 
     def get_grid_height(self):
         """
