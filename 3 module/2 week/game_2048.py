@@ -147,8 +147,7 @@ class TwentyFortyEight:
         """
         Set the tile at position row, col to have the given value.
         """
-        # replace with your code
-        pass
+        self._cells[row][col] = value
 
     def get_tile(self, row, col):
         """
