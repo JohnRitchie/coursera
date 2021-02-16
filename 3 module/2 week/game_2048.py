@@ -153,8 +153,7 @@ class TwentyFortyEight:
         """
         Return the value of the tile at position row, col.
         """
-        # replace with your code
-        return 0
+        return self._cells[row][col]
 
 
 # poc_2048_gui.run_gui(TwentyFortyEight(4, 4))
