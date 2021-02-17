@@ -129,8 +129,41 @@ class TwentyFortyEight:
         Move all tiles in the given direction and add
         a new tile if any tiles moved.
         """
-        # replace with your code
-        pass
+        if direction == UP or direction == DOWN:
+            _num_steps = self._grid_height
+        elif direction == LEFT or direction == RIGHT:
+            _num_steps = self._grid_width
+
+        global moved
+        moved = False
+        _tmp_list = []
+
+        for tile in self._dir_dict[direction]:
+            for step in range(_num_steps):
+                row = tile[0] + step * OFFSETS[direction][0]
+                col = tile[1] + step * OFFSETS[direction][1]
+                _tmp_list.append(self._cells[row][col])
+            _tmp_list_snap = _tmp_list[:]
+            _tmp_list = merge(_tmp_list)
+
+            if _tmp_list_snap != _tmp_list:
+                moved = True
+
+            idx = 0
+            for step in range(_num_steps):
+                row = tile[0] + step * OFFSETS[direction][0]
+                col = tile[1] + step * OFFSETS[direction][1]
+                if direction == UP or direction == DOWN:
+                    self._cells[row][col] = _tmp_list[idx]
+                    idx += 1
+                elif direction == LEFT or direction == RIGHT:
+                    self._cells[row][col] = _tmp_list[idx]
+                    idx += 1
+            _tmp_list = []
+
+        if moved:
+            self.new_tile()
+            moved = False
 
     def new_tile(self):
         """
@@ -169,5 +202,4 @@ class TwentyFortyEight:
         return self._cells[row][col]
 
 
-# poc_2048_gui.run_gui(TwentyFortyEight(4, 4))
-game = TwentyFortyEight(4, 4)
+poc_2048_gui.run_gui(TwentyFortyEight(2, 2))
