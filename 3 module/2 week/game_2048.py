@@ -134,7 +134,6 @@ class TwentyFortyEight:
         elif direction == LEFT or direction == RIGHT:
             _num_steps = self._grid_width
 
-        global moved
         moved = False
         _tmp_list = []
 
