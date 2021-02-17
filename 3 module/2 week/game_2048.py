@@ -81,6 +81,19 @@ class TwentyFortyEight:
         self._grid_height = grid_height
         self._grid_width = grid_width
         self._cells = None
+
+        self._dir_dict = {UP: [],
+                          DOWN: [],
+                          LEFT: [],
+                          RIGHT: []}
+
+        for col in range(self._grid_width):
+            self._dir_dict[UP].append((0, col))
+            self._dir_dict[DOWN].append((self._grid_height - 1, col))
+        for row in range(self._grid_height):
+            self._dir_dict[LEFT].append((row, 0))
+            self._dir_dict[RIGHT].append((row, self._grid_width - 1))
+
         self.reset()
 
     def reset(self):
