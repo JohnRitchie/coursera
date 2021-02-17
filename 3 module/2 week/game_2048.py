@@ -201,4 +201,14 @@ class TwentyFortyEight:
         return self._cells[row][col]
 
 
-poc_2048_gui.run_gui(TwentyFortyEight(2, 2))
+# poc_2048_gui.run_gui(TwentyFortyEight(2, 2))
+obj = TwentyFortyEight(2, 2)
+obj.set_tile(0, 0, 0)
+obj.set_tile(0, 1, 0)
+obj.set_tile(1, 0, 0)
+obj.set_tile(1, 1, 0)
+obj.new_tile()
+# expected new tiles to have values with frequencies
+# (keys are tile values, values are the fraction of time that value was chosen)
+# {2: 0.9, 4: 0.1}
+# but new tiles had values with frequencies {2: 0.7485, 4: 0.2515}
