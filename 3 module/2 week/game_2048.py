@@ -11,10 +11,10 @@ try:
     import poc_2048_gui
 except ImportError:
     import ext.poc_2048_gui as poc_2048_gui
-try:
-    import poc_simpletest
-except ImportError:
-    import ext.poc_simpletest as poc_simpletest
+# try:
+#     import poc_simpletest
+# except ImportError:
+#     import ext.poc_simpletest as poc_simpletest
 
 # Directions, DO NOT MODIFY
 UP = 1
