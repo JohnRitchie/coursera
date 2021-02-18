@@ -2,19 +2,8 @@
 Clone of 2048 game.
 """
 import random
-import sys
-from pathlib import Path
+import poc_2048_gui
 
-sys.path.append(str(Path(__file__).parent.absolute()).replace("2 week", "ext"))
-
-try:
-    import poc_2048_gui
-except ImportError:
-    import ext.poc_2048_gui as poc_2048_gui
-# try:
-#     import poc_simpletest
-# except ImportError:
-#     import ext.poc_simpletest as poc_simpletest
 
 # Directions, DO NOT MODIFY
 UP = 1
@@ -142,27 +131,23 @@ class TwentyFortyEight:
                 row = tile[0] + step * OFFSETS[direction][0]
                 col = tile[1] + step * OFFSETS[direction][1]
                 _tmp_list.append(self._cells[row][col])
-            _tmp_list_snap = _tmp_list[:]
+            _tmp_list_copy = _tmp_list[:]
             _tmp_list = merge(_tmp_list)
 
-            if _tmp_list_snap != _tmp_list:
+            if _tmp_list_copy != _tmp_list:
                 moved = True
 
             idx = 0
             for step in range(_num_steps):
                 row = tile[0] + step * OFFSETS[direction][0]
                 col = tile[1] + step * OFFSETS[direction][1]
-                if direction == UP or direction == DOWN:
-                    self._cells[row][col] = _tmp_list[idx]
-                    idx += 1
-                elif direction == LEFT or direction == RIGHT:
-                    self._cells[row][col] = _tmp_list[idx]
-                    idx += 1
+                self._cells[row][col] = _tmp_list[idx]
+                idx += 1
+
             _tmp_list = []
 
         if moved:
             self.new_tile()
-            moved = False
 
     def new_tile(self):
         """
@@ -201,14 +186,4 @@ class TwentyFortyEight:
         return self._cells[row][col]
 
 
-# poc_2048_gui.run_gui(TwentyFortyEight(2, 2))
-obj = TwentyFortyEight(2, 2)
-obj.set_tile(0, 0, 0)
-obj.set_tile(0, 1, 0)
-obj.set_tile(1, 0, 0)
-obj.set_tile(1, 1, 0)
-obj.new_tile()
-# expected new tiles to have values with frequencies
-# (keys are tile values, values are the fraction of time that value was chosen)
-# {2: 0.9, 4: 0.1}
-# but new tiles had values with frequencies {2: 0.7485, 4: 0.2515}
+poc_2048_gui.run_gui(TwentyFortyEight(4, 4))
