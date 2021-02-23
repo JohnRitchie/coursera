@@ -27,8 +27,17 @@ def get_best_move(board, scores):
 
 
 def mc_move(board, player, trials):
-    pass
+    return board
 
+
+def play():
+    board = [[1, 2, 3], [1, 2, 3], [1, 2, 3]]
+    board = provided.TTTBoard(3, board=board)
+    print mc_move(board, 2, NTRIALS)
+
+
+if __name__ == '__main__':
+    play()
 
 # Test game with the console or the GUI.  Uncomment whichever
 # you prefer.  Both should be commented out when you submit
