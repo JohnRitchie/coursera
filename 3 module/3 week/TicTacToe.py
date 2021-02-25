@@ -29,7 +29,10 @@ def mc_trial(board, player):
     :param player:
     :return: None
     """
-    pass
+    while board.check_win() not in (PLAYER_X, PLAYER_O, DRAW):
+        row, col = random.choice(board.get_empty_squares())
+        board.move(row, col, player)
+        player = provided.switch_player(player)
 
 
 def mc_update_scores(scores, board, player):
@@ -74,9 +77,10 @@ def mc_move(board, player, trials):
 
 
 def play():
-    board = [[EMPTY, PLAYER_X, PLAYER_O], [EMPTY, PLAYER_X, PLAYER_O], [EMPTY, PLAYER_X, PLAYER_O]]
-    board = provided.TTTBoard(3, board=board)
-    print mc_move(board, 2, NTRIALS)
+    board = provided.TTTBoard(3)
+    mc_trial(board, PLAYER_X)
+    print board
+    print board.check_win()
 
 
 if __name__ == '__main__':
