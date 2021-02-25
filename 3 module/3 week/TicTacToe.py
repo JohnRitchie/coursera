@@ -9,13 +9,14 @@ import poc_ttt_provided as provided
 # Constants for Monte Carlo simulator
 # You may change the values of these constants as desired, but
 #  do not change their names.
-NTRIALS = 1  # Number of trials to run
+NTRIALS = 50  # Number of trials to run
 SCORE_CURRENT = 2.0  # Score for squares played by the current player
 SCORE_OTHER = 1.0  # Score for squares played by the other player
 EMPTY = 1
 PLAYER_X = 2
 PLAYER_O = 3
 DRAW = 4
+BOARD_DIM = 3
 
 
 def mc_trial(board, player):
@@ -53,13 +54,31 @@ def mc_update_scores(scores, board, player):
 
     winner = board.check_win()
     if winner == DRAW:
-        print "It's a draw!"
+        score_player = 0
+        score_opponent = 0
     elif winner == player:
-        print "You win!"
+        score_player = SCORE_CURRENT
+        score_opponent = -SCORE_OTHER
     elif winner == opponent:
-        print "You lost!"
+        score_player = -SCORE_CURRENT
+        score_opponent = SCORE_OTHER
     else:
         print "Something wrong!"
+
+    print board
+
+    for row in range(board.get_dim()):
+        for col in range(board.get_dim()):
+            if board.square(row, col) == EMPTY:
+                score = 0
+            elif board.square(row, col) == player:
+                score = score_player
+            elif board.square(row, col) == opponent:
+                score = score_opponent
+            else:
+                print "Something wrong!"
+
+            scores[row][col] += score
 
 
 def get_best_move(board, scores):
@@ -86,16 +105,20 @@ def mc_move(board, player, trials):
     :param trials:
     :return: (row, column) tuple
     """
-    mc_trial(board, player)
-    print board.check_win()
-
     scores = [[0 for dummy_col in range(board.get_dim())] for dummy_row in range(board.get_dim())]
-    mc_update_scores(scores, board, player)
-    print scores
+    copy_board = board.clone()
+
+    for dummy_game in range(trials):
+        mc_trial(copy_board, player)
+        print copy_board.check_win()
+
+        mc_update_scores(scores, copy_board, player)
+        copy_board = board.clone()
+        print scores
 
 
 def play():
-    board = provided.TTTBoard(3)
+    board = provided.TTTBoard(BOARD_DIM)
     mc_move(board, PLAYER_X, NTRIALS)
 
 
