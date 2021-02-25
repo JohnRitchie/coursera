@@ -73,14 +73,14 @@ def mc_move(board, player, trials):
     :param trials:
     :return: (row, column) tuple
     """
-    return board
+    mc_trial(board, player)
+    print board
+    print board.check_win()
 
 
 def play():
     board = provided.TTTBoard(3)
-    mc_trial(board, PLAYER_X)
-    print board
-    print board.check_win()
+    mc_move(board, PLAYER_X, NTRIALS)
 
 
 if __name__ == '__main__':
