@@ -116,6 +116,8 @@ def mc_move(board, player, trials):
         copy_board = board.clone()
         print scores
 
+    print get_best_move(scores, board)
+
 
 def play():
     board = provided.TTTBoard(BOARD_DIM)
