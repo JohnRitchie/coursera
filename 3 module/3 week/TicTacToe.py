@@ -73,7 +73,7 @@ def mc_move(board, player, trials):
 
 
 def play():
-    board = [[1, 2, 3], [1, 2, 3], [1, 2, 3]]
+    board = [[EMPTY, PLAYER_X, PLAYER_O], [EMPTY, PLAYER_X, PLAYER_O], [EMPTY, PLAYER_X, PLAYER_O]]
     board = provided.TTTBoard(3, board=board)
     print mc_move(board, 2, NTRIALS)
 
