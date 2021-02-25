@@ -46,7 +46,20 @@ def mc_update_scores(scores, board, player):
     :param player:
     :return: None
     """
-    pass
+    if player == PLAYER_X:
+        opponent = PLAYER_O
+    else:
+        opponent = PLAYER_X
+
+    winner = board.check_win()
+    if winner == DRAW:
+        print "It's a draw!"
+    elif winner == player:
+        print "You win!"
+    elif winner == opponent:
+        print "You lost!"
+    else:
+        print "Something wrong!"
 
 
 def get_best_move(board, scores):
@@ -74,8 +87,11 @@ def mc_move(board, player, trials):
     :return: (row, column) tuple
     """
     mc_trial(board, player)
-    print board
     print board.check_win()
+
+    scores = [[0 for dummy_col in range(board.get_dim())] for dummy_row in range(board.get_dim())]
+    mc_update_scores(scores, board, player)
+    print scores
 
 
 def play():
