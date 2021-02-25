@@ -15,6 +15,7 @@ SCORE_OTHER = 1.0  # Score for squares played by the other player
 EMPTY = 1
 PLAYER_X = 2
 PLAYER_O = 3
+DRAW = 4
 
 
 def mc_trial(board, player):
