@@ -92,7 +92,16 @@ def get_best_move(board, scores):
     :param scores:
     :return: (row, column) tuple
     """
-    pass
+    empty_squares_list = board.get_empty_squares()
+    empty_squares_scores_list = []
+    for row, col in empty_squares_list:
+        empty_squares_scores_list.append(scores[row][col])
+
+    empty_squares_scores_and_coordinates_list = zip(empty_squares_list, empty_squares_scores_list)
+    sorted_empty_squares_scores_and_coordinates_list = sorted(empty_squares_scores_and_coordinates_list,
+                                                              key=lambda x: x[1], reverse=True)
+    print sorted_empty_squares_scores_and_coordinates_list
+    return sorted_empty_squares_scores_and_coordinates_list[0][0]
 
 
 def mc_move(board, player, trials):
@@ -116,11 +125,12 @@ def mc_move(board, player, trials):
         copy_board = board.clone()
         print scores
 
-    print get_best_move(scores, board)
+    print get_best_move(board, scores)
 
 
 def play():
-    board = provided.TTTBoard(BOARD_DIM)
+    board = [[PLAYER_X, EMPTY, EMPTY], [PLAYER_X, EMPTY, EMPTY], [PLAYER_O, EMPTY, EMPTY]]
+    board = provided.TTTBoard(BOARD_DIM, board=board)
     mc_move(board, PLAYER_X, NTRIALS)
 
 
