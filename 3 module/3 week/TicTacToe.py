@@ -119,18 +119,5 @@ def mc_move(board, player, trials):
     return get_best_move(board, scores)
 
 
-# def play():
-#     board = [[PLAYER_X, EMPTY, EMPTY], [PLAYER_X, EMPTY, EMPTY], [PLAYER_O, EMPTY, EMPTY]]
-#     board = provided.TTTBoard(BOARD_DIM, board=board)
-#     mc_move(board, PLAYER_X, NTRIALS)
-#
-#
-# if __name__ == '__main__':
-#     play()
-
-# Test game with the console or the GUI.  Uncomment whichever
-# you prefer.  Both should be commented out when you submit
-# for testing to save time.
-
 provided.play_game(mc_move, NTRIALS, False)
 poc_ttt_gui.run_gui(3, provided.PLAYERX, mc_move, NTRIALS, False)
