@@ -132,5 +132,5 @@ def mc_move(board, player, trials):
 # you prefer.  Both should be commented out when you submit
 # for testing to save time.
 
-# provided.play_game(mc_move, NTRIALS, False)
+provided.play_game(mc_move, NTRIALS, False)
 poc_ttt_gui.run_gui(3, provided.PLAYERX, mc_move, NTRIALS, False)
