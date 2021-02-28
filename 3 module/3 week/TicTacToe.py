@@ -47,23 +47,17 @@ def mc_update_scores(scores, board, player):
     :param player:
     :return: None
     """
-    if player == PLAYER_X:
-        opponent = PLAYER_O
-    else:
-        opponent = PLAYER_X
-
     winner = board.check_win()
+
     if winner == DRAW:
         score_player = 0
         score_opponent = 0
     elif winner == player:
         score_player = SCORE_CURRENT
         score_opponent = -SCORE_OTHER
-    elif winner == opponent:
+    else:
         score_player = -SCORE_CURRENT
         score_opponent = SCORE_OTHER
-    else:
-        print "Something wrong!"
 
     for row in range(board.get_dim()):
         for col in range(board.get_dim()):
@@ -71,10 +65,8 @@ def mc_update_scores(scores, board, player):
                 score = 0
             elif board.square(row, col) == player:
                 score = score_player
-            elif board.square(row, col) == opponent:
-                score = score_opponent
             else:
-                print "Something wrong!"
+                score = score_opponent
 
             scores[row][col] += score
 
@@ -92,6 +84,7 @@ def get_best_move(board, scores):
     """
     empty_squares_list = board.get_empty_squares()
     empty_squares_scores_list = []
+
     for row, col in empty_squares_list:
         empty_squares_scores_list.append(scores[row][col])
 
@@ -120,4 +113,4 @@ def mc_move(board, player, trials):
 
 
 provided.play_game(mc_move, NTRIALS, False)
-poc_ttt_gui.run_gui(3, provided.PLAYERX, mc_move, NTRIALS, False)
+poc_ttt_gui.run_gui(BOARD_DIM, provided.PLAYERX, mc_move, NTRIALS, False)
