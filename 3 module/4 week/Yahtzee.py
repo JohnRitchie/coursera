@@ -88,7 +88,8 @@ def run_example():
     print "Best strategy for hand", hand, "is to hold", hold, "with expected score", hand_score
 
 
-run_example()
+if __name__ == "__main__":
+    run_example()
 
 # import poc_holds_testsuite
 # poc_holds_testsuite.run_suite(gen_all_holds)
