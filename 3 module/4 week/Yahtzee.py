@@ -36,7 +36,15 @@ def score(hand):
 
     Returns an integer score
     """
-    return 0
+    result = 0
+
+    for dummy_dice in hand:
+        tmp_score = hand.count(dummy_dice) * dummy_dice
+
+        if tmp_score > result:
+            result = tmp_score
+
+    return result
 
 
 def expected_value(held_dice, num_die_sides, num_free_dice):
@@ -89,7 +97,9 @@ def run_example():
 
 
 if __name__ == "__main__":
-    run_example()
+    # run_example()
+    hand = (1, 2, 5, 5, 6)
+    print score(hand)
 
 # import poc_holds_testsuite
 # poc_holds_testsuite.run_suite(gen_all_holds)
