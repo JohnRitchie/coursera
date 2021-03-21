@@ -104,16 +104,16 @@ def strategy(hand, num_die_sides):
     Returns a tuple where the first element is the expected score and
     the second element is a tuple of the dice to hold
     """
-    score = 0.0
-    hold = ()
+    result_score = 0.0
+    result_hold = ()
 
     for dummy_hold in gen_all_holds(hand):
         tmp_score = expected_value(dummy_hold, num_die_sides, len(hand) - len(dummy_hold))
-        if tmp_score > score:
-            score = tmp_score
-            hold = dummy_hold
+        if tmp_score > result_score:
+            result_score = tmp_score
+            result_hold = dummy_hold
 
-    return score, hold
+    return result_score, result_hold
 
 
 def run_example():
