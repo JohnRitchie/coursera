@@ -58,7 +58,18 @@ def expected_value(held_dice, num_die_sides, num_free_dice):
 
     Returns a floating point expected value
     """
-    return 0.0
+    # if len(held_dice) + num_free_dice != 5:
+    #     raise StandardError
+
+    all_sides = list(range(1, num_die_sides + 1))
+    all_rolls = gen_all_sequences(all_sides, num_free_dice)
+    exp = 0
+
+    for roll in all_rolls:
+        exp += score(tuple(list(roll) + list(held_dice)))
+
+    exp = float(exp) / len(all_rolls)
+    return exp
 
 
 def gen_all_holds(hand):
@@ -98,8 +109,13 @@ def run_example():
 
 if __name__ == "__main__":
     # run_example()
+    num_die_sides = 6
     hand = (1, 2, 5, 5, 6)
-    print score(hand)
+    held_dice = hand[2], hand[3]
+    num_free_dice = len(hand) - len(held_dice)
+
+    # print score(hand)
+    print expected_value(held_dice, num_die_sides, num_free_dice)
 
 # import poc_holds_testsuite
 # poc_holds_testsuite.run_suite(gen_all_holds)
