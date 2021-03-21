@@ -80,7 +80,17 @@ def gen_all_holds(hand):
 
     Returns a set of tuples, where each tuple is dice to hold
     """
-    return set([()])
+    answer_set = set([()])
+
+    if len(hand) == 0:
+        return answer_set
+    else:
+        temp_hands = hand[:-1]
+        for dummy_each_tuple in gen_all_holds(temp_hands):
+            answer_set.add(dummy_each_tuple)
+            answer_set.add((dummy_each_tuple + (hand[-1],)))
+
+    return answer_set
 
 
 def strategy(hand, num_die_sides):
@@ -110,12 +120,9 @@ def run_example():
 if __name__ == "__main__":
     # run_example()
     num_die_sides = 6
-    hand = (1, 2, 5, 5, 6)
-    held_dice = hand[2], hand[3]
-    num_free_dice = len(hand) - len(held_dice)
-
+    hand = (1, 2, 3)
+    # held_dice = hand[2], hand[3]
+    # num_free_dice = len(hand) - len(held_dice)
     # print score(hand)
-    print expected_value(held_dice, num_die_sides, num_free_dice)
-
-# import poc_holds_testsuite
-# poc_holds_testsuite.run_suite(gen_all_holds)
+    # print expected_value(held_dice, num_die_sides, num_free_dice)
+    print gen_all_holds(hand)
