@@ -28,7 +28,7 @@ def greedy_boss(days_in_simulation, bribe_cost_increment, plot_type=STANDARD):
     days_vs_earnings = []
 
     # Each iteration of this while loop simulates one bribe
-    while current_day <= days_in_simulation:
+    # while current_day <= days_in_simulation:
 
     # update list with days vs total salary earned
     # use plot_type to control whether regular or log/log plot
