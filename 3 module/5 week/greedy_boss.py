@@ -22,22 +22,33 @@ def greedy_boss(days_in_simulation, bribe_cost_increment, plot_type=STANDARD):
     Simulation of greedy boss
     """
 
-    # initialize necessary local variables
-
-    # define  list consisting of days vs. total salary earned for analysis
+    bribe = INITIAL_BRIBE_COST
     days_vs_earnings = []
+    current_day = 0
+    salary = INITIAL_SALARY
+    current_savings = 0
+    total_salary_earned = 0
 
-    # Each iteration of this while loop simulates one bribe
-    # while current_day <= days_in_simulation:
+    while current_day <= days_in_simulation:
 
-    # update list with days vs total salary earned
-    # use plot_type to control whether regular or log/log plot
+        if plot_type == STANDARD:
+            days_vs_earnings.append((current_day, total_salary_earned))
+        else:
+            if current_day == 0 or total_salary_earned == 0:
+                days_vs_earnings.append([math.log(1), math.log(1)])
+            else:
+                days_vs_earnings.append([math.log(current_day), math.log(total_salary_earned)])
 
-    # check whether we have enough money to bribe without waiting
+        if current_savings >= bribe:
+            days_to_next_bribe = 0
+        else:
+            days_to_next_bribe = int(math.ceil((bribe - current_savings) / float(salary)))
 
-    # advance current_day to day of next bribe (DO NOT INCREMENT BY ONE DAY)
-
-    # update state of simulation to reflect bribe
+        current_day += days_to_next_bribe
+        current_savings += (days_to_next_bribe * salary) - bribe
+        total_salary_earned += days_to_next_bribe * salary
+        bribe += bribe_cost_increment
+        salary += SALARY_INCREMENT
 
     return days_vs_earnings
 
@@ -46,7 +57,7 @@ def run_simulations():
     """
     Run simulations for several possible bribe increments
     """
-    plot_type = STANDARD
+    plot_type = LOGLOG
     days = 70
     inc_0 = greedy_boss(days, 0, plot_type)
     inc_500 = greedy_boss(days, 500, plot_type)
