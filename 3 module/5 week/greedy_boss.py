@@ -56,7 +56,7 @@ def run_simulations():
     """
     Run simulations for several possible bribe increments
     """
-    plot_type = LOGLOG
+    plot_type = STANDARD
     days = 70
     inc_0 = greedy_boss(days, 0, plot_type)
     inc_500 = greedy_boss(days, 500, plot_type)
@@ -68,7 +68,7 @@ def run_simulations():
                            "Bribe increment = 1000", "Bribe increment = 2000"])
 
 
-# run_simulations()
+run_simulations()
 
 print greedy_boss(35, 100)
 # should print [(0, 0), (10, 1000), (16, 2200), (20, 3400), (23, 4600), (26, 6100), (29, 7900), (31, 9300), (33, 10900), (35, 12700)]
