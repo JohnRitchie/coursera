@@ -185,4 +185,5 @@ def run():
     # run_strategy("Best", SIM_TIME, strategy_best)
 
 
+# todo: remove before Owltest
 run()
