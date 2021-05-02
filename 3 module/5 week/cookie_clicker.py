@@ -6,10 +6,10 @@ import simpleplot
 
 # Used to increase the timeout, if necessary
 import SimpleGUICS2Pygame.codeskulptor as codeskulptor
+import poc_clicker_provided as provided
+
 
 codeskulptor.set_timeout(20)
-
-import poc_clicker_provided as provided
 
 # Constants
 SIM_TIME = 10000000000.0
