@@ -29,6 +29,12 @@ class ClickerState:
         """
         return "not yet implemented"
 
+    def print_history(self):
+        """
+        human readable print history
+        """
+        pass
+
     def get_cookies(self):
         """
         Return current number of cookies
