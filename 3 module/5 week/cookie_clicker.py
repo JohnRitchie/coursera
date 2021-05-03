@@ -3,12 +3,11 @@ Cookie Clicker Simulator
 """
 
 import simpleplot
-
-# Used to increase the timeout, if necessary
+import math
 import SimpleGUICS2Pygame.codeskulptor as codeskulptor
 import poc_clicker_provided as provided
 
-
+# Used to increase the timeout, if necessary
 codeskulptor.set_timeout(20)
 
 # Constants
@@ -85,14 +84,17 @@ class ClickerState:
 
         return history_copy
 
-    def time_until(self, cookies):
+    def time_until(self, target_cookies):
         """
         Return time until you have the given number of cookies
         (could be 0.0 if you already have enough cookies)
 
         Should return a float with no fractional part
         """
-        return 0.0
+        if self._current_cookies >= target_cookies:
+            return 0.0
+        else:
+            return math.ceil((target_cookies - self._current_cookies) / float(self._current_cps))
 
     def wait(self, time):
         """
@@ -111,12 +113,9 @@ class ClickerState:
         pass
 
 
-cs = ClickerState(1, 2, 3, 4)
+cs = ClickerState(1, 2, 3, 0.5)
 print cs
-print cs.get_cookies()
-print cs.get_time()
-print cs.get_cps()
-print cs.get_history()
+print cs.time_until(5)
 
 
 def simulate_clicker(build_info, duration, strategy):
