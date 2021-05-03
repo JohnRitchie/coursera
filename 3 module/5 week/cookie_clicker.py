@@ -84,17 +84,17 @@ class ClickerState:
 
         return history_copy
 
-    def time_until(self, target_cookies):
+    def time_until(self, cookies):
         """
         Return time until you have the given number of cookies
         (could be 0.0 if you already have enough cookies)
 
         Should return a float with no fractional part
         """
-        if self._current_cookies >= target_cookies:
+        if self._current_cookies >= cookies:
             return 0.0
         else:
-            return math.ceil((target_cookies - self._current_cookies) / float(self._current_cps))
+            return math.ceil((cookies - self._current_cookies) / float(self._current_cps))
 
     def wait(self, time):
         """
