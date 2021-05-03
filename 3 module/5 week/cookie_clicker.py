@@ -51,7 +51,7 @@ class ClickerState:
 
         Should return a float
         """
-        return 0.0
+        return self._current_cookies
 
     def get_cps(self):
         """
@@ -59,7 +59,7 @@ class ClickerState:
 
         Should return a float
         """
-        return 0.0
+        return self._current_cps
 
     def get_time(self):
         """
@@ -67,7 +67,7 @@ class ClickerState:
 
         Should return a float
         """
-        return 0.0
+        return self._current_seconds
 
     def get_history(self):
         """
@@ -109,8 +109,10 @@ class ClickerState:
         pass
 
 
-cs = ClickerState()
-print cs
+cs = ClickerState(1, 2, 3, 4)
+print cs.get_cookies()
+print cs.get_time()
+print cs.get_cps()
 
 
 def simulate_clicker(build_info, duration, strategy):
