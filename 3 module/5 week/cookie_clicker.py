@@ -186,4 +186,4 @@ def run():
 
 
 # todo: remove before Owltest
-run()
+# run()
