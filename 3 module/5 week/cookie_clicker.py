@@ -24,7 +24,8 @@ class ClickerState:
         self._current_cookies = current_cookies
         self._current_seconds = current_seconds
         self._current_cps = current_cps
-        self._history = [(0.0, None, 0.0, 0.0)]
+        self._history = []
+        self._update_history(self._current_seconds, None, 0.0, self._total_cookies)
 
     def __str__(self):
         """
@@ -36,6 +37,9 @@ class ClickerState:
             clicker_state_dict[attribute.strip('_')] = value
 
         return str(clicker_state_dict)
+
+    def _update_history(self, time, item, cost_item, total_cookies):
+        self._history.append((time, item, cost_item, total_cookies))
 
     def print_history(self):
         """
