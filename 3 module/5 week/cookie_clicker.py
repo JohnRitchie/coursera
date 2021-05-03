@@ -102,7 +102,10 @@ class ClickerState:
 
         Should do nothing if time <= 0.0
         """
-        pass
+        time = int(time)
+        self._current_seconds += time
+        self._current_cookies += time * self._current_cps
+        self._total_cookies += self._current_cookies
 
     def buy_item(self, item_name, cost, additional_cps):
         """
@@ -113,9 +116,10 @@ class ClickerState:
         pass
 
 
-cs = ClickerState(1, 2, 3, 0.5)
+cs = ClickerState(2, 0, 3)
 print cs
-print cs.time_until(5)
+cs.wait(5)
+print cs
 
 
 def simulate_clicker(build_info, duration, strategy):
