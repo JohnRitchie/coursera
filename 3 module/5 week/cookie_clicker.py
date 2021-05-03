@@ -31,7 +31,12 @@ class ClickerState:
         """
         Return human readable state
         """
-        return "not yet implemented"
+        clicker_state_dict = {}
+
+        for attribute, value in self.__dict__.items():
+            clicker_state_dict[attribute.strip('_')] = value
+
+        return str(clicker_state_dict)
 
     def print_history(self):
         """
@@ -102,6 +107,10 @@ class ClickerState:
         Should do nothing if you cannot afford the item
         """
         pass
+
+
+cs = ClickerState()
+print cs
 
 
 def simulate_clicker(build_info, duration, strategy):
