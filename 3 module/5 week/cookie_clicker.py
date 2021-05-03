@@ -81,7 +81,9 @@ class ClickerState:
         Should return a copy of any internal data structures,
         so that they will not be modified outside of the class.
         """
-        return []
+        history_copy = self._history[:]
+
+        return history_copy
 
     def time_until(self, cookies):
         """
@@ -110,9 +112,11 @@ class ClickerState:
 
 
 cs = ClickerState(1, 2, 3, 4)
+print cs
 print cs.get_cookies()
 print cs.get_time()
 print cs.get_cps()
+print cs.get_history()
 
 
 def simulate_clicker(build_info, duration, strategy):
