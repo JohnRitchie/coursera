@@ -130,7 +130,16 @@ def simulate_clicker(build_info, duration, strategy):
     """
 
     # Replace with your code
-    return ClickerState()
+    build_info_object_clone = build_info.clone()
+    print build_info_object_clone
+    print strategy
+    state = ClickerState()
+
+    while state.get_time() < duration:
+        print state
+        state.wait(10)
+
+    return state
 
 
 def strategy_cursor_broken(cookies, cps, history, time_left, build_info):
@@ -145,6 +154,9 @@ def strategy_cursor_broken(cookies, cps, history, time_left, build_info):
     can't.
     """
     return "Cursor"
+
+
+simulate_clicker(provided.BuildInfo(), 100, strategy_cursor_broken)
 
 
 def strategy_none(cookies, cps, history, time_left, build_info):
