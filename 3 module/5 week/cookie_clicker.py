@@ -89,10 +89,12 @@ class ClickerState:
 
         Should return a float with no fractional part
         """
-        if self._current_cookies >= cookies:
-            return 0.0
-        else:
-            return math.ceil((cookies - self._current_cookies) / float(self._current_cps))
+        time = 0.0
+
+        if self._current_cookies < cookies:
+            time = math.ceil((cookies - self._current_cookies) / float(self._current_cps))
+
+        return time
 
     def wait(self, time):
         """
@@ -111,13 +113,12 @@ class ClickerState:
 
         Should do nothing if you cannot afford the item
         """
-        if cost > self._current_cookies:
-            return
-        else:
+        if cost <= self._current_cookies:
             self._current_cookies -= cost
             self._current_cps += additional_cps
             self._update_history(self._current_seconds, item_name, cost, self._total_cookies)
-            return
+
+        return
 
 
 def simulate_clicker(build_info, duration, strategy):
