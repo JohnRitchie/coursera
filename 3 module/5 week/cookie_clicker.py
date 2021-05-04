@@ -41,12 +41,6 @@ class ClickerState:
     def _update_history(self, time, item, cost_item, total_cookies):
         self._history.append((time, item, cost_item, total_cookies))
 
-    def print_history(self):
-        """
-        human readable print history
-        """
-        pass
-
     def get_cookies(self):
         """
         Return current number of cookies
@@ -124,11 +118,6 @@ class ClickerState:
             self._current_cps += additional_cps
             self._update_history(self._current_seconds, item_name, cost, self._total_cookies)
             return
-
-
-cs = ClickerState(10, 15)
-cs.buy_item('AAA', 5, 50)
-print cs
 
 
 def simulate_clicker(build_info, duration, strategy):
