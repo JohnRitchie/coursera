@@ -117,12 +117,17 @@ class ClickerState:
 
         Should do nothing if you cannot afford the item
         """
-        pass
+        if cost > self._current_cookies:
+            return
+        else:
+            self._current_cookies -= cost
+            self._current_cps += additional_cps
+            self._update_history(self._current_seconds, item_name, cost, self._total_cookies)
+            return
 
 
-cs = ClickerState(2, 0, 3)
-print cs
-cs.wait(5)
+cs = ClickerState(10, 15)
+cs.buy_item('AAA', 5, 50)
 print cs
 
 
