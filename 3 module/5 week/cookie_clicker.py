@@ -104,8 +104,9 @@ class ClickerState:
         """
         time = int(time)
         self._current_seconds += time
-        self._current_cookies += time * self._current_cps
-        self._total_cookies += self._current_cookies
+        stored_cookies = time * self._current_cps
+        self._current_cookies += stored_cookies
+        self._total_cookies += stored_cookies
 
     def buy_item(self, item_name, cost, additional_cps):
         """
