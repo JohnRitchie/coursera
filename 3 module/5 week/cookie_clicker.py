@@ -130,14 +130,29 @@ def simulate_clicker(build_info, duration, strategy):
     """
 
     # Replace with your code
-    build_info_object_clone = build_info.clone()
-    print build_info_object_clone
-    print strategy
+    build_info_object_cloned = build_info.clone()
     state = ClickerState()
 
     while state.get_time() < duration:
-        print state
-        state.wait(10)
+        current_cookies = state.get_cookies()
+        current_cps = state.get_cps()
+        history = state.get_history()
+        time_left = duration - state.get_time()
+
+        item_to_buy = strategy(current_cookies, current_cps, history, time_left, build_info_object_cloned)
+        if item_to_buy is None:
+            break
+
+        time_to_buy = state.time_until(build_info_object_cloned.get_cost(item_to_buy))
+        if duration < (state.get_time() + time_to_buy):
+            break
+
+        state.wait(time_to_buy)
+        state.buy_item(item_to_buy, build_info_object_cloned.get_cost(item_to_buy),
+                       build_info_object_cloned.get_cps(item_to_buy))
+        build_info_object_cloned.update_item(item_to_buy)
+
+    state.wait(duration - state.get_time())
 
     return state
 
@@ -154,9 +169,6 @@ def strategy_cursor_broken(cookies, cps, history, time_left, build_info):
     can't.
     """
     return "Cursor"
-
-
-simulate_clicker(provided.BuildInfo(), 100, strategy_cursor_broken)
 
 
 def strategy_none(cookies, cps, history, time_left, build_info):
@@ -220,4 +232,4 @@ def run():
 
 
 # todo: remove before Owltest
-# run()
+run()
