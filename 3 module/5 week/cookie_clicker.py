@@ -2,9 +2,9 @@
 Cookie Clicker Simulator
 """
 
-import simpleplot
 import math
 import random
+import simpleplot
 import SimpleGUICS2Pygame.codeskulptor as codeskulptor
 import poc_clicker_provided as provided
 
