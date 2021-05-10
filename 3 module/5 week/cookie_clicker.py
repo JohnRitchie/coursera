@@ -1,5 +1,6 @@
 """
 Cookie Clicker Simulator
+link: https://py2.codeskulptor.org/#user48_VOM2LuOnEA_2.py
 """
 
 import math
