@@ -20,7 +20,7 @@ class ClickerState:
     Simple class to keep track of the game state.
     """
 
-    def __init__(self, total_cookies=0, current_cookies=0, current_seconds=0, current_cps=1):
+    def __init__(self, total_cookies=0.0, current_cookies=0.0, current_seconds=0.0, current_cps=1.0):
         self._total_cookies = total_cookies
         self._current_cookies = current_cookies
         self._current_seconds = current_seconds
