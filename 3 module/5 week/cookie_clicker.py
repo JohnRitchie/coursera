@@ -207,7 +207,22 @@ def strategy_expensive(cookies, cps, history, time_left, build_info):
     """
     Always buy the most expensive item you can afford in the time left.
     """
-    return None
+    state = ClickerState(cookies, 0, 0, cps)
+    state.wait(time_left)
+    cookies += state.get_cookies()
+    most_expensive = build_info.build_items()[0]
+    for item in build_info.build_items():
+        if cookies >= build_info.get_cost(item):
+            most_expensive = item
+            break
+        else:
+            return None
+
+    for item in build_info.build_items():
+        if cookies >= build_info.get_cost(item) > build_info.get_cost(most_expensive):
+            most_expensive = item
+
+    return most_expensive
 
 
 def strategy_best(cookies, cps, history, time_left, build_info):
@@ -241,8 +256,8 @@ def run():
     # run_strategy("Cursor", SIM_TIME, strategy_cursor_broken)
 
     # Add calls to run_strategy to run additional strategies
-    run_strategy("Cheap", SIM_TIME, strategy_cheap)
-    # run_strategy("Expensive", SIM_TIME, strategy_expensive)
+    # run_strategy("Cheap", SIM_TIME, strategy_cheap)
+    run_strategy("Expensive", SIM_TIME, strategy_expensive)
     # run_strategy("Best", SIM_TIME, strategy_best)
 
 
