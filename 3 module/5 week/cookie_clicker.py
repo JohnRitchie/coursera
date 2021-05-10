@@ -4,6 +4,7 @@ Cookie Clicker Simulator
 
 import simpleplot
 import math
+import random
 import SimpleGUICS2Pygame.codeskulptor as codeskulptor
 import poc_clicker_provided as provided
 
@@ -229,7 +230,21 @@ def strategy_best(cookies, cps, history, time_left, build_info):
     """
     The best strategy that you are able to implement.
     """
-    return None
+    state = ClickerState(cookies, 0, 0, cps)
+    state.wait(time_left)
+    cookies += state.get_cookies()
+    items = []
+
+    for item in build_info.build_items():
+        if cookies >= build_info.get_cost(item):
+            items.append(item)
+
+    if not items:
+        return None
+    else:
+        item = random.choice(items)
+
+    return item
 
 
 def run_strategy(strategy_name, time, strategy):
@@ -257,8 +272,8 @@ def run():
 
     # Add calls to run_strategy to run additional strategies
     # run_strategy("Cheap", SIM_TIME, strategy_cheap)
-    run_strategy("Expensive", SIM_TIME, strategy_expensive)
-    # run_strategy("Best", SIM_TIME, strategy_best)
+    # run_strategy("Expensive", SIM_TIME, strategy_expensive)
+    run_strategy("Best", SIM_TIME, strategy_best)
 
 
 # todo: remove before Owltest
