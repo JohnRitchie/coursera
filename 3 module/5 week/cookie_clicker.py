@@ -40,6 +40,9 @@ class ClickerState:
         return str(clicker_state_dict)
 
     def _update_history(self, time, item, cost_item, total_cookies):
+        """
+        Update history
+        """
         self._history.append((time, item, cost_item, total_cookies))
 
     def get_cookies(self):
