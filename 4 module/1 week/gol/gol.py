@@ -48,5 +48,6 @@ class GameOfLife(poc_grid.Grid):
         else:
             return EMPTY
 
+
 # run gui
 poc_gol_gui.run_gui(GameOfLife(30, 40))

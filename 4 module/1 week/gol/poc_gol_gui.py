@@ -97,4 +97,3 @@ def run_gui(game):
     """
     gui = GolGui(game)
     gui.start()
-
