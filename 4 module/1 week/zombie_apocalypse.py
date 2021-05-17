@@ -30,14 +30,14 @@ class Apocalypse(poc_grid.Grid):
         humans, and zombies
         """
         poc_grid.Grid.__init__(self, grid_height, grid_width)
-        if obstacle_list != None:
+        if obstacle_list is not None:
             for cell in obstacle_list:
                 self.set_full(cell[0], cell[1])
-        if zombie_list != None:
+        if zombie_list is not None:
             self._zombie_list = list(zombie_list)
         else:
             self._zombie_list = []
-        if human_list != None:
+        if human_list is not None:
             self._human_list = list(human_list)
         else:
             self._human_list = []
