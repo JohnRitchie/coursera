@@ -67,8 +67,7 @@ class Apocalypse(poc_grid.Grid):
         Generator that yields the zombies in the order they were
         added.
         """
-        # replace with an actual generator
-        return
+        return (zombie for zombie in self._zombie_list)
 
     def add_human(self, row, col):
         """
@@ -116,4 +115,5 @@ class Apocalypse(poc_grid.Grid):
 # before this will work without errors
 # poc_zombie_gui.run_gui(Apocalypse(30, 40))
 ap = Apocalypse(5, 6, [(1, 0)], [(1, 0), (1, 1)])
-print ap.num_zombies()
+for zombie in ap.zombies():
+    print zombie
