@@ -48,6 +48,7 @@ class Apocalypse(poc_grid.Grid):
         Reset zombie and human lists to be empty
         """
         poc_grid.Grid.clear(self)
+        self._zombie_list, self._human_list = [], []
 
     def add_zombie(self, row, col):
         """
@@ -114,7 +115,9 @@ class Apocalypse(poc_grid.Grid):
 # Start up gui for simulation - You will need to write some code above
 # before this will work without errors
 # poc_zombie_gui.run_gui(Apocalypse(30, 40))
-ap = Apocalypse(5, 6)
+ap = Apocalypse(5, 6, [(1, 0)], [(1, 0)])
 print ap
+print ap._zombie_list
 ap.clear()
 print ap
+print ap._zombie_list
