@@ -112,9 +112,16 @@ class Apocalypse(poc_grid.Grid):
 
         visited, distance_field, boundary = self._fill_creature_data_structures(creatures)
 
-        print visited
-        print distance_field
-        print boundary
+        while boundary:
+            cell = boundary.dequeue()
+            neighbors = visited.four_neighbors(cell[0], cell[1])
+            for neighbor in neighbors:
+                if visited.is_empty(neighbor[0], neighbor[1]):
+                    visited.set_full(neighbor[0], neighbor[1])
+                    boundary.enqueue(neighbor)
+                    distance_field[neighbor[0]][neighbor[1]] = distance_field[cell[0]][cell[1]] + 1
+
+        return distance_field
 
     def move_humans(self, zombie_distance_field):
         """
@@ -135,4 +142,5 @@ class Apocalypse(poc_grid.Grid):
 # before this will work without errors
 # poc_zombie_gui.run_gui(Apocalypse(30, 40))
 ap = Apocalypse(3, 4, zombie_list=[(1, 2)])
-ap.compute_distance_field(ZOMBIE)
+for row in ap.compute_distance_field(ZOMBIE):
+    print row
