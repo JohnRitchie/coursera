@@ -128,7 +128,8 @@ class Apocalypse(poc_grid.Grid):
         Function that moves humans away from zombies, diagonal moves
         are allowed
         """
-        pass
+        for human in self._human_list:
+            pass
 
     def move_zombies(self, human_distance_field):
         """
