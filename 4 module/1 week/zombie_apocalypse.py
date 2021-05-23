@@ -73,20 +73,19 @@ class Apocalypse(poc_grid.Grid):
         """
         Add human to the human list
         """
-        pass
+        self._human_list.append((row, col))
 
     def num_humans(self):
         """
         Return number of humans
         """
-        return 0
+        return len(self._human_list)
 
     def humans(self):
         """
         Generator that yields the humans in the order they were added.
         """
-        # replace with an actual generator
-        return
+        return (human for human in self._human_list)
 
     def compute_distance_field(self, entity_type):
         """
@@ -114,6 +113,8 @@ class Apocalypse(poc_grid.Grid):
 # Start up gui for simulation - You will need to write some code above
 # before this will work without errors
 # poc_zombie_gui.run_gui(Apocalypse(30, 40))
-ap = Apocalypse(5, 6, [(1, 0)], [(1, 0), (1, 1)])
-for zombie in ap.zombies():
-    print zombie
+ap = Apocalypse(5, 6, [(1, 0)], [(1, 0), (1, 1)], [(5, 5), (2, 2), (1, 4)])
+ap.add_human(3, 3)
+print ap.num_humans()
+for human in ap.humans():
+    print human
