@@ -113,8 +113,3 @@ class Apocalypse(poc_grid.Grid):
 # Start up gui for simulation - You will need to write some code above
 # before this will work without errors
 # poc_zombie_gui.run_gui(Apocalypse(30, 40))
-ap = Apocalypse(5, 6, [(1, 0)], [(1, 0), (1, 1)], [(5, 5), (2, 2), (1, 4)])
-ap.add_human(3, 3)
-print ap.num_humans()
-for human in ap.humans():
-    print human
