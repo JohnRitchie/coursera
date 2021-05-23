@@ -54,13 +54,13 @@ class Apocalypse(poc_grid.Grid):
         """
         Add zombie to the zombie list
         """
-        pass
+        self._zombie_list.append((row, col))
 
     def num_zombies(self):
         """
         Return number of zombies
         """
-        return 0
+        return len(self._zombie_list)
 
     def zombies(self):
         """
@@ -115,9 +115,5 @@ class Apocalypse(poc_grid.Grid):
 # Start up gui for simulation - You will need to write some code above
 # before this will work without errors
 # poc_zombie_gui.run_gui(Apocalypse(30, 40))
-ap = Apocalypse(5, 6, [(1, 0)], [(1, 0)])
-print ap
-print ap._zombie_list
-ap.clear()
-print ap
-print ap._zombie_list
+ap = Apocalypse(5, 6, [(1, 0)], [(1, 0), (1, 1)])
+print ap.num_zombies()
