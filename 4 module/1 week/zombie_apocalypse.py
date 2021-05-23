@@ -87,13 +87,34 @@ class Apocalypse(poc_grid.Grid):
         """
         return (human for human in self._human_list)
 
+    def _fill_creature_data_structures(self, creatures):
+        visited = poc_grid.Grid(self._grid_height, self._grid_width)
+        distance_field = [[-1 for dummy_col in range(self._grid_width)] for dummy_row in range(self._grid_height)]
+        boundary = poc_queue.Queue()
+
+        for creature in creatures:
+            boundary.enqueue(creature)
+            visited.set_full(creature[0], creature[1])
+            distance_field[creature[0]][creature[1]] = 0
+
+        return visited, distance_field, boundary
+
     def compute_distance_field(self, entity_type):
         """
         Function computes and returns a 2D distance field
         Distance at member of entity_list is zero
         Shortest paths avoid obstacles and use four-way distances
         """
-        return
+        if entity_type == HUMAN:
+            creatures = self.humans()
+        if entity_type == ZOMBIE:
+            creatures = self.zombies()
+
+        visited, distance_field, boundary = self._fill_creature_data_structures(creatures)
+
+        print visited
+        print distance_field
+        print boundary
 
     def move_humans(self, zombie_distance_field):
         """
@@ -113,3 +134,5 @@ class Apocalypse(poc_grid.Grid):
 # Start up gui for simulation - You will need to write some code above
 # before this will work without errors
 # poc_zombie_gui.run_gui(Apocalypse(30, 40))
+ap = Apocalypse(3, 4, zombie_list=[(1, 2)])
+ap.compute_distance_field(ZOMBIE)
