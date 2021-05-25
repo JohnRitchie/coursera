@@ -89,7 +89,7 @@ class Apocalypse(poc_grid.Grid):
 
     def _fill_creature_data_structures(self, creatures):
         visited = poc_grid.Grid(self._grid_height, self._grid_width)
-        distance_field = [[-1 for dummy_col in range(self._grid_width)]
+        distance_field = [[self._grid_height * self._grid_width for dummy_col in range(self._grid_width)]
                           for dummy_row in range(self._grid_height)]
         boundary = poc_queue.Queue()
 
