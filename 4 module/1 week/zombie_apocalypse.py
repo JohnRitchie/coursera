@@ -130,14 +130,19 @@ class Apocalypse(poc_grid.Grid):
         """
         for index_human in range(len(self._human_list)):
             human = self._human_list[index_human]
+            distance = zombie_distance_field[human[0]][human[1]]
             movement_directions = []
-            neighbors = self.four_neighbors(human[0], human[1])
+            neighbors = self.eight_neighbors(human[0], human[1])
+
             for neighbor in neighbors:
-                if zombie_distance_field[neighbor[0]][neighbor[1]] > 0:
-                    movement_directions.append(neighbor)
+                if self.is_empty(neighbor[0], neighbor[1]):
+                    if zombie_distance_field[neighbor[0]][neighbor[1]] > distance:
+                        distance = zombie_distance_field[neighbor[0]][neighbor[1]]
+                        movement_directions = [neighbor]
+                    elif zombie_distance_field[neighbor[0]][neighbor[1]] == distance:
+                        movement_directions.append(neighbor)
 
             self._human_list[index_human] = random.choice(movement_directions)
-            # print movement_directions
 
     def move_zombies(self, human_distance_field):
         """
@@ -147,9 +152,4 @@ class Apocalypse(poc_grid.Grid):
         pass
 
 
-# Start up gui for simulation - You will need to write some code above
-# before this will work without errors
 poc_zombie_gui.run_gui(Apocalypse(30, 40))
-# ap = Apocalypse(5, 5, human_list=[(2, 2)], zombie_list=[(1, 2)])
-# df = ap.compute_distance_field(ZOMBIE)
-# ap.move_humans(df)
