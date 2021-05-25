@@ -131,7 +131,7 @@ class Apocalypse(poc_grid.Grid):
         for index_human in range(len(self._human_list)):
             human = self._human_list[index_human]
             distance = zombie_distance_field[human[0]][human[1]]
-            movement_directions = []
+            movement_directions = [human]
             neighbors = self.eight_neighbors(human[0], human[1])
 
             for neighbor in neighbors:
