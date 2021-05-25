@@ -149,7 +149,21 @@ class Apocalypse(poc_grid.Grid):
         Function that moves zombies towards humans, no diagonal moves
         are allowed
         """
-        pass
+        for index_zombie in range(len(self._zombie_list)):
+            zombie = self._zombie_list[index_zombie]
+            distance = human_distance_field[zombie[0]][zombie[1]]
+            movement_directions = [zombie]
+            neighbors = self.four_neighbors(zombie[0], zombie[1])
+
+            for neighbor in neighbors:
+                if self.is_empty(neighbor[0], neighbor[1]):
+                    if human_distance_field[neighbor[0]][neighbor[1]] < distance:
+                        distance = human_distance_field[neighbor[0]][neighbor[1]]
+                        movement_directions = [neighbor]
+                    elif human_distance_field[neighbor[0]][neighbor[1]] == distance:
+                        movement_directions.append(neighbor)
+
+            self._zombie_list[index_zombie] = random.choice(movement_directions)
 
 
 poc_zombie_gui.run_gui(Apocalypse(30, 40))
