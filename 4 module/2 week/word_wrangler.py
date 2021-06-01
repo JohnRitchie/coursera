@@ -20,7 +20,15 @@ def remove_duplicates(list1):
 
     This function can be iterative.
     """
-    return []
+    copied_list = list1[:]
+    removed_duplicates = []
+
+    while copied_list:
+        element = copied_list.pop(0)
+        if element not in removed_duplicates:
+            removed_duplicates.append(element)
+
+    return removed_duplicates
 
 
 def intersect(list1, list2):
