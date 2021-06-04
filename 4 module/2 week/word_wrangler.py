@@ -103,24 +103,20 @@ def gen_all_strings(word):
 
     This function should be recursive.
     """
-    all_strings_list = ['']
-
     if len(word) == 0:
-        return all_strings_list
-    else:
-        rest_strings = word[1:]
-        for each_string in gen_all_strings(rest_strings):
-            all_strings_list.append(each_string + word[0])
+        return ['']
 
-    return all_strings_list
+    first = word[0]
+    rest = word[1:]
 
-# 3 For each string in rest_strings, generate new strings by inserting the initial character,
-# first, in all possible positions within the string.
-# 4 Return a list containing the strings in rest_strings as well as the new strings generated in step 3.
+    rest_strings = gen_all_strings(rest)
+    rest_strings_copy = list(rest_strings)
 
-
-# print ['', 'b', 'a', 'ab', 'ba', 'a', 'ab', 'ba', 'aa', 'aa', 'aab', 'aab', 'aba', 'aba', 'baa', 'baa']
-print gen_all_strings('aab')
+    for item in rest_strings_copy:
+        for index in range(len(item)):
+            rest_strings.append(item[:index] + first + item[index:])
+        rest_strings.append(item + first)
+    return rest_strings
 
 
 # Function to load words from a file
