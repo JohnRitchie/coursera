@@ -1,5 +1,6 @@
 """
 Student code for Word Wrangler game
+https://py2.codeskulptor.org/#user48_UjjkYWVSPd_2.py
 """
 
 import urllib3
@@ -54,20 +55,20 @@ def merge(list1, list2):
 
     This function can be iterative.
     """
-    if not len(list1) or not len(list2):
+    if not list1 or not list2:
         return list1 or list2
 
     result = []
-    i, j = 0, 0
+    dummy_i, dummy_j = 0, 0
     while len(result) < len(list1) + len(list2):
-        if list1[i] < list2[j]:
-            result.append(list1[i])
-            i += 1
+        if list1[dummy_i] < list2[dummy_j]:
+            result.append(list1[dummy_i])
+            dummy_i += 1
         else:
-            result.append(list2[j])
-            j += 1
-        if i == len(list1) or j == len(list2):
-            result.extend(list1[i:] or list2[j:])
+            result.append(list2[dummy_j])
+            dummy_j += 1
+        if dummy_i == len(list1) or dummy_j == len(list2):
+            result.extend(list1[dummy_i:] or list2[dummy_j:])
             break
 
     return result
@@ -103,7 +104,7 @@ def gen_all_strings(word):
 
     This function should be recursive.
     """
-    if len(word) == 0:
+    if not word:
         return ['']
 
     first = word[0]
