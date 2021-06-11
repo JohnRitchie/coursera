@@ -35,10 +35,10 @@ def move_wrapper(board, player, trials):
     assert move[1] != (-1, -1), "returned illegal move (-1, -1)"
     return move[1]
 
+
 # Test game with the console or the GUI.
 # Uncomment whichever you prefer.
 # Both should be commented out when you submit for
 # testing to save time.
-
 # provided.play_game(move_wrapper, 1, False)
 # poc_ttt_gui.run_gui(3, provided.PLAYERO, move_wrapper, 1, False)
