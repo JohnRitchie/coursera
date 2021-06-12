@@ -42,3 +42,10 @@ def move_wrapper(board, player, trials):
 # testing to save time.
 # provided.play_game(move_wrapper, 1, False)
 # poc_ttt_gui.run_gui(3, provided.PLAYERO, move_wrapper, 1, False)
+my_board = [[1, 2, 3], [1, 2, 3], [3, 2, 1]]
+board = provided.TTTBoard(3, board=my_board)
+print board
+print board.get_dim()
+print board.square(0, 1)
+print board.get_empty_squares()
+print board.check_win()
