@@ -23,7 +23,15 @@ def mm_move(board, player):
     of the given board and the second element is the desired move as a
     tuple, (row, col).
     """
-    return 0, (-1, -1)
+    copy_board = board.clone()
+    opponent_player = provided.switch_player(player)
+    empty_squares_list = board.get_empty_squares()
+
+    if board.check_win() not in (provided.PLAYERX, provided.PLAYERO, provided.DRAW):
+        return empty_squares_list, (-1, -1)
+    else:
+        return empty_squares_list, copy_board.get_dim(), player, opponent_player
+    # return 0, (-1, -1)
 
 
 def move_wrapper(board, player, trials):
@@ -44,8 +52,5 @@ def move_wrapper(board, player, trials):
 # poc_ttt_gui.run_gui(3, provided.PLAYERO, move_wrapper, 1, False)
 my_board = [[1, 2, 3], [1, 2, 3], [3, 2, 1]]
 board = provided.TTTBoard(3, board=my_board)
-print board
-print board.get_dim()
-print board.square(0, 1)
-print board.get_empty_squares()
-print board.check_win()
+playerx = provided.PLAYERX
+print mm_move(board, playerx)
