@@ -29,13 +29,21 @@ def mm_move(board, player):
 
     copy_board = board.clone()
 
-    if not board.get_empty_squares():
+    if not copy_board.get_empty_squares():  # base case
         return SCORES[board.check_win()], 'there is not empty squares'
 
     while board.check_win() not in (provided.PLAYERX, provided.PLAYERO, provided.DRAW):
         row, col = random.choice(board.get_empty_squares())
         board.move(row, col, player)
         player = provided.switch_player(player)
+
+    for square in copy_board.get_empty_squares():
+        copy_board.move(square[0], square[1], player)
+        if copy_board.check_win() is player:
+            break
+
+        player = provided.switch_player(player)
+
     return SCORES[board.check_win()], board.check_win()
     # return 0, (-1, -1)
 
