@@ -24,9 +24,10 @@ def mm_move(board, player):
     of the given board and the second element is the desired move as a
     tuple, (row, col).
     """
-    # copy_board = board.clone()
     # opponent_player = provided.switch_player(player)
     # empty_squares_list = board.get_empty_squares()
+
+    copy_board = board.clone()
 
     if not board.get_empty_squares():
         return 0
