@@ -28,6 +28,9 @@ def mm_move(board, player):
     # opponent_player = provided.switch_player(player)
     # empty_squares_list = board.get_empty_squares()
 
+    if not board.get_empty_squares():
+        return 0
+
     while board.check_win() not in (provided.PLAYERX, provided.PLAYERO, provided.DRAW):
         row, col = random.choice(board.get_empty_squares())
         board.move(row, col, player)
@@ -52,7 +55,9 @@ def move_wrapper(board, player, trials):
 # testing to save time.
 # provided.play_game(move_wrapper, 1, False)
 # poc_ttt_gui.run_gui(3, provided.PLAYERO, move_wrapper, 1, False)
-my_board = [[1, 2, 1], [1, 1, 1], [1, 1, 1]]
+# my_board = [[1, 2, 1], [1, 1, 1], [1, 1, 1]]  # one full cell
+# my_board = [[2, 2, 2], [2, 2, 2], [2, 2, 2]]  # full
+my_board = [[1, 2, 3], [1, 2, 3], [2, 1, 1]]  # two free
 board = provided.TTTBoard(3, board=my_board)
 playerx = provided.PLAYERX
 print mm_move(board, playerx)
