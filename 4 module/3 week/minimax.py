@@ -28,21 +28,24 @@ def mm_move(board, player):
     # empty_squares_list = board.get_empty_squares()
 
     copy_board = board.clone()
+    print copy_board
+    expected_score = 1 if player == provided.PLAYERX else -1
 
     if not copy_board.get_empty_squares():  # base case
         return SCORES[board.check_win()], 'there is not empty squares'
 
-    while board.check_win() not in (provided.PLAYERX, provided.PLAYERO, provided.DRAW):
-        row, col = random.choice(board.get_empty_squares())
-        board.move(row, col, player)
-        player = provided.switch_player(player)
+    # while board.check_win() not in (provided.PLAYERX, provided.PLAYERO, provided.DRAW):
+    #     row, col = random.choice(board.get_empty_squares())
+    #     board.move(row, col, player)
+    #     player = provided.switch_player(player)
+
+    score, win = mm_move(copy_board, player)
 
     for square in copy_board.get_empty_squares():
         copy_board.move(square[0], square[1], player)
-        if copy_board.check_win() is player:
-            break
-
         player = provided.switch_player(player)
+        if not copy_board.check_win() is None and SCORES[board.check_win()] == expected_score:
+            break
 
     return SCORES[board.check_win()], board.check_win()
     # return 0, (-1, -1)
@@ -66,8 +69,8 @@ def move_wrapper(board, player, trials):
 # poc_ttt_gui.run_gui(3, provided.PLAYERO, move_wrapper, 1, False)
 
 # my_board = [[1, 2, 1], [1, 1, 1], [1, 1, 1]]  # one full cell
-my_board = [[2, 2, 2], [2, 2, 2], [2, 2, 2]]  # full
-# my_board = [[1, 2, 3], [1, 2, 3], [2, 1, 1]]  # two free
+# my_board = [[2, 2, 2], [2, 2, 2], [2, 2, 2]]  # full
+my_board = [[3, 2, 3], [2, 2, 3], [2, 1, 1]]  # two free
 board = provided.TTTBoard(3, board=my_board)
 playerx = provided.PLAYERX
 print mm_move(board, playerx)
