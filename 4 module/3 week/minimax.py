@@ -26,23 +26,19 @@ def mm_move(board, player):
     """
 
     copy_board = board.clone()
+    score = float('-inf')
 
     for square in copy_board.get_empty_squares():
         copy_board.move(square[0], square[1], player)
-        score, _ = mm_move(copy_board, provided.switch_player(player))
+        if copy_board.check_win() == player:
+            return SCORES[player], square
 
-        if player == provided.PLAYERX and score == 1:
-            return score, square
-        elif player == provided.PLAYERO and score == -1:
-            return score, square
-        # elif score == 0:
-            # what we need to do is to pickup the move with highest score.
-            # Consider the case that playerX has seven empty squares.
-            # We need to check the score of each move. If the score is 1, that move is one
-            # of the best and you can return (score, square).
-            # But, if score=0, you cannot treat this as the best because there are other candidate moves.
-            # What you need to do here is set this move as temporary best move and check next empty square.
-            # return score, square
+    tmp_score, tmp_square = mm_move(copy_board, provided.switch_player(player))
+    if tmp_score > score:
+        score == tmp_score
+        square == tmp_square
+
+    return score, square
 
 
 def move_wrapper(board, player, trials):
@@ -67,5 +63,5 @@ def move_wrapper(board, player, trials):
 my_board = [[3, 2, 3], [2, 2, 3], [2, 1, 1]]  # two free
 board = provided.TTTBoard(3, board=my_board)
 print board
-playerx = provided.PLAYERO
+playerx = provided.PLAYERX
 print mm_move(board, playerx)
