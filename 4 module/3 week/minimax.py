@@ -5,7 +5,6 @@ Mini-max Tic-Tac-Toe Player
 import SimpleGUICS2Pygame.codeskulptor as codeskulptor
 import poc_ttt_gui_ignore_ as poc_ttt_gui
 import poc_ttt_provided_ignore_ as provided
-import random
 
 # Set timeout, as mini-max can take a long time
 codeskulptor.set_timeout(60)
