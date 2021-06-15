@@ -28,10 +28,15 @@ def mm_move(board, player):
     copy_board = board.clone()
     score = float('-inf')
 
-    for square in copy_board.get_empty_squares():
-        copy_board.move(square[0], square[1], player)
-        if copy_board.check_win() == player:
-            return SCORES[player], square
+    if copy_board.get_empty_squares():
+        for square in copy_board.get_empty_squares():
+            copy_board.move(square[0], square[1], player)
+            if copy_board.check_win() == player:
+                return SCORES[player], square
+            elif copy_board.check_win() == provided.DRAW:
+                return SCORES[provided.DRAW], square
+    else:
+        return SCORES[copy_board.check_win()], (-1, -1)
 
     tmp_score, tmp_square = mm_move(copy_board, provided.switch_player(player))
     if tmp_score > score:
@@ -59,8 +64,8 @@ def move_wrapper(board, player, trials):
 # poc_ttt_gui.run_gui(3, provided.PLAYERO, move_wrapper, 1, False)
 
 # my_board = [[1, 2, 1], [1, 1, 1], [1, 1, 1]]  # one full cell
-# my_board = [[2, 2, 2], [2, 2, 2], [2, 2, 2]]  # full
-my_board = [[3, 2, 3], [2, 2, 3], [2, 1, 1]]  # two free
+my_board = [[2, 2, 2], [2, 2, 2], [2, 2, 2]]  # full
+# my_board = [[3, 2, 3], [2, 2, 3], [2, 1, 1]]  # two free
 board = provided.TTTBoard(3, board=my_board)
 print board
 playerx = provided.PLAYERX
