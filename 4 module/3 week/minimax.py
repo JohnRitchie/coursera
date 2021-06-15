@@ -35,10 +35,13 @@ def mm_move(board, player):
             return score, square
         elif player == provided.PLAYERO and score == -1:
             return score, square
-        elif score == 0:
-            return score, square
-
-    return score, square
+        # elif score == 0:
+            # what we need to do is to pickup the movewith highest score.
+            # Consider the case that playerX has seven empty squares.
+            # We need to check the score of each move.If the score is 1, that move is one of the best and you can return (score, square).
+            # But, if score=0, you cannot treat this as the best because there are other candidate moves.
+            # What you need to do here is set this move as temporary best move and check next empty square.
+            # return score, square
 
 
 def move_wrapper(board, player, trials):
