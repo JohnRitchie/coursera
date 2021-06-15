@@ -5,7 +5,6 @@ Mini-max Tic-Tac-Toe Player
 import SimpleGUICS2Pygame.codeskulptor as codeskulptor
 import poc_ttt_gui_ignore_ as poc_ttt_gui
 import poc_ttt_provided_ignore_ as provided
-import random
 
 # Set timeout, as mini-max can take a long time
 codeskulptor.set_timeout(60)
@@ -28,14 +27,6 @@ def children(board, player):
     return children_boards
 
 
-my_board = [[3, 2, 3], [2, 2, 3], [2, 1, 1]]  # two free
-board = provided.TTTBoard(3, board=my_board)
-playerx = provided.PLAYERX
-boards = children(board, playerx)
-for board in boards:
-    print board
-
-
 def mm_move(board, player):
     """
     Make a move on the board.
@@ -44,23 +35,7 @@ def mm_move(board, player):
     of the given board and the second element is the desired move as a
     tuple, (row, col).
     """
-    # opponent_player = provided.switch_player(player)
-    # empty_squares_list = board.get_empty_squares()
-
-    print copy_board
-    expected_score = 1 if player == provided.PLAYERX else -1
-
-    if not copy_board.get_empty_squares():  # base case
-        return SCORES[board.check_win()], 'there is not empty squares'
-
-    # while board.check_win() not in (provided.PLAYERX, provided.PLAYERO, provided.DRAW):
-    #     row, col = random.choice(board.get_empty_squares())
-    #     board.move(row, col, player)
-    #     player = provided.switch_player(player)
-
-
-    return SCORES[board.check_win()], board.check_win()
-    # return 0, (-1, -1)
+    pass
 
 
 def move_wrapper(board, player, trials):
@@ -82,7 +57,7 @@ def move_wrapper(board, player, trials):
 
 # my_board = [[1, 2, 1], [1, 1, 1], [1, 1, 1]]  # one full cell
 # my_board = [[2, 2, 2], [2, 2, 2], [2, 2, 2]]  # full
-my_board = [[3, 2, 3], [2, 2, 3], [2, 1, 1]]  # two free
-board = provided.TTTBoard(3, board=my_board)
-playerx = provided.PLAYERX
+# my_board = [[3, 2, 3], [2, 2, 3], [2, 1, 1]]  # two free
+# board = provided.TTTBoard(3, board=my_board)
+# playerx = provided.PLAYERX
 # print mm_move(board, playerx)
