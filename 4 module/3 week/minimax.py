@@ -39,8 +39,6 @@ def mm_move(board, player):
     #     board.move(row, col, player)
     #     player = provided.switch_player(player)
 
-    score, win = mm_move(copy_board, player)
-
     for square in copy_board.get_empty_squares():
         copy_board.move(square[0], square[1], player)
         player = provided.switch_player(player)
