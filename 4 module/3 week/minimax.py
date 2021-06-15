@@ -15,7 +15,7 @@ SCORES = {provided.PLAYERX: 1,
           provided.PLAYERO: -1}
 
 
-def children(board, player):
+def get_children(board, player):
     copy_board = board.clone()
     children_boards = []
 
@@ -27,6 +27,28 @@ def children(board, player):
     return children_boards
 
 
+def mm_score(board, player):
+    if board.check_win() in (provided.PLAYERX, provided.PLAYERO, provided.DRAW):
+        return SCORES[board.check_win()]
+
+    children = get_children(board, player)
+
+    for child in children:
+        print child
+        player = provided.switch_player(player)
+        return mm_score(child, player)
+
+
+my_board = [[3, 2, 3], [1, 2, 1], [1, 1, 1]]
+board = provided.TTTBoard(3, board=my_board)
+playerx = provided.PLAYERX
+
+for child in get_children(board, playerx):
+    print child
+
+# print mm_score(board, playerx)
+
+
 def mm_move(board, player):
     """
     Make a move on the board.
@@ -35,7 +57,18 @@ def mm_move(board, player):
     of the given board and the second element is the desired move as a
     tuple, (row, col).
     """
-    pass
+    score = mm_score(board, player)
+    children = get_children(board, player)
+    best_child = None
+
+    for child in children:
+        score_child = mm_score(child, player)
+        if score == score_child:
+            best_child = child
+
+    # compare
+
+    return best_child
 
 
 def move_wrapper(board, player, trials):
