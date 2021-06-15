@@ -60,8 +60,8 @@ def move_wrapper(board, player, trials):
 # Uncomment whichever you prefer.
 # Both should be commented out when you submit for
 # testing to save time.
-# provided.play_game(move_wrapper, 1, False)
-# poc_ttt_gui.run_gui(3, provided.PLAYERO, move_wrapper, 1, False)
+provided.play_game(move_wrapper, 1, False)
+poc_ttt_gui.run_gui(3, provided.PLAYERO, move_wrapper, 1, False)
 
 # my_board = [[1, 2, 1], [1, 1, 1], [1, 1, 1]]  # one full cell
 # my_board = [[2, 2, 2], [2, 2, 2], [2, 2, 2]]  # full
