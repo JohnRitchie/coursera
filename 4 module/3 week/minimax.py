@@ -64,9 +64,10 @@ def move_wrapper(board, player, trials):
 # poc_ttt_gui.run_gui(3, provided.PLAYERO, move_wrapper, 1, False)
 
 # my_board = [[1, 2, 1], [1, 1, 1], [1, 1, 1]]  # one full cell
-my_board = [[2, 2, 2], [2, 2, 2], [2, 2, 2]]  # full
+# my_board = [[2, 2, 2], [2, 2, 2], [2, 2, 2]]  # full
 # my_board = [[3, 2, 3], [2, 2, 3], [2, 1, 1]]  # two free
-board = provided.TTTBoard(3, board=my_board)
-print board
-playerx = provided.PLAYERX
-print mm_move(board, playerx)
+# my_board = [[3, 2, 3], [2, 2, 3], [1, 1, 1]]  # three free
+# board = provided.TTTBoard(3, board=my_board)
+# print board
+# player = provided.PLAYERO
+# print mm_move(board, player)
