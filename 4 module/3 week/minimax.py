@@ -16,6 +16,26 @@ SCORES = {provided.PLAYERX: 1,
           provided.PLAYERO: -1}
 
 
+def children(board, player):
+    copy_board = board.clone()
+    children_boards = []
+
+    for square in copy_board.get_empty_squares():
+        tmp_board = board.clone()
+        tmp_board.move(square[0], square[1], player)
+        children_boards.append(tmp_board)
+
+    return children_boards
+
+
+my_board = [[3, 2, 3], [2, 2, 3], [2, 1, 1]]  # two free
+board = provided.TTTBoard(3, board=my_board)
+playerx = provided.PLAYERX
+boards = children(board, playerx)
+for board in boards:
+    print board
+
+
 def mm_move(board, player):
     """
     Make a move on the board.
@@ -27,7 +47,6 @@ def mm_move(board, player):
     # opponent_player = provided.switch_player(player)
     # empty_squares_list = board.get_empty_squares()
 
-    copy_board = board.clone()
     print copy_board
     expected_score = 1 if player == provided.PLAYERX else -1
 
@@ -39,11 +58,6 @@ def mm_move(board, player):
     #     board.move(row, col, player)
     #     player = provided.switch_player(player)
 
-    for square in copy_board.get_empty_squares():
-        copy_board.move(square[0], square[1], player)
-        player = provided.switch_player(player)
-        if not copy_board.check_win() is None and SCORES[board.check_win()] == expected_score:
-            break
 
     return SCORES[board.check_win()], board.check_win()
     # return 0, (-1, -1)
@@ -71,4 +85,4 @@ def move_wrapper(board, player, trials):
 my_board = [[3, 2, 3], [2, 2, 3], [2, 1, 1]]  # two free
 board = provided.TTTBoard(3, board=my_board)
 playerx = provided.PLAYERX
-print mm_move(board, playerx)
+# print mm_move(board, playerx)
