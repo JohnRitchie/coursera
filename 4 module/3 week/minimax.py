@@ -26,6 +26,7 @@ def mm_move(board, player):
 
     copy_board = board.clone()
     score = float('-inf')
+    square = -1, -1
 
     if copy_board.get_empty_squares():
         for square in copy_board.get_empty_squares():
@@ -37,10 +38,10 @@ def mm_move(board, player):
     else:
         return SCORES[copy_board.check_win()], (-1, -1)
 
-    tmp_score, tmp_square = mm_move(copy_board, provided.switch_player(player))
-    if tmp_score > score:
-        score == tmp_score
-        square == tmp_square
+    dummy_score, dummy_square = mm_move(copy_board, provided.switch_player(player))
+    #    if tmp_score > score:
+    #        score == tmp_score
+    #        square == tmp_square
 
     return score, square
 
