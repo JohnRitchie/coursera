@@ -25,31 +25,22 @@ def mm_move(board, player):
     """
     # base case
     if board.check_win():
-        print 'state1'
-        print 'win: ', board.check_win()
-        print 'player: ', player
         return SCORES[board.check_win()], (-1, -1)
 
-    print 'state0'
-    print 'player: ', player
     result = (-1, (-1, -1))
 
     for move in board.get_empty_squares():
-        print 'state move'
         copy_board = board.clone()
         copy_board.move(move[0], move[1], player)
 
         score, _ = mm_move(copy_board, provided.switch_player(player))
 
         if score * SCORES[player] == 1:
-            print 'state2'
-            print 'player: ', player
             return score, move
         elif score * SCORES[player] > result[0]:
             result = (score, move)
         elif result[0] == -1:
             result = (result[0], move)
-    print 'state3'
     return result[0] * SCORES[player], result[1]
 
 
@@ -67,18 +58,5 @@ def move_wrapper(board, player, trials):
 # Uncomment whichever you prefer.
 # Both should be commented out when you submit for
 # testing to save time.
-# provided.play_game(move_wrapper, 1, False)
-# poc_ttt_gui.run_gui(3, provided.PLAYERO, move_wrapper, 1, False)
-
-# my_board = [[1, 2, 1], [1, 1, 1], [1, 1, 1]]  # one full cell
-# my_board = [[2, 2, 2], [2, 2, 2], [2, 2, 2]]  # full
-my_board = [[3, 2, 3], [2, 2, 3], [2, 1, 1]]  # two free
-# my_board = [[3, 2, 1], [2, 1, 3], [1, 2, 1]]  # more free
-board = provided.TTTBoard(3, board=my_board)
-print board
-player = provided.PLAYERO
-score, move = mm_move(board, player)
-# print board
-# print score, move
-# board.move(move[0], move[1], player)
-# print board
+provided.play_game(move_wrapper, 1, False)
+poc_ttt_gui.run_gui(3, provided.PLAYERO, move_wrapper, 1, False)
