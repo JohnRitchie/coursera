@@ -5,7 +5,6 @@ Mini-max Tic-Tac-Toe Player
 import SimpleGUICS2Pygame.codeskulptor as codeskulptor
 import poc_ttt_gui_ignore_ as poc_ttt_gui
 import poc_ttt_provided_ignore_ as provided
-import random
 
 # Set timeout, as mini-max can take a long time
 codeskulptor.set_timeout(60)
@@ -24,29 +23,25 @@ def mm_move(board, player):
     of the given board and the second element is the desired move as a
     tuple, (row, col).
     """
-    # opponent_player = provided.switch_player(player)
-    # empty_squares_list = board.get_empty_squares()
+    # base case
+    if board.check_win():
+        return SCORES[board.check_win()], (-1, -1)
 
-    copy_board = board.clone()
-    print copy_board
-    expected_score = 1 if player == provided.PLAYERX else -1
+    result = (-1, (-1, -1))
 
-    if not copy_board.get_empty_squares():  # base case
-        return SCORES[board.check_win()], 'there is not empty squares'
+    for move in board.get_empty_squares():
+        copy_board = board.clone()
+        copy_board.move(move[0], move[1], player)
 
-    # while board.check_win() not in (provided.PLAYERX, provided.PLAYERO, provided.DRAW):
-    #     row, col = random.choice(board.get_empty_squares())
-    #     board.move(row, col, player)
-    #     player = provided.switch_player(player)
+        score, _ = mm_move(copy_board, provided.switch_player(player))
 
-    for square in copy_board.get_empty_squares():
-        copy_board.move(square[0], square[1], player)
-        player = provided.switch_player(player)
-        if not copy_board.check_win() is None and SCORES[board.check_win()] == expected_score:
-            break
-
-    return SCORES[board.check_win()], board.check_win()
-    # return 0, (-1, -1)
+        if score * SCORES[player] == 1:
+            return score, move
+        elif score * SCORES[player] > result[0]:
+            result = (score, move)
+        elif result[0] == -1:
+            result = (result[0], move)
+    return result[0] * SCORES[player], result[1]
 
 
 def move_wrapper(board, player, trials):
@@ -63,12 +58,5 @@ def move_wrapper(board, player, trials):
 # Uncomment whichever you prefer.
 # Both should be commented out when you submit for
 # testing to save time.
-# provided.play_game(move_wrapper, 1, False)
-# poc_ttt_gui.run_gui(3, provided.PLAYERO, move_wrapper, 1, False)
-
-# my_board = [[1, 2, 1], [1, 1, 1], [1, 1, 1]]  # one full cell
-# my_board = [[2, 2, 2], [2, 2, 2], [2, 2, 2]]  # full
-my_board = [[3, 2, 3], [2, 2, 3], [2, 1, 1]]  # two free
-board = provided.TTTBoard(3, board=my_board)
-playerx = provided.PLAYERX
-print mm_move(board, playerx)
+provided.play_game(move_wrapper, 1, False)
+poc_ttt_gui.run_gui(3, provided.PLAYERO, move_wrapper, 1, False)
