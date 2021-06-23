@@ -23,7 +23,7 @@ class Puzzle:
                        for col in range(self._width)]
                       for row in range(self._height)]
 
-        if initial_grid != None:
+        if initial_grid is not None:
             for row in range(puzzle_height):
                 for col in range(puzzle_width):
                     self._grid[row][col] = initial_grid[row][col]
@@ -91,7 +91,7 @@ class Puzzle:
         for row in range(self._height):
             for col in range(self._width):
                 if self._grid[row][col] == solved_value:
-                    return (row, col)
+                    return row, col
         assert False, "Value " + str(solved_value) + " not found"
 
     def update_puzzle(self, move_string):
