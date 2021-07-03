@@ -133,7 +133,12 @@ class Puzzle:
         Returns a boolean
         """
         # replace with your code
-        return False
+        result = False
+
+        if self.get_number(target_row, target_col) == 0:
+            result = True
+
+        return result
 
     def solve_interior_tile(self, target_row, target_col):
         """
@@ -209,4 +214,8 @@ class Puzzle:
 
 
 # Start interactive simulation
-poc_fifteen_gui.FifteenGUI(Puzzle(4, 4))
+grid = [[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
+# poc_fifteen_gui.FifteenGUI(Puzzle(4, 4, initial_grid=grid))
+puzzle = Puzzle(4, 4, initial_grid=grid)
+print puzzle
+assert puzzle.lower_row_invariant(0, 0), 'Not zero!'
