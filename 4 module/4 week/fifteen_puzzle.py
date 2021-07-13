@@ -5,6 +5,7 @@ Use the arrows key to swap this tile with its neighbors
 """
 
 import poc_fifteen_gui_ignore_ as poc_fifteen_gui
+import random
 
 
 class Puzzle:
@@ -213,8 +214,30 @@ class Puzzle:
         return ""
 
 
+def make_grid():
+    grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+    height = len(grid)
+    width = len(grid)
+    flat_grid = []
+
+    for tile in range(16):
+        flat_grid.append(tile)
+
+    flat_grid = random.sample(flat_grid, len(flat_grid))
+
+    flat_grid_index = 0
+    for row in range(height):
+        for col in range(width):
+            grid[row][col] = flat_grid[flat_grid_index]
+            flat_grid_index += 1
+
+    return grid
+
+
+# grid = [[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
+grid = make_grid()
+
 # Start interactive simulation
-grid = [[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
 # poc_fifteen_gui.FifteenGUI(Puzzle(4, 4, initial_grid=grid))
 puzzle = Puzzle(4, 4, initial_grid=grid)
 print puzzle
