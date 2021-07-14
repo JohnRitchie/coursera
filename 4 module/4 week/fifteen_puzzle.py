@@ -134,12 +134,19 @@ class Puzzle:
         Returns a boolean
         """
         # replace with your code
-        result = False
 
-        if self.get_number(target_row, target_col) == 0:
-            result = True
+        if not self.get_number(target_row, target_col) == 0:
+            print 'Not zero!'
+            return False
 
-        return result
+        standard_puzzle = Puzzle(4, 4)
+        for row in range(self._height):
+            for col in range(self._width):
+                if self.get_number(row, col) != standard_puzzle.get_number(row, col):
+                    print 'Not match!'
+                    return False
+
+        return True
 
     def solve_interior_tile(self, target_row, target_col):
         """
@@ -234,11 +241,10 @@ def make_grid():
     return grid
 
 
-# grid = [[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
-grid = make_grid()
+grid = [[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
+# grid = make_grid()
 
 # Start interactive simulation
 # poc_fifteen_gui.FifteenGUI(Puzzle(4, 4, initial_grid=grid))
 puzzle = Puzzle(4, 4, initial_grid=grid)
-print puzzle
-assert puzzle.lower_row_invariant(0, 0), 'Not zero!'
+assert puzzle.lower_row_invariant(0, 0)
