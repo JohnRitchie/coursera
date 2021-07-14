@@ -139,12 +139,16 @@ class Puzzle:
             print 'Not zero!'
             return False
 
-        standard_puzzle = Puzzle(4, 4)
-        for row in range(self._height):
-            for col in range(self._width):
-                if self.get_number(row, col) != standard_puzzle.get_number(row, col):
-                    print 'Not match!'
-                    return False
+        standard_grid = Puzzle(4, 4)
+        flat_grid = [self._grid[row][col] for row in range(4) for col in range(4)]
+        flat_standard_grid = [standard_grid._grid[row][col] for row in range(4) for col in range(4)]
+        target_index = (target_col + self._width * target_row)
+
+        while target_index + 1 < len(flat_grid):
+            target_index += 1
+            if flat_grid[target_index] != flat_standard_grid[target_index]:
+                print 'Not match!'
+                return False
 
         return True
 
