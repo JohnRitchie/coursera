@@ -139,9 +139,9 @@ class Puzzle:
             print 'Not zero!'
             return False
 
-        standard_grid = Puzzle(4, 4)
-        flat_grid = [self._grid[row][col] for row in range(4) for col in range(4)]
-        flat_standard_grid = [standard_grid._grid[row][col] for row in range(4) for col in range(4)]
+        standard_grid = Puzzle(self._height, self._width)
+        flat_grid = [self._grid[row][col] for row in range(self._height) for col in range(self._width)]
+        flat_standard_grid = [standard_grid._grid[row][col] for row in range(self._height) for col in range(self._width)]
         target_index = (target_col + self._width * target_row)
 
         while target_index + 1 < len(flat_grid):
