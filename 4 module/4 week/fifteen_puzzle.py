@@ -133,8 +133,6 @@ class Puzzle:
         at the given position in the bottom rows of the puzzle (target_row > 1)
         Returns a boolean
         """
-        # replace with your code
-
         if not self.get_number(target_row, target_col) == 0:
             print 'Not zero!'
             return False
