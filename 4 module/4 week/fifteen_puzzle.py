@@ -184,8 +184,22 @@ class Puzzle:
         at the given column (col > 1)
         Returns a boolean
         """
-        # replace with your code
-        return False
+        if not self.get_number(1, target_col) == 0:
+            print 'Not zero!'
+            return False
+
+        standard_grid = Puzzle(self._height, self._width)
+        flat_grid = [self._grid[row][col] for row in range(self._height) for col in range(self._width)]
+        flat_standard_grid = [standard_grid._grid[row][col] for row in range(self._height) for col in range(self._width)]
+        target_index = (target_col + self._width)
+
+        while target_index + 1 < len(flat_grid):
+            target_index += 1
+            if flat_grid[target_index] != flat_standard_grid[target_index]:
+                print 'Not match!'
+                return False
+
+        return True
 
     def solve_row0_tile(self, target_col):
         """
@@ -243,10 +257,10 @@ def make_grid():
     return grid
 
 
-grid = [[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
+grid = [[7, 1, 2, 3], [4, 5, 6, 0], [8, 9, 10, 11], [12, 13, 14, 15]]
 # grid = make_grid()
 
 # Start interactive simulation
 # poc_fifteen_gui.FifteenGUI(Puzzle(4, 4, initial_grid=grid))
-puzzle = Puzzle(4, 4, initial_grid=grid)
-assert puzzle.lower_row_invariant(0, 0)
+puzzle = Puzzle(4, 4, grid)
+assert puzzle.row1_invariant(3)
