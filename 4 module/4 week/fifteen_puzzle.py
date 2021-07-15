@@ -257,10 +257,10 @@ def make_grid():
     return grid
 
 
-grid = [[7, 1, 2, 3], [4, 5, 6, 0], [8, 9, 10, 11], [12, 13, 14, 15]]
+grid = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 # grid = make_grid()
 
 # Start interactive simulation
 # poc_fifteen_gui.FifteenGUI(Puzzle(4, 4, initial_grid=grid))
-puzzle = Puzzle(4, 4, grid)
-assert puzzle.row1_invariant(3)
+puzzle = Puzzle(3, 3, grid)
+assert puzzle.row0_invariant(0)
