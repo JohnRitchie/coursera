@@ -175,8 +175,25 @@ class Puzzle:
         at the given column (col > 1)
         Returns a boolean
         """
-        # replace with your code
-        return False
+        if not self.get_number(0, target_col) == 0:
+            print 'Not zero!'
+            return False
+
+        standard_grid = Puzzle(self._height, self._width)
+        standard_row0 = standard_grid._grid[0]
+        row0 = self._grid[0]
+        row0_index = target_col
+
+        while row0_index + 1 < len(row0):
+            row0_index += 1
+            if row0[row0_index] != standard_row0[row0_index]:
+                print 'Not match row0!'
+                return False
+
+        flat_grid = [self._grid[row][col] for row in range(self._height) for col in range(self._width)]
+        flat_standard_grid = [standard_grid._grid[row][col] for row in range(self._height) for col in range(self._width)]
+
+        return True
 
     def row1_invariant(self, target_col):
         """
