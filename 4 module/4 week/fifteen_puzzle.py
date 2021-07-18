@@ -4,8 +4,8 @@ Note that solved configuration has the blank (zero) tile in upper left
 Use the arrows key to swap this tile with its neighbors
 """
 
-import poc_fifteen_gui_ignore_ as poc_fifteen_gui
 import random
+import poc_fifteen_gui_ignore_ as poc_fifteen_gui
 
 
 class Puzzle:
@@ -137,11 +137,15 @@ class Puzzle:
             print 'Not zero!'
             return False
 
+        flat_grid = [self.get_number(row, col)
+                     for row in range(self._height)
+                     for col in range(self._width)]
         standard_grid = Puzzle(self._height, self._width)
-        flat_grid = [self._grid[row][col] for row in range(self._height) for col in range(self._width)]
-        flat_standard_grid = [standard_grid._grid[row][col] for row in range(self._height) for col in range(self._width)]
-        target_index = (target_col + self._width * target_row)
+        flat_standard_grid = [standard_grid.get_number(row, col)
+                              for row in range(self._height)
+                              for col in range(self._width)]
 
+        target_index = target_col + self._width * target_row
         while target_index + 1 < len(flat_grid):
             target_index += 1
             if flat_grid[target_index] != flat_standard_grid[target_index]:
@@ -182,18 +186,22 @@ class Puzzle:
         standard_grid = Puzzle(self._height, self._width)
         standard_row0 = standard_grid._grid[0]
         row0 = self._grid[0]
-        row0_index = target_col
 
-        while row0_index + 1 < len(row0):
-            row0_index += 1
-            if row0[row0_index] != standard_row0[row0_index]:
+        target_index = target_col
+        while target_index + 1 < len(row0):
+            target_index += 1
+            if row0[target_index] != standard_row0[target_index]:
                 print 'Not match row0!'
                 return False
 
-        flat_grid = [self._grid[row][col] for row in range(self._height) for col in range(self._width)]
-        flat_standard_grid = [standard_grid._grid[row][col] for row in range(self._height) for col in range(self._width)]
-        remainder_index = (target_col + self._width)
+        flat_grid = [self.get_number(row, col)
+                     for row in range(self._height)
+                     for col in range(self._width)]
+        flat_standard_grid = [standard_grid.get_number(row, col)
+                              for row in range(self._height)
+                              for col in range(self._width)]
 
+        remainder_index = target_col + self._width
         while remainder_index < len(flat_grid):
             if flat_grid[remainder_index] != flat_standard_grid[remainder_index]:
                 print 'Not match rest!'
@@ -213,10 +221,14 @@ class Puzzle:
             return False
 
         standard_grid = Puzzle(self._height, self._width)
-        flat_grid = [self._grid[row][col] for row in range(self._height) for col in range(self._width)]
-        flat_standard_grid = [standard_grid._grid[row][col] for row in range(self._height) for col in range(self._width)]
-        target_index = (target_col + self._width)
+        flat_grid = [self.get_number(row, col)
+                     for row in range(self._height)
+                     for col in range(self._width)]
+        flat_standard_grid = [standard_grid.get_number(row, col)
+                              for row in range(self._height)
+                              for col in range(self._width)]
 
+        target_index = target_col + self._width
         while target_index + 1 < len(flat_grid):
             target_index += 1
             if flat_grid[target_index] != flat_standard_grid[target_index]:
@@ -281,12 +293,13 @@ def make_grid():
     return grid
 
 
-grid3 = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
-grid4 = [[0, 1, 0, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
-grid5 = [[0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13, 14], [15, 16, 17, 18, 19], [20, 21, 22, 23, 24]]
+grid_3 = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+grid_4 = [[0, 1, 0, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
+grid_5 = [[0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13, 14],
+          [15, 16, 17, 18, 19], [20, 21, 22, 23, 24]]
 # grid = make_grid()
 
 # Start interactive simulation
 # poc_fifteen_gui.FifteenGUI(Puzzle(4, 4, initial_grid=grid))
-puzzle = Puzzle(5, 5, grid5)
+puzzle = Puzzle(5, 5, grid_5)
 assert puzzle.row0_invariant(0)
