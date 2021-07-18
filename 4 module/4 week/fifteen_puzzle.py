@@ -192,6 +192,13 @@ class Puzzle:
 
         flat_grid = [self._grid[row][col] for row in range(self._height) for col in range(self._width)]
         flat_standard_grid = [standard_grid._grid[row][col] for row in range(self._height) for col in range(self._width)]
+        remainder_index = (target_col + self._width)
+
+        while remainder_index < len(flat_grid):
+            if flat_grid[remainder_index] != flat_standard_grid[remainder_index]:
+                print 'Not match rest!'
+                return False
+            remainder_index += 1
 
         return True
 
@@ -274,10 +281,12 @@ def make_grid():
     return grid
 
 
-grid = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+grid3 = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+grid4 = [[0, 1, 0, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
+grid5 = [[0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13, 14], [15, 16, 17, 18, 19], [20, 21, 22, 23, 24]]
 # grid = make_grid()
 
 # Start interactive simulation
 # poc_fifteen_gui.FifteenGUI(Puzzle(4, 4, initial_grid=grid))
-puzzle = Puzzle(3, 3, grid)
+puzzle = Puzzle(5, 5, grid5)
 assert puzzle.row0_invariant(0)
