@@ -169,9 +169,6 @@ class Puzzle:
 
         target_pos = (target_row, target_col)
         target_tile = (current_row, current_col)
-        print current_row, current_col
-        print target_pos
-        print target_tile
         move_string = self.position_tile(target_pos, target_tile)
 
         self.update_puzzle(move_string)
