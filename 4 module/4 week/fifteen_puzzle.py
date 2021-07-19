@@ -154,6 +154,11 @@ class Puzzle:
 
         return True
 
+    def position_tile(self, target_pos, target_tile):
+        move_string = ""
+
+        return move_string
+
     def solve_interior_tile(self, target_row, target_col):
         """
         Place correct tile at target position
