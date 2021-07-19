@@ -159,7 +159,11 @@ class Puzzle:
         Place correct tile at target position
         Updates puzzle and returns a move string
         """
-        # replace with your code
+        assert self.lower_row_invariant(target_row, target_col)
+        assert target_row > 1 and target_col > 0, "target row or target col out of range!"
+        # TODO
+        assert self.lower_row_invariant(target_row, target_col - 1)
+
         return ""
 
     def solve_col0_tile(self, target_row):
