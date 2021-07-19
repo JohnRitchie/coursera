@@ -160,11 +160,23 @@ class Puzzle:
         Updates puzzle and returns a move string
         """
         assert self.lower_row_invariant(target_row, target_col)
-        assert target_row > 1 and target_col > 0, "target row or target col out of range!"
-        # TODO
-        assert self.lower_row_invariant(target_row, target_col - 1)
+        assert target_row > 1, "target row <= 1 !"
+        assert target_col > 0, "target col <= 0 !"
 
-        return ""
+        current_row, current_col = self.current_position(target_row, target_col)
+        assert current_row <= target_row, "current row > target row !"
+        assert current_col < target_col, "current col >= target col !"
+
+        target_pos = (target_row, target_col)
+        target_tile = (current_row, current_col)
+        print current_row, current_col
+        print target_pos
+        print target_tile
+        move_string = self.position_tile(target_pos, target_tile)
+
+        self.update_puzzle(move_string)
+        assert self.lower_row_invariant(target_row, target_col - 1)
+        return move_string
 
     def solve_col0_tile(self, target_row):
         """
@@ -299,11 +311,11 @@ def make_grid():
 
 grid_3 = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 grid_4 = [[0, 1, 0, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
-grid_5 = [[0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13, 14],
+grid_5 = [[11, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 0, 12, 13, 14],
           [15, 16, 17, 18, 19], [20, 21, 22, 23, 24]]
 # grid = make_grid()
 
 # Start interactive simulation
 # poc_fifteen_gui.FifteenGUI(Puzzle(4, 4, initial_grid=grid))
 puzzle = Puzzle(5, 5, grid_5)
-assert puzzle.row0_invariant(0)
+puzzle.solve_interior_tile(2, 1)
