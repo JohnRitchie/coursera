@@ -155,7 +155,7 @@ class Puzzle:
         return True
 
     def position_tile(self, target_pos, target_tile):
-        move_string = ""
+        move_string = "l"
 
         return move_string
 
@@ -288,7 +288,9 @@ class Puzzle:
         Updates the puzzle and returns a move string
         """
         # replace with your code
-        return ""
+        zero_row, zero_col = self.current_position(0, 0)
+
+        return self.solve_interior_tile(zero_row, zero_col)
 
 
 def make_grid():
@@ -312,12 +314,12 @@ def make_grid():
 
 
 grid_3 = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
-grid_4 = [[0, 1, 0, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
+grid_4 = [[10, 1, 2, 3], [4, 5, 6, 7], [8, 9, 11, 0], [12, 13, 14, 15]]
 grid_5 = [[11, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 0, 12, 13, 14],
           [15, 16, 17, 18, 19], [20, 21, 22, 23, 24]]
 # grid = make_grid()
 
 # Start interactive simulation
-# poc_fifteen_gui.FifteenGUI(Puzzle(4, 4, initial_grid=grid))
-puzzle = Puzzle(5, 5, grid_5)
-puzzle.solve_interior_tile(2, 1)
+poc_fifteen_gui.FifteenGUI(Puzzle(4, 4, initial_grid=grid_4))
+# puzzle = Puzzle(5, 5, grid_5)
+# puzzle.solve_interior_tile(2, 1)
