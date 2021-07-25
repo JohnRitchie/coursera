@@ -228,6 +228,13 @@ class Puzzle:
         Updates puzzle and returns a move string
         """
         # replace with your code
+        assert self.lower_row_invariant(target_row, 0)
+        assert target_row > 1, "target row <= 1 !"
+
+        current_row, current_col = self.current_position(target_row, 0)
+        # TODO
+        assert self.lower_row_invariant(target_row - 1, self.get_width() - 1)
+
         return ""
 
     #############################################################
@@ -332,7 +339,7 @@ class Puzzle:
         # replace with your code
         zero_row, zero_col = self.current_position(0, 0)
 
-        return self.solve_interior_tile(zero_row, zero_col)
+        return self.solve_col0_tile(zero_row)
 
 
 def make_grid():
@@ -356,7 +363,7 @@ def make_grid():
 
 
 grid_3 = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
-grid_4 = [[1, 7, 9, 8], [4, 5, 6, 3], [2, 10, 0, 11], [12, 13, 14, 15]]
+grid_4 = [[1, 7, 9, 3], [4, 5, 6, 8], [0, 9, 10, 11], [12, 13, 14, 15]]
 # grid_4 = [[1, 10, 9, 8], [4, 5, 6, 3], [2, 7, 0, 11], [12, 13, 14, 15]]
 # grid_4 = [[1, 7, 10, 8], [4, 5, 6, 3], [2, 9, 0, 11], [12, 13, 14, 15]]
 # grid_4 = [[1, 7, 9, 10], [4, 5, 6, 3], [2, 8, 0, 11], [12, 13, 14, 15]]
