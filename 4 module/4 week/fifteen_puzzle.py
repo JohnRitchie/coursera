@@ -180,10 +180,21 @@ class Puzzle:
                     current_col += 1
             move_string += "dru" if current_row == 0 else "ur"
             current_row += 1 if current_row == 0 else 0
-        elif target_row > current_row and target_col < current_col:
-            move_string += 'u'
-            move_string += 'r' * (current_col - target_col)
-            move_string += 'u' * (target_row - current_row - 1)
+        
+        elif target_col < current_col:
+            while True:
+                if current_col - target_col == 1:
+                    move_string += "r"
+                    current_col -= 1
+                    break
+                else:
+                    move_string += "r" * (current_col - target_col)
+                    move_string += "d" if current_row == 0 else "u"
+                    move_string += "l" * (current_col - target_col)
+                    move_string += "u" if current_row == 0 else "d"
+                    current_col -= 1
+            move_string += "dlu" if current_row == 0 else "ul"
+            current_row += 1 if current_row == 0 else 0
 
         move_string += "lddru" * (target_row - current_row)
         move_string += "ld"
@@ -345,10 +356,10 @@ def make_grid():
 
 
 grid_3 = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
-grid_4 = [[1, 7, 9, 8], [4, 5, 6, 3], [2, 10, 0, 11], [12, 13, 14, 15]]
+# grid_4 = [[1, 7, 9, 8], [4, 5, 6, 3], [2, 10, 0, 11], [12, 13, 14, 15]]
 # grid_4 = [[1, 10, 9, 8], [4, 5, 6, 3], [2, 7, 0, 11], [12, 13, 14, 15]]
 # grid_4 = [[1, 7, 10, 8], [4, 5, 6, 3], [2, 9, 0, 11], [12, 13, 14, 15]]
-# grid_4 = [[1, 7, 9, 10], [4, 5, 6, 3], [2, 8, 0, 11], [12, 13, 14, 15]]
+grid_4 = [[1, 7, 9, 10], [4, 5, 6, 3], [2, 8, 0, 11], [12, 13, 14, 15]]
 grid_5 = [[11, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 0, 12, 13, 14],
           [15, 16, 17, 18, 19], [20, 21, 22, 23, 24]]
 # grid = make_grid()
