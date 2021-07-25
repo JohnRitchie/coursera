@@ -219,7 +219,7 @@ class Puzzle:
         move_string = self.position_tile(target_pos, target_tile)
 
         self.update_puzzle(move_string)
-        # assert self.lower_row_invariant(target_row, target_col - 1)
+        assert self.lower_row_invariant(target_row, target_col - 1)
         return move_string
 
     def solve_col0_tile(self, target_row):
