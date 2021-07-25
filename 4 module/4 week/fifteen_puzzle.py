@@ -178,7 +178,6 @@ class Puzzle:
                     move_string += "r" * (target_col - current_col)
                     move_string += "u" if current_row == 0 else "d"
                     current_col += 1
-            # Move 0 tile to the top of target tile
             move_string += "dru" if current_row == 0 else "ur"
             current_row += 1 if current_row == 0 else 0
         elif target_row > current_row and target_col < current_col:
