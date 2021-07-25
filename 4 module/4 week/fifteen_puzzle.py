@@ -231,11 +231,20 @@ class Puzzle:
         assert self.lower_row_invariant(target_row, 0)
         assert target_row > 1, "target row <= 1 !"
 
+        move_string = "ur"
         current_row, current_col = self.current_position(target_row, 0)
-        # TODO
+
+        if not (current_row == (target_row - 1) and current_col == 0):
+            target_tile = (current_row, current_col)
+            target_pos = (target_row - 1, 1)
+            move_string += self.position_tile(target_pos, target_tile)
+            move_string += "ruldrdlurdluurddlur"
+
+        move_string += "r" * (self.get_width() - 2)
+        self.update_puzzle(move_string)
         assert self.lower_row_invariant(target_row - 1, self.get_width() - 1)
 
-        return ""
+        return move_string
 
     #############################################################
     # Phase two methods
@@ -337,9 +346,7 @@ class Puzzle:
         Updates the puzzle and returns a move string
         """
         # replace with your code
-        zero_row, zero_col = self.current_position(0, 0)
-
-        return self.solve_col0_tile(zero_row)
+        return ""
 
 
 def make_grid():
@@ -364,9 +371,7 @@ def make_grid():
 
 grid_3 = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 grid_4 = [[1, 7, 9, 3], [4, 5, 6, 8], [0, 9, 10, 11], [12, 13, 14, 15]]
-# grid_4 = [[1, 10, 9, 8], [4, 5, 6, 3], [2, 7, 0, 11], [12, 13, 14, 15]]
-# grid_4 = [[1, 7, 10, 8], [4, 5, 6, 3], [2, 9, 0, 11], [12, 13, 14, 15]]
-# grid_4 = [[1, 7, 9, 10], [4, 5, 6, 3], [2, 8, 0, 11], [12, 13, 14, 15]]
+# grid_4 = [[1, 7, 9, 3], [8, 5, 6, 4], [0, 9, 10, 11], [12, 13, 14, 15]]
 grid_5 = [[11, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 0, 12, 13, 14],
           [15, 16, 17, 18, 19], [20, 21, 22, 23, 24]]
 # grid = make_grid()
