@@ -1,5 +1,5 @@
 """
-Loyd's Fifteen puzzle - solver and visualizer
+Loyd"s Fifteen puzzle - solver and visualizer
 Note that solved configuration has the blank (zero) tile in upper left
 Use the arrows key to swap this tile with its neighbors
 """
@@ -134,7 +134,7 @@ class Puzzle:
         Returns a boolean
         """
         if not self.get_number(target_row, target_col) == 0:
-            print 'Not zero!'
+            print "Not zero!"
             return False
 
         flat_grid = [self.get_number(row, col)
@@ -149,7 +149,7 @@ class Puzzle:
         while target_index + 1 < len(flat_grid):
             target_index += 1
             if flat_grid[target_index] != flat_standard_grid[target_index]:
-                print 'Not match!'
+                print "Not match!"
                 return False
 
         return True
@@ -240,7 +240,7 @@ class Puzzle:
         Returns a boolean
         """
         if not self.get_number(0, target_col) == 0:
-            print 'Not zero!'
+            print "Not zero!"
             return False
 
         standard_grid = Puzzle(self._height, self._width)
@@ -251,7 +251,7 @@ class Puzzle:
         while target_index + 1 < len(row0):
             target_index += 1
             if row0[target_index] != standard_row0[target_index]:
-                print 'Not match row0!'
+                print "Not match row0!"
                 return False
 
         flat_grid = [self.get_number(row, col)
@@ -264,7 +264,7 @@ class Puzzle:
         remainder_index = target_col + self._width
         while remainder_index < len(flat_grid):
             if flat_grid[remainder_index] != flat_standard_grid[remainder_index]:
-                print 'Not match rest!'
+                print "Not match rest!"
                 return False
             remainder_index += 1
 
@@ -277,7 +277,7 @@ class Puzzle:
         Returns a boolean
         """
         if not self.get_number(1, target_col) == 0:
-            print 'Not zero!'
+            print "Not zero!"
             return False
 
         standard_grid = Puzzle(self._height, self._width)
@@ -292,7 +292,7 @@ class Puzzle:
         while target_index + 1 < len(flat_grid):
             target_index += 1
             if flat_grid[target_index] != flat_standard_grid[target_index]:
-                print 'Not match!'
+                print "Not match!"
                 return False
 
         return True
