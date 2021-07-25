@@ -162,14 +162,25 @@ class Puzzle:
         target_row, target_col = target_pos
         current_row, current_col = target_tile
 
-        if target_row == current_row:
-            move_string += 'l' * (target_col - current_col)
-        elif target_row > current_row and target_col == current_col:
+        move_string += "u" * (target_row - current_row)
+
+        if target_row > current_row and target_col == current_col:
             move_string += 'u' * (target_row - current_row)
-        elif target_row > current_row and target_col > current_col:
-            move_string += 'l' * (target_col - current_col)
-            move_string += 'u' * (target_row - current_row)
-            # move_string += 'lddruld'
+        elif target_col > current_col:
+            while True:
+                if target_col - current_col == 1:
+                    move_string += "l"
+                    current_col += 1
+                    break
+                else:
+                    move_string += "l" * (target_col - current_col)
+                    move_string += "d" if current_row == 0 else "u"
+                    move_string += "r" * (target_col - current_col)
+                    move_string += "u" if current_row == 0 else "d"
+                    current_col += 1
+            # Move 0 tile to the top of target tile
+            move_string += "dru" if current_row == 0 else "ur"
+            current_row += 1 if current_row == 0 else 0
         elif target_row > current_row and target_col < current_col:
             move_string += 'u'
             move_string += 'r' * (current_col - target_col)
