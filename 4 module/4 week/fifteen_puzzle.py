@@ -207,13 +207,12 @@ class Puzzle:
         Place correct tile at target position
         Updates puzzle and returns a move string
         """
-        # assert self.lower_row_invariant(target_row, target_col)
-        # assert target_row > 1, "target row <= 1 !"
-        # assert target_col > 0, "target col <= 0 !"
+        assert self.lower_row_invariant(target_row, target_col)
+        assert target_row > 1, "target row <= 1 !"
+        assert target_col > 0, "target col <= 0 !"
 
         current_row, current_col = self.current_position(target_row, target_col)
-        # assert current_row <= target_row, "current row > target row !"
-        # assert current_col < target_col, "current col >= target col !"
+        assert current_row <= target_row, "current row > target row !"
 
         target_pos = (target_row, target_col)
         target_tile = (current_row, current_col)
@@ -357,9 +356,9 @@ def make_grid():
 
 
 grid_3 = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
-# grid_4 = [[1, 7, 9, 8], [4, 5, 6, 3], [2, 10, 0, 11], [12, 13, 14, 15]]
+grid_4 = [[1, 7, 9, 8], [4, 5, 6, 3], [2, 10, 0, 11], [12, 13, 14, 15]]
 # grid_4 = [[1, 10, 9, 8], [4, 5, 6, 3], [2, 7, 0, 11], [12, 13, 14, 15]]
-grid_4 = [[1, 7, 10, 8], [4, 5, 6, 3], [2, 9, 0, 11], [12, 13, 14, 15]]
+# grid_4 = [[1, 7, 10, 8], [4, 5, 6, 3], [2, 9, 0, 11], [12, 13, 14, 15]]
 # grid_4 = [[1, 7, 9, 10], [4, 5, 6, 3], [2, 8, 0, 11], [12, 13, 14, 15]]
 grid_5 = [[11, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 0, 12, 13, 14],
           [15, 16, 17, 18, 19], [20, 21, 22, 23, 24]]
