@@ -340,7 +340,17 @@ class Puzzle:
         Updates puzzle and returns a move string
         """
         # replace with your code
-        return ""
+        assert self.row1_invariant(target_col)
+        assert target_col > 1, "target col <= 1 !"
+
+        current_row, current_col = self.current_position(1, target_col)
+        target_pos = (1, target_col)
+        target_tile = (current_row, current_col)
+        move_string = self.position_tile(target_pos, target_tile)
+
+        move_string = move_string[:-2]
+        self.update_puzzle(move_string)
+        return move_string
 
     ###########################################################
     # Phase 3 methods
@@ -360,7 +370,7 @@ class Puzzle:
         """
         # replace with your code
         _, zero_col = self.current_position(0, 0)
-        return self.solve_row0_tile(zero_col)
+        return self.solve_row1_tile(zero_col)
 
 
 def make_grid():
@@ -383,7 +393,7 @@ def make_grid():
     return grid
 
 
-grid_4 = [[2, 4, 0, 3], [5, 1, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
+grid_4 = [[2, 4, 6, 3], [5, 1, 7, 0], [8, 9, 10, 11], [12, 13, 14, 15]]
 # grid = make_grid()
 
 # Start interactive simulation
