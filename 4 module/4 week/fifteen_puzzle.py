@@ -319,7 +319,20 @@ class Puzzle:
         Updates puzzle and returns a move string
         """
         # replace with your code
-        return ""
+        assert self.row0_invariant(target_col)
+        assert target_col > 1, "target col <= 1 !"
+
+        move_string = "ld"
+        current_row, current_col = self.current_position(0, target_col)
+
+        if not (current_col == (target_col - 1)):
+            target_tile = (current_row, current_col)
+            target_pos = (1, target_col - 1)
+            move_string += self.position_tile(target_pos, target_tile)
+            move_string += "urdlurrdluldrruld"
+
+        self.update_puzzle(move_string)
+        return move_string
 
     def solve_row1_tile(self, target_col):
         """
@@ -346,7 +359,8 @@ class Puzzle:
         Updates the puzzle and returns a move string
         """
         # replace with your code
-        return ""
+        _, zero_col = self.current_position(0, 0)
+        return self.solve_row0_tile(zero_col)
 
 
 def make_grid():
@@ -369,11 +383,7 @@ def make_grid():
     return grid
 
 
-grid_3 = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
-grid_4 = [[1, 7, 9, 3], [4, 5, 6, 8], [0, 9, 10, 11], [12, 13, 14, 15]]
-# grid_4 = [[1, 7, 9, 3], [8, 5, 6, 4], [0, 9, 10, 11], [12, 13, 14, 15]]
-grid_5 = [[11, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 0, 12, 13, 14],
-          [15, 16, 17, 18, 19], [20, 21, 22, 23, 24]]
+grid_4 = [[2, 4, 0, 3], [5, 1, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
 # grid = make_grid()
 
 # Start interactive simulation
