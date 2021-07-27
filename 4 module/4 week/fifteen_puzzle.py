@@ -361,7 +361,11 @@ class Puzzle:
         Updates the puzzle and returns a move string
         """
         # replace with your code
-        return ""
+        assert self.row1_invariant(1)
+        move_string = "l"
+        # TODO
+        self.update_puzzle(move_string)
+        return move_string
 
     def solve_puzzle(self):
         """
@@ -369,8 +373,7 @@ class Puzzle:
         Updates the puzzle and returns a move string
         """
         # replace with your code
-        _, zero_col = self.current_position(0, 0)
-        return self.solve_row1_tile(zero_col)
+        return self.solve_2x2()
 
 
 def make_grid():
@@ -393,10 +396,11 @@ def make_grid():
     return grid
 
 
-grid_4 = [[2, 4, 6, 3], [5, 1, 7, 0], [8, 9, 10, 11], [12, 13, 14, 15]]
+# grid_4 = [[2, 4, 6, 3], [5, 1, 7, 0], [8, 9, 10, 11], [12, 13, 14, 15]]
+grid_2 = [[1, 3], [2, 0]]
 # grid = make_grid()
 
 # Start interactive simulation
-poc_fifteen_gui.FifteenGUI(Puzzle(4, 4, initial_grid=grid_4))
+poc_fifteen_gui.FifteenGUI(Puzzle(2, 2, initial_grid=grid_2))
 # puzzle = Puzzle(5, 5, grid_5)
 # puzzle.solve_interior_tile(2, 1)
