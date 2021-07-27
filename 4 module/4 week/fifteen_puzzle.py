@@ -384,6 +384,7 @@ class Puzzle:
         Updates the puzzle and returns a move string
         """
         # replace with your code
+        # TODO
         return ""
 
 
