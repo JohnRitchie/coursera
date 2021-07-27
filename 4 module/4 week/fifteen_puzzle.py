@@ -360,10 +360,21 @@ class Puzzle:
         Solve the upper left 2x2 part of the puzzle
         Updates the puzzle and returns a move string
         """
-        # replace with your code
         assert self.row1_invariant(1)
-        move_string = "l"
-        # TODO
+        move_string = ""
+        width = self.get_width()
+        zero_one = 1
+        one_zero = width
+        one_one = width + 1
+        cur_list = [self.get_number(1, 0), self.get_number(0, 0), self.get_number(0, 1)]
+        
+        if cur_list == [one_zero, zero_one, one_one]:
+            move_string = "ul"
+        elif cur_list == [one_one, one_zero, zero_one]:
+            move_string = "lu"
+        elif cur_list == [zero_one, one_one, one_zero]:
+            move_string = "lurdlu"
+
         self.update_puzzle(move_string)
         return move_string
 
@@ -396,8 +407,8 @@ def make_grid():
     return grid
 
 
-# grid_4 = [[2, 4, 6, 3], [5, 1, 7, 0], [8, 9, 10, 11], [12, 13, 14, 15]]
-grid_2 = [[1, 3], [2, 0]]
+# grid_4 = [[5, 1, 2, 3], [4, 0, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
+grid_2 = [[3, 2], [1, 0]]
 # grid = make_grid()
 
 # Start interactive simulation
