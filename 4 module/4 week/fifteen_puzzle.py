@@ -384,7 +384,7 @@ class Puzzle:
         Updates the puzzle and returns a move string
         """
         # replace with your code
-        return self.solve_2x2()
+        return ""
 
 
 def make_grid():
@@ -407,11 +407,7 @@ def make_grid():
     return grid
 
 
-# grid_4 = [[5, 1, 2, 3], [4, 0, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
-grid_2 = [[3, 2], [1, 0]]
-# grid = make_grid()
+grid = make_grid()
 
 # Start interactive simulation
-poc_fifteen_gui.FifteenGUI(Puzzle(2, 2, initial_grid=grid_2))
-# puzzle = Puzzle(5, 5, grid_5)
-# puzzle.solve_interior_tile(2, 1)
+poc_fifteen_gui.FifteenGUI(Puzzle(4, 4, initial_grid=grid))
