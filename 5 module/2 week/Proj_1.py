@@ -12,8 +12,9 @@ EX_GRAPH2 = {0: {1, 4, 5}, 1: {2, 6}, 2: {3, 7}, 3: {7}, 4: {1},
 
 def make_complete_graph(num_nodes):
     """
-    :param num_nodes:
-    :return:
+    make a dictionary
+    corresponding to a complete directed graph
+    with the specified number of nodes
     """
     return
 
