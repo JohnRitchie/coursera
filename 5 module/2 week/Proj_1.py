@@ -16,7 +16,20 @@ def make_complete_graph(num_nodes):
     corresponding to a complete directed graph
     with the specified number of nodes
     """
-    return
+    complete_graph = {}
+
+    list_nodes = range(num_nodes)
+
+    for node in range(num_nodes):
+        tmp_list = list_nodes[:]
+        tmp_list.remove(node)
+        complete_graph[node] = set(tmp_list)
+
+    return complete_graph
+
+
+print make_complete_graph(5)
+draw_di_graph(make_complete_graph(5))
 
 
 def compute_in_degrees(digraph):
