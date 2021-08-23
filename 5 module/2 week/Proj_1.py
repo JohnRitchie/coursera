@@ -1,8 +1,6 @@
 """
-TODO:
+ compute information about the distribution of the in-degrees for nodes in the graphs
 """
-from simple_draw_graph import draw_graph, draw_di_graph
-
 EX_GRAPH0 = {0: {1, 2}, 1: {}, 2: {}}
 EX_GRAPH1 = {0: {1, 4, 5}, 1: {2, 6}, 2: {3}, 3: {0}, 4: {1},
              5: {2}, 6: {}}
@@ -22,10 +20,6 @@ def make_complete_graph(num_nodes):
         complete_graph[node] = {i for i in range(num_nodes) if i != node}
 
     return complete_graph
-
-
-# print make_complete_graph(5)
-# draw_di_graph(make_complete_graph(5))
 
 
 def compute_in_degrees(digraph):
