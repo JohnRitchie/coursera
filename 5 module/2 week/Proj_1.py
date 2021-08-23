@@ -18,12 +18,8 @@ def make_complete_graph(num_nodes):
     """
     complete_graph = {}
 
-    list_nodes = range(num_nodes)
-
     for node in range(num_nodes):
-        tmp_list = list_nodes[:]
-        tmp_list.remove(node)
-        complete_graph[node] = set(tmp_list)
+        complete_graph[node] = {i for i in range(num_nodes) if i != node}
 
     return complete_graph
 
