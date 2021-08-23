@@ -44,12 +44,17 @@ def compute_in_degrees(digraph):
     return in_degrees
 
 
-print compute_in_degrees(make_complete_graph(5))
-
-
 def in_degree_distribution(digraph):
     """
-    :param digraph:
-    :return:
+    computes the unnormalized distribution of the in-degrees of the graph
     """
-    return
+    distribution = {}
+    indegrees = compute_in_degrees(digraph).values()
+
+    for degree in indegrees:
+        if degree not in distribution.keys():
+            distribution[degree] = 1
+        else:
+            distribution[degree] += 1
+
+    return distribution
