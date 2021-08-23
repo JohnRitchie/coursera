@@ -24,16 +24,27 @@ def make_complete_graph(num_nodes):
     return complete_graph
 
 
-print make_complete_graph(5)
-draw_di_graph(make_complete_graph(5))
+# print make_complete_graph(5)
+# draw_di_graph(make_complete_graph(5))
 
 
 def compute_in_degrees(digraph):
     """
-    :param digraph:
-    :return:
+    computes the in-degrees for the nodes in the graph
     """
-    return
+    nodes = []
+    in_degrees = {}
+
+    for node in digraph:
+        nodes.extend(list(digraph[node]))
+
+    for node in digraph:
+        in_degrees[node] = nodes.count(node)
+
+    return in_degrees
+
+
+print compute_in_degrees(make_complete_graph(5))
 
 
 def in_degree_distribution(digraph):
