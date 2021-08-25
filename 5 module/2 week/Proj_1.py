@@ -52,3 +52,14 @@ def in_degree_distribution(digraph):
             distribution[degree] += 1
 
     return distribution
+
+
+def normalized_distribution(digraph):
+    total = 0
+    distribution = {}
+    for each in digraph:
+        total += digraph[each]
+    for each in digraph:
+        distribution[each] = (float(digraph[each])) / float(total)
+
+    return distribution
