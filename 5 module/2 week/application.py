@@ -6,7 +6,7 @@ Imports physics citation graph
 import urllib2
 import matplotlib.pyplot as plt
 import SimpleGUICS2Pygame.codeskulptor as codeskulptor
-import Proj_1
+import distribution
 
 codeskulptor.set_timeout(20)
 
@@ -42,19 +42,20 @@ def load_graph(graph_url):
     return answer_graph
 
 
+def make_plot(graph):
+    keys = graph.keys()
+    values = graph.values()
+    plt.plot(keys, values, 'xr')
+    plt.grid(which="major", linestyle="--", color="gray", linewidth=0.8)
+    plt.xscale('log')
+    plt.yscale('log')
+    plt.title('In degree distribution of citation in scientific articles')
+    plt.xlabel('Number of citation')
+    plt.ylabel('Distribution of citation')
+    plt.show()
+
+
 citation_graph = load_graph(CITATION_URL)
-distribution = Proj_1.in_degree_distribution(citation_graph)
-normalized_distribution = Proj_1.normalized_distribution(distribution)
-
-for key, value in normalized_distribution.items():
-    x = key
-    y = value
-    plt.scatter(x, y)
-
-plt.xscale('log')
-plt.yscale('log')
-plt.xlim(0.1, 1000)
-plt.title('Normalized in-degree distribution of citation \n in high energy physics theory papers\n')
-plt.ylabel('Distribution of citation (normalized)')
-plt.xlabel('Number of papers')
-plt.show()
+distribution = distribution.in_degree_distribution(citation_graph)
+normalized_distribution = distribution.normalized_distribution(distribution)
+make_plot(normalized_distribution)
