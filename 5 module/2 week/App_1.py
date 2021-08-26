@@ -4,9 +4,8 @@ Imports physics citation graph
 """
 
 import urllib2
+import matplotlib.pyplot as plt
 import SimpleGUICS2Pygame.codeskulptor as codeskulptor
-import simpleplot
-from simple_draw_graph import draw_di_graph
 import Proj_1
 
 codeskulptor.set_timeout(20)
@@ -28,7 +27,7 @@ def load_graph(graph_url):
     graph_file = urllib2.urlopen(graph_url)
     graph_text = graph_file.read()
     graph_lines = graph_text.split('\n')
-    graph_lines = graph_lines[: 20]  #TODO
+    graph_lines = graph_lines[: -1]
 
     print "Loaded graph with", len(graph_lines), "nodes"
 
@@ -44,8 +43,18 @@ def load_graph(graph_url):
 
 
 citation_graph = load_graph(CITATION_URL)
-# draw_di_graph(citation_graph)
 distribution = Proj_1.in_degree_distribution(citation_graph)
 normalized_distribution = Proj_1.normalized_distribution(distribution)
-# print normalized_distribution
-# simpleplot.plot_lines('Todo1', 1000, 400, 'Todo2', 'Todo3', [normalized_distribution])
+
+for key, value in normalized_distribution.items():
+    x = key
+    y = value
+    plt.scatter(x, y)
+
+plt.xscale('log')
+plt.yscale('log')
+plt.xlim(0.1, 1000)
+plt.title('Normalized in-degree distribution of citation \n in high energy physics theory papers\n')
+plt.ylabel('Distribution of citation (normalized)')
+plt.xlabel('Number of papers')
+plt.show()
