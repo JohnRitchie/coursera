@@ -56,6 +56,6 @@ def make_plot(graph):
 
 
 citation_graph = load_graph(CITATION_URL)
-distribution = distribution.in_degree_distribution(citation_graph)
-normalized_distribution = distribution.normalized_distribution(distribution)
-make_plot(normalized_distribution)
+disted_graph = distribution.in_degree_distribution(citation_graph)
+normalized_disted_graph = distribution.normalized_distribution(disted_graph)
+make_plot(normalized_disted_graph)
