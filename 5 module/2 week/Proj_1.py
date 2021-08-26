@@ -26,14 +26,11 @@ def compute_in_degrees(digraph):
     """
     computes the in-degrees for the nodes in the graph
     """
-    nodes = []
-    in_degrees = {}
+    in_degrees = {node: 0 for node in digraph}
 
     for node in digraph:
-        nodes.extend(list(digraph[node]))
-
-    for node in digraph:
-        in_degrees[node] = nodes.count(node)
+        for value in digraph[node]:
+            in_degrees[value] += 1
 
     return in_degrees
 
