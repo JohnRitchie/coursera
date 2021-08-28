@@ -166,3 +166,16 @@ def draw_di_graph(graph):
 
     nx.draw(G, cmap=plt.get_cmap('jet'), with_labels=True)
     plt.show()
+
+
+def make_plot(graph):
+    keys = graph.keys()
+    values = graph.values()
+    plt.plot(keys, values, 'xr')
+    plt.grid(which="major", linestyle="--", color="gray", linewidth=0.8)
+    plt.xscale('log')
+    plt.yscale('log')
+    plt.title('In degree distribution of citation in scientific articles')
+    plt.xlabel('Number of citation')
+    plt.ylabel('Distribution of citation')
+    plt.show()

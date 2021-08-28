@@ -7,6 +7,7 @@ import urllib2
 import matplotlib.pyplot as plt
 import SimpleGUICS2Pygame.codeskulptor as codeskulptor
 import distribution
+from plot_graph import make_plot
 
 codeskulptor.set_timeout(20)
 
@@ -40,19 +41,6 @@ def load_graph(graph_url):
             answer_graph[node].add(int(neighbor))
 
     return answer_graph
-
-
-def make_plot(graph):
-    keys = graph.keys()
-    values = graph.values()
-    plt.plot(keys, values, 'xr')
-    plt.grid(which="major", linestyle="--", color="gray", linewidth=0.8)
-    plt.xscale('log')
-    plt.yscale('log')
-    plt.title('In degree distribution of citation in scientific articles')
-    plt.xlabel('Number of citation')
-    plt.ylabel('Distribution of citation')
-    plt.show()
 
 
 citation_graph = load_graph(CITATION_URL)
