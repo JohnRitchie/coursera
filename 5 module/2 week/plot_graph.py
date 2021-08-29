@@ -168,7 +168,7 @@ def draw_di_graph(graph):
     plt.show()
 
 
-def make_plot(graph, title, xlabel, ylabel, log=True):
+def make_plot(graph, title='', xlabel='', ylabel='', log=True):
     keys = graph.keys()
     values = graph.values()
     plt.plot(keys, values, 'xr')
