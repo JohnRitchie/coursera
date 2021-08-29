@@ -11,9 +11,8 @@ import plot_graph
 
 codeskulptor.set_timeout(20)
 
-
 ###################################
-# Code for loading citation graph
+# Question 1
 
 CITATION_URL = "http://storage.googleapis.com/codeskulptor-alg/alg_phys-cite.txt"
 
@@ -47,4 +46,7 @@ citation_graph = load_graph(CITATION_URL)
 disted_graph = distribution.in_degree_distribution(citation_graph)
 normalized_disted_graph = distribution.normalized_distribution(disted_graph)
 plot_graph.make_plot(normalized_disted_graph, 'In degree distribution of citation in scientific articles',
-          'Number of citation', 'Distribution of citation')
+                     'Number of citation', 'Distribution of citation')
+
+###################################
+# Question 2
