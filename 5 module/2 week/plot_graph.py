@@ -168,14 +168,15 @@ def draw_di_graph(graph):
     plt.show()
 
 
-def make_plot(graph):
+def make_plot(graph, title, xlabel, ylabel, log=True):
     keys = graph.keys()
     values = graph.values()
     plt.plot(keys, values, 'xr')
     plt.grid(which="major", linestyle="--", color="gray", linewidth=0.8)
-    plt.xscale('log')
-    plt.yscale('log')
-    plt.title('In degree distribution of citation in scientific articles')
-    plt.xlabel('Number of citation')
-    plt.ylabel('Distribution of citation')
+    if log:
+        plt.xscale('log')
+        plt.yscale('log')
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
     plt.show()

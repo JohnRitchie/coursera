@@ -7,7 +7,7 @@ import urllib2
 import matplotlib.pyplot as plt
 import SimpleGUICS2Pygame.codeskulptor as codeskulptor
 import distribution
-from plot_graph import make_plot
+import plot_graph
 
 codeskulptor.set_timeout(20)
 
@@ -46,4 +46,5 @@ def load_graph(graph_url):
 citation_graph = load_graph(CITATION_URL)
 disted_graph = distribution.in_degree_distribution(citation_graph)
 normalized_disted_graph = distribution.normalized_distribution(disted_graph)
-make_plot(normalized_disted_graph)
+plot_graph.make_plot(normalized_disted_graph, 'In degree distribution of citation in scientific articles',
+          'Number of citation', 'Distribution of citation')
