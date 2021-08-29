@@ -4,7 +4,9 @@ Imports physics citation graph
 """
 
 import urllib2
-import matplotlib.pyplot as plt
+import networkx as nx
+from itertools import combinations
+from random import random
 import SimpleGUICS2Pygame.codeskulptor as codeskulptor
 import distribution
 import plot_graph
@@ -42,11 +44,32 @@ def load_graph(graph_url):
     return answer_graph
 
 
-citation_graph = load_graph(CITATION_URL)
-disted_graph = distribution.in_degree_distribution(citation_graph)
-normalized_disted_graph = distribution.normalized_distribution(disted_graph)
-plot_graph.make_plot(normalized_disted_graph, 'In degree distribution of citation in scientific articles',
-                     'Number of citation', 'Distribution of citation')
+# citation_graph = load_graph(CITATION_URL)
+# disted_graph = distribution.in_degree_distribution(citation_graph)
+# normalized_disted_graph = distribution.normalized_distribution(disted_graph)
+# plot_graph.make_plot(normalized_disted_graph, 'In degree distribution of citation in scientific articles',
+#                      'Number of citation', 'Distribution of citation')
 
 ###################################
 # Question 2
+
+
+def erdos_renyi(n, p):
+    vertex = set([v for v in range(n)])
+    edge = set()
+    for combination in combinations(vertex, 2):
+        a = random()
+        if a < p:
+            edge.add(combination)
+
+    graph = nx.Graph()
+    graph.add_nodes_from(vertex)
+    graph.add_edges_from(edge)
+
+    return graph
+
+
+random_graph = erdos_renyi(27770, 0.0005)
+disted_graph = distribution.in_degree_distribution(random_graph)
+normalized_disted_graph = distribution.normalized_distribution(disted_graph)
+plot_graph.make_plot(normalized_disted_graph, log=False)
