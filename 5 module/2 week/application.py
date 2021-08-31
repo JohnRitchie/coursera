@@ -72,4 +72,7 @@ def erdos_renyi(n, p):
 random_graph = erdos_renyi(27770, 0.0005)
 disted_graph = distribution.in_degree_distribution(random_graph)
 normalized_disted_graph = distribution.normalized_distribution(disted_graph)
-plot_graph.make_plot(normalized_disted_graph, log=False)
+plot_graph.make_plot(normalized_disted_graph, 'In degree distribution for the erdos renyi graph',
+                     'Number of edges (log)', 'Fraction of nodes (log)')
+plot_graph.make_plot(normalized_disted_graph, 'In degree distribution for the erdos renyi graph',
+                     'Number of edges', 'Fraction of nodes', False)
