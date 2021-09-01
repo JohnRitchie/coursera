@@ -6,7 +6,7 @@ Imports physics citation graph
 import urllib2
 import networkx as nx
 from itertools import combinations
-from random import random
+import random
 import SimpleGUICS2Pygame.codeskulptor as codeskulptor
 import distribution
 import plot_graph
@@ -58,7 +58,7 @@ def erdos_renyi(n, p):
     vertex = set([v for v in range(n)])
     edge = set()
     for combination in combinations(vertex, 2):
-        a = random()
+        a = random.random()
         if a < p:
             edge.add(combination)
 
@@ -69,13 +69,13 @@ def erdos_renyi(n, p):
     return graph
 
 
-random_graph = erdos_renyi(27770, 0.0005)
-disted_graph = distribution.in_degree_distribution(random_graph)
-normalized_disted_graph = distribution.normalized_distribution(disted_graph)
-plot_graph.make_plot(normalized_disted_graph, 'In degree distribution for the erdos renyi graph',
-                     'Number of edges (log)', 'Fraction of nodes (log)')
-plot_graph.make_plot(normalized_disted_graph, 'In degree distribution for the erdos renyi graph',
-                     'Number of edges', 'Fraction of nodes', False)
+# random_graph = erdos_renyi(27770, 0.0005)
+# disted_graph = distribution.in_degree_distribution(random_graph)
+# normalized_disted_graph = distribution.normalized_distribution(disted_graph)
+# plot_graph.make_plot(normalized_disted_graph, 'In degree distribution for the erdos renyi graph',
+#                      'Number of edges (log)', 'Fraction of nodes (log)')
+# plot_graph.make_plot(normalized_disted_graph, 'In degree distribution for the erdos renyi graph',
+#                      'Number of edges', 'Fraction of nodes', False)
 
 ###################################
 # Question 4
