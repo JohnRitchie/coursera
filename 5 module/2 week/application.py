@@ -80,31 +80,15 @@ def erdos_renyi(n, p):
 
 ###################################
 # Question 4
-
-def make_complete_dpa_graph(num_nodes):
-    """
-    Takes the number of nodes num_nodes and returns a dictionary
-    corresponding to a complete directed graph with the specified
-    number of nodes.
-    """
-    graph = {}
-    dpa = dpa_trial.DPATrial(num_nodes)
-
-    for node in range(num_nodes):
-        graph[node] = dpa.run_trial(num_nodes)
-
-    return graph
-
-
 def dpa_graph(n, m):
 
-    complete_dpa_graph = make_complete_dpa_graph(m)
-    dpa_graph = dpa_trial.DPATrial(m)
+    complete_graph = distribution.make_complete_graph(m)
+    dpa = dpa_trial.DPATrial(m)
 
     for i in range(m, n):
-        complete_dpa_graph[i] = dpa_graph.run_trial(m)
+        complete_graph[i] = dpa.run_trial(m)
 
-    return complete_dpa_graph
+    return complete_graph
 
 
 # random_graph = dpa_graph(27770, 12)
