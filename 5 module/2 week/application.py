@@ -10,6 +10,7 @@ import random
 import SimpleGUICS2Pygame.codeskulptor as codeskulptor
 import distribution
 import plot_graph
+import dpa_trial
 
 codeskulptor.set_timeout(20)
 
@@ -79,3 +80,37 @@ def erdos_renyi(n, p):
 
 ###################################
 # Question 4
+
+def make_complete_dpa_graph(num_nodes):
+    """
+    Takes the number of nodes num_nodes and returns a dictionary
+    corresponding to a complete directed graph with the specified
+    number of nodes.
+    """
+    graph = {}
+    dpa = dpa_trial.DPATrial(num_nodes)
+
+    for node in range(num_nodes):
+        graph[node] = dpa.run_trial(num_nodes)
+
+    return graph
+
+
+def dpa_graph(n, m):
+
+    complete_dpa_graph = make_complete_dpa_graph(m)
+    dpa_graph = dpa_trial.DPATrial(m)
+
+    for i in range(m, n):
+        complete_dpa_graph[i] = dpa_graph.run_trial(m)
+
+    return complete_dpa_graph
+
+
+# random_graph = dpa_graph(27770, 12)
+# disted_graph = distribution.in_degree_distribution(random_graph)
+# normalized_disted_graph = distribution.normalized_distribution(disted_graph)
+# plot_graph.make_plot(normalized_disted_graph, 'In degree distribution for the DPA graph',
+#                      'Number of edges (log)', 'Fraction of nodes (log)')
+# plot_graph.make_plot(normalized_disted_graph, 'In degree distribution for the DPA graph',
+#                      'Number of edges', 'Fraction of nodes', False)
