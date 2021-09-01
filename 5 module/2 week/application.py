@@ -76,3 +76,6 @@ plot_graph.make_plot(normalized_disted_graph, 'In degree distribution for the er
                      'Number of edges (log)', 'Fraction of nodes (log)')
 plot_graph.make_plot(normalized_disted_graph, 'In degree distribution for the erdos renyi graph',
                      'Number of edges', 'Fraction of nodes', False)
+
+###################################
+# Question 4
