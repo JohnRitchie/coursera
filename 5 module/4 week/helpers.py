@@ -2,6 +2,9 @@ from collections import deque
 import random
 
 
+GRAPH = {0: {1, 4, 5}, 1: {2, 6}, 2: {3}, 3: {0}, 4: {1}, 5: {2}, 6: set([])}
+
+
 def bfs_visited(ugraph, start_node):
     assert start_node in ugraph, 'Start node not in graph!'
 
@@ -19,10 +22,7 @@ def bfs_visited(ugraph, start_node):
     return visited
 
 
-# EX_GRAPH1 = {0: {1, 4, 5}, 1: {2, 6}, 2: {3}, 3: {0}, 4: {1},
-#              5: {2}, 6: set([])}
-#
-# print bfs_visited(EX_GRAPH1, 5)
+# print bfs_visited(GRAPH, 5)
 
 
 def cc_visited(ugraph):
@@ -38,7 +38,4 @@ def cc_visited(ugraph):
     return component_list
 
 
-# EX_GRAPH1 = {0: {1, 4, 5}, 1: {2, 6}, 2: {3}, 3: {0}, 4: {1},
-#              5: {2}, 6: set([])}
-#
-# print cc_visited(EX_GRAPH1)
+# print cc_visited(GRAPH)
