@@ -42,4 +42,7 @@ def cc_visited(ugraph):
 
 
 def largest_cc_size(ugraph):
-    pass
+    return max([len(item) for item in cc_visited(ugraph)])
+
+
+# print largest_cc_size(GRAPH)
