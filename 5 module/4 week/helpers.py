@@ -39,3 +39,7 @@ def cc_visited(ugraph):
 
 
 # print cc_visited(GRAPH)
+
+
+def largest_cc_size(ugraph):
+    pass
