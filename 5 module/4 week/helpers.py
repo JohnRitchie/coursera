@@ -46,3 +46,17 @@ def largest_cc_size(ugraph):
 
 
 # print largest_cc_size(GRAPH)
+
+def compute_resilience(ugraph, attack_order):
+    resilience = [largest_cc_size(ugraph)]
+
+    for item in attack_order:
+        ugraph.pop(item)
+        for node in ugraph:
+            ugraph[node].discard(item)
+        resilience.append(largest_cc_size(ugraph))
+
+    return resilience
+
+
+# print compute_resilience(GRAPH, [1, 4, 5])
