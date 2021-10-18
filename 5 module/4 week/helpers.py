@@ -49,7 +49,10 @@ def cc_visited(ugraph):
 
 def largest_cc_size(ugraph):
     """returns the size (an integer) of the largest connected component in ugraph"""
-    return max([len(item) for item in cc_visited(ugraph)])
+    try:
+        return max([len(item) for item in cc_visited(ugraph)])
+    except ValueError:
+        return 0
 
 
 # print largest_cc_size(GRAPH)
