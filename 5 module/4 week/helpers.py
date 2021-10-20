@@ -78,18 +78,15 @@ def compute_resilience(ugraph, attack_order):
 
 # print compute_resilience(GRAPH, [1, 4, 5])
 
-def make_complete_graph(num_nodes):
-    """
-    make a dictionary
-    corresponding to a complete directed graph
-    with the specified number of nodes
-    """
-    complete_graph = {}
+def make_complete_ugraph(num_nodes):
+    ugraph = {}
+    nodes = range(num_nodes)
 
-    for node in range(num_nodes):
-        complete_graph[node] = {i for i in range(num_nodes) if i != node}
+    for node in nodes:
+        ugraph[node] = set(nodes)
+        ugraph[node].remove(node)
 
-    return complete_graph
+    return ugraph
 
 
 def erdos_renyi(n, p):
