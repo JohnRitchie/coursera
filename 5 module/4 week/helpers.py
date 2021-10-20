@@ -74,3 +74,16 @@ def compute_resilience(ugraph, attack_order):
 
 
 # print compute_resilience(GRAPH, [1, 4, 5])
+
+def make_complete_graph(num_nodes):
+    """
+    make a dictionary
+    corresponding to a complete directed graph
+    with the specified number of nodes
+    """
+    complete_graph = {}
+
+    for node in range(num_nodes):
+        complete_graph[node] = {i for i in range(num_nodes) if i != node}
+
+    return complete_graph
