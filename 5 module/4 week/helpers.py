@@ -4,6 +4,8 @@ Helpers for the Application 2
 
 from collections import deque
 import random
+import networkx as nx
+from itertools import combinations
 
 
 GRAPH = {0: {1, 4, 5}, 1: {2, 6}, 2: {3}, 3: {0}, 4: {1}, 5: {2}, 6: set([])}
@@ -87,3 +89,18 @@ def make_complete_graph(num_nodes):
         complete_graph[node] = {i for i in range(num_nodes) if i != node}
 
     return complete_graph
+
+
+def erdos_renyi(n, p):
+    vertex = set([v for v in range(n)])
+    edge = set()
+    for combination in combinations(vertex, 2):
+        a = random.random()
+        if a < p:
+            edge.add(combination)
+
+    graph = nx.Graph()
+    graph.add_nodes_from(vertex)
+    graph.add_edges_from(edge)
+
+    return graph
