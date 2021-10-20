@@ -6,6 +6,7 @@ from collections import deque
 import random
 import networkx as nx
 from itertools import combinations
+import upa_trial
 
 
 GRAPH = {0: {1, 4, 5}, 1: {2, 6}, 2: {3}, 3: {0}, 4: {1}, 5: {2}, 6: set([])}
@@ -104,3 +105,13 @@ def erdos_renyi(n, p):
     graph.add_edges_from(edge)
 
     return graph
+
+
+def upa_graph(n, m):
+    complete_graph = make_complete_graph(m)
+    dpa = upa_trial.UPATrial(m)
+
+    for i in range(m, n):
+        complete_graph[i] = dpa.run_trial(m)
+
+    return complete_graph
