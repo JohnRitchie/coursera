@@ -115,3 +115,9 @@ def upa_graph(n, m):
             complete_ugraph[value].add(key)
 
     return complete_ugraph
+
+
+def random_order(graph):
+    nodes = graph.keys()
+    random.shuffle(nodes)
+    return nodes
