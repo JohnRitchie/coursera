@@ -89,16 +89,16 @@ def make_complete_ugraph(num_nodes):
 
 
 def erdos_renyi(n, p):
-    graph = {}
     vertex = set([v for v in range(n)])
-    edges = set()
+    edge = set()
     for combination in combinations(vertex, 2):
         a = random.random()
         if a < p:
-            edges.add(combination)
+            edge.add(combination)
 
-    for edge in edges:
-        graph[edge] = vertex
+    graph = nx.Graph()
+    graph.add_nodes_from(vertex)
+    graph.add_edges_from(edge)
 
     return graph
 
