@@ -77,9 +77,9 @@ def compute_resilience(ugraph, attack_order):
 
 # print compute_resilience(GRAPH, [1, 4, 5])
 
-def make_complete_ugraph(num_nodes):
+def make_complete_ugraph(n):
     ugraph = {}
-    nodes = range(num_nodes)
+    nodes = range(n)
 
     for node in nodes:
         ugraph[node] = set(nodes)
@@ -89,18 +89,18 @@ def make_complete_ugraph(num_nodes):
 
 
 def erdos_renyi(n, p):
-    graph = {}
-    vertex = set([v for v in range(n)])
-    edges = set()
-    for combination in combinations(vertex, 2):
-        a = random.random()
-        if a < p:
-            edges.add(combination)
+    ugraph = {}
 
-    for edge in edges:
-        graph[edge] = vertex
+    for key in range(n):
+        ugraph[key] = set([])
 
-    return graph
+    for row in range(n):
+        for col in range(row):
+            rand = random.random()
+            if rand < p:
+                 ugraph[row] = ugraph[row].union([col])
+                 ugraph[col] = ugraph[col].union([row])
+    return ugraph
 
 
 def upa_graph(n, m):
