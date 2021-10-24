@@ -23,7 +23,7 @@ plt.plot(xvals, erdos_renyi_graph_resile, '-g', label='Erdos Renyi Graph, p=0.00
 plt.plot(xvals, upa_graph_resile, '-r', label='UPA Graph, m=3')
 plt.grid(which="major", linestyle="--", color="gray", linewidth=0.8)
 plt.legend(loc='upper right')
-plt.title("Resilience")
+plt.title("Resilience plot of three graphs")
 plt.ylabel("Size of largest connected component")
 plt.xlabel("Number of nodes removed")
 plt.show()
