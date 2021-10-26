@@ -4,8 +4,6 @@ Helpers for the Application 2
 
 from collections import deque
 import random
-import networkx as nx
-from itertools import combinations
 import upa_trial
 
 GRAPH = {0: {1, 4, 5}, 1: {2, 6}, 2: {3}, 3: {0}, 4: {1}, 5: {2}, 6: set([])}
