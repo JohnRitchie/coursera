@@ -5,6 +5,7 @@ Helpers for the Application 2
 from collections import deque
 import random
 import upa_trial
+import provided
 
 GRAPH = {0: {1, 4, 5}, 1: {2, 6}, 2: {3}, 3: {0}, 4: {1}, 5: {2}, 6: set([])}
 
@@ -119,3 +120,36 @@ def random_order(graph):
     nodes = graph.keys()
     random.shuffle(nodes)
     return nodes
+
+
+def fast_targeted_order(ugraph):
+    new_graph = provided.copy_graph(ugraph)
+    degree_sets = {}
+
+    for k in range(len(new_graph)):
+        degree_sets[k] = set()
+
+    for key, value in new_graph.items():
+        degree = len(value)
+        degree_sets[degree].add(key)
+
+    order = []
+
+    for i in range((len(new_graph) - 1), -1, -1):
+        while degree_sets[i]:
+            node = degree_sets[i].pop()
+
+            for neighbor in new_graph[node]:
+                if neighbor in new_graph:
+                    degree = len(new_graph[neighbor])
+                    if degree and neighbor in degree_sets[degree]:
+                        degree_sets[degree].remove(neighbor)
+                        degree_sets[degree - 1].add(neighbor)
+
+            order.append(node)
+            del new_graph[node]
+
+    return order
+
+
+# print fast_targeted_order(GRAPH)
