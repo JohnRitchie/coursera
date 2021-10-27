@@ -1,6 +1,7 @@
 import helpers
 import provided
 import matplotlib.pyplot as plt
+import time
 
 
 ###################################
@@ -30,6 +31,29 @@ import matplotlib.pyplot as plt
 
 ###################################
 # Question 3
-upa_graph = helpers.upa_graph(50, 5)
-print provided.targeted_order(upa_graph)
-print helpers.fast_targeted_order(upa_graph)
+n = range(10, 1000, 10)
+time_targeted_order = []
+time_fast_targeted_order = []
+
+for step in n:
+    upa_graph = helpers.upa_graph(step, 5)
+
+    start_time = time.clock()
+    provided.targeted_order(upa_graph)
+    end_time = time.clock()
+    time_targeted_order.append(end_time - start_time)
+
+    start_time = time.clock()
+    helpers.fast_targeted_order(upa_graph)
+    end_time = time.clock()
+    time_fast_targeted_order.append(end_time - start_time)
+
+
+plt.plot(n, time_targeted_order, '-y', label='targeted_order')
+plt.plot(n, time_fast_targeted_order, '-g', label='fast_targeted_order')
+plt.grid(which="major", linestyle="--", color="gray", linewidth=0.8)
+plt.legend(loc='upper left')
+plt.title("Simple vs fast targeted order")
+plt.ylabel("Time")
+plt.xlabel("Number of nodes")
+plt.show()
