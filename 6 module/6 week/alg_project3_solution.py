@@ -110,17 +110,6 @@ def closest_pair_strip(cluster_list, horiz_center, half_width):
     return dist, idx1, idx2
 
 
-# c0 = alg_cluster.Cluster([], 1, 1, 0, 0)
-# c1 = alg_cluster.Cluster([], 5, 18, 0, 0)
-# c2 = alg_cluster.Cluster([], 3, 3, 0, 0)
-# c3 = alg_cluster.Cluster([], 7, 20, 0, 0)
-# c4 = alg_cluster.Cluster([], 4, 4, 0, 0)
-# c_list = [c0, c1, c2, c3, c4]
-# c_list.sort(key=lambda cluster: cluster.horiz_center())
-# print slow_closest_pair(c_list)
-# print fast_closest_pair(c_list)
-
-
 ######################################################################
 # Code for hierarchical clustering
 
