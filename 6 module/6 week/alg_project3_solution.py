@@ -91,19 +91,34 @@ def closest_pair_strip(cluster_list, horiz_center, half_width):
     Output: tuple of the form (dist, idx1, idx2) where the centers of the clusters
     cluster_list[idx1] and cluster_list[idx2] lie in the strip and have minimum distance dist.
     """
+    strip_list = [cluster for cluster in cluster_list if abs(cluster.horiz_center() - horiz_center) < half_width]
+    strip_list.sort(key=lambda cluster: cluster.vert_center())
+    len_strip_list = len(strip_list)
+    dist, idx1, idx2 = float('inf'), -1, -1
 
-    return ()
+    if len(cluster_list):
+        for idx_cluster in range(len_strip_list - 1):
+            for idx_other_cluster in range(idx_cluster + 1, len_strip_list):
+                cur_dist = strip_list[idx_cluster].distance(strip_list[idx_other_cluster])
+                if cur_dist < dist:
+                    dist = cur_dist
+                    idx1 = min(cluster_list.index(strip_list[idx_cluster]),
+                               cluster_list.index(strip_list[idx_other_cluster]))
+                    idx2 = max(cluster_list.index(strip_list[idx_cluster]),
+                               cluster_list.index(strip_list[idx_other_cluster]))
+
+    return dist, idx1, idx2
 
 
-c0 = alg_cluster.Cluster([], 1, 1, 0, 0)
-c1 = alg_cluster.Cluster([], 5, 18, 0, 0)
-c2 = alg_cluster.Cluster([], 3, 3, 0, 0)
-c3 = alg_cluster.Cluster([], 7, 20, 0, 0)
-c4 = alg_cluster.Cluster([], 4, 4, 0, 0)
-c_list = [c0, c1, c2, c3, c4]
-c_list.sort(key=lambda cluster: cluster.horiz_center())
-print slow_closest_pair(c_list)
-print fast_closest_pair(c_list)
+# c0 = alg_cluster.Cluster([], 1, 1, 0, 0)
+# c1 = alg_cluster.Cluster([], 5, 18, 0, 0)
+# c2 = alg_cluster.Cluster([], 3, 3, 0, 0)
+# c3 = alg_cluster.Cluster([], 7, 20, 0, 0)
+# c4 = alg_cluster.Cluster([], 4, 4, 0, 0)
+# c_list = [c0, c1, c2, c3, c4]
+# c_list.sort(key=lambda cluster: cluster.horiz_center())
+# print slow_closest_pair(c_list)
+# print fast_closest_pair(c_list)
 
 
 ######################################################################
