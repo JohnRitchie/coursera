@@ -27,7 +27,7 @@ def pair_distance(cluster_list, idx1, idx2):
     Output: tuple (dist, idx1, idx2) where dist is distance between
     cluster_list[idx1] and cluster_list[idx2]
     """
-    return (cluster_list[idx1].distance(cluster_list[idx2]), min(idx1, idx2), max(idx1, idx2))
+    return cluster_list[idx1].distance(cluster_list[idx2]), min(idx1, idx2), max(idx1, idx2)
 
 
 def slow_closest_pair(cluster_list):
