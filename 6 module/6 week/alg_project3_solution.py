@@ -67,7 +67,7 @@ def fast_closest_pair(cluster_list):
     if len_cluster_list <= 3:
         return slow_closest_pair(cluster_list)
     else:
-        mid = len_cluster_list/2
+        mid = len_cluster_list / 2
         left_cluster_list = cluster_list[:mid]
         right_cluster_list = cluster_list[mid:]
         left_dist, left_idx1, left_idx2 = fast_closest_pair(left_cluster_list)
