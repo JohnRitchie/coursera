@@ -39,8 +39,25 @@ def slow_closest_pair(cluster_list):
     Output: tuple of the form (dist, idx1, idx2) where the centers of the clusters
     cluster_list[idx1] and cluster_list[idx2] have minimum distance dist.
     """
+    dist, idx1, idx2 = float('inf'), -1, -1
 
-    return ()
+    for cluster in cluster_list:
+        for other_cluster in cluster_list:
+            if cluster != other_cluster:
+                if cluster.distance(other_cluster) < dist:
+                    dist, idx1, idx2 = pair_distance(cluster_list, cluster_list.index(cluster),
+                                                     cluster_list.index(other_cluster))
+
+    return dist, idx1, idx2
+
+
+# c0 = alg_cluster.Cluster([], 1, 1, 0, 0)
+# c1 = alg_cluster.Cluster([], 5, 18, 0, 0)
+# c2 = alg_cluster.Cluster([], 3, 3, 0, 0)
+# c3 = alg_cluster.Cluster([], 7, 20, 0, 0)
+# c4 = alg_cluster.Cluster([], 4, 4, 0, 0)
+# c_list = [c0, c1, c2, c3, c4]
+# print slow_closest_pair(c_list)
 
 
 def fast_closest_pair(cluster_list):
