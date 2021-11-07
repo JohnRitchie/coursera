@@ -151,22 +151,10 @@ def kmeans_clustering(cluster_list, num_clusters, num_iterations):
             dist = float("inf")
             center_pos = 0
             for center in centers:
-                cur_dist = cluster.distance(center)
-                if cur_dist < dist:
-                    dist = cur_dist
-                    center_pos = centers.index(center)
+                dist, center_pos = min((dist, center_pos), (cluster.distance(center), centers.index(center)))
 
             clusters[center_pos].merge_clusters(cluster)
 
         centers = clusters[:]
 
     return clusters
-
-
-# c0 = alg_cluster.Cluster([], 1, 1, 0, 0)
-# c1 = alg_cluster.Cluster([], 5, 18, 0, 0)
-# c2 = alg_cluster.Cluster([], 3, 3, 0, 0)
-# c3 = alg_cluster.Cluster([], 7, 20, 0, 0)
-# c4 = alg_cluster.Cluster([], 4, 4, 0, 0)
-# c_list = [c0, c1, c2, c3, c4]
-# print kmeans_clustering(c_list, 2, 3)
