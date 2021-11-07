@@ -98,18 +98,23 @@ def closest_pair_strip(cluster_list, horiz_center, half_width):
 
     if len(cluster_list):
         for idx_cluster in range(len_strip_list - 1):
-            for idx_other_cluster in range(idx_cluster + 1, len_strip_list):
-                cur_dist = strip_list[idx_cluster].distance(strip_list[idx_other_cluster])
-                if cur_dist < dist:
-                    dist = cur_dist
-                    idx1 = min(cluster_list.index(strip_list[idx_cluster]),
-                               cluster_list.index(strip_list[idx_other_cluster]))
-                    idx2 = max(cluster_list.index(strip_list[idx_cluster]),
-                               cluster_list.index(strip_list[idx_other_cluster]))
+            for idx_other_cluster in range(idx_cluster + 1, min(idx_cluster + 3, len_strip_list)):
+                dist, idx1, idx2 = min((dist, idx1, idx2),
+                                       pair_distance(cluster_list, cluster_list.index(strip_list[idx_cluster]),
+                                                     cluster_list.index(strip_list[idx_other_cluster])))
 
     return dist, idx1, idx2
 
 
+# c0 = alg_cluster.Cluster([], 1, 1, 0, 0)
+# c1 = alg_cluster.Cluster([], 5, 18, 0, 0)
+# c2 = alg_cluster.Cluster([], 3, 3, 0, 0)
+# c3 = alg_cluster.Cluster([], 7, 20, 0, 0)
+# c4 = alg_cluster.Cluster([], 4, 4, 0, 0)
+# c_list = [c0, c1, c2, c3, c4]
+# c_list.sort(key=lambda cluster: cluster.horiz_center())
+# print slow_closest_pair(c_list)
+# print fast_closest_pair(c_list)
 ######################################################################
 # Code for hierarchical clustering
 
