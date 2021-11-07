@@ -139,6 +139,7 @@ def kmeans_clustering(cluster_list, num_clusters, num_iterations):
     """
 
     # position initial clusters at the location of clusters with largest populations
+    assert num_iterations > 0, "num_iterations < 1 !"
     cluster_list_sorted = cluster_list[:]
     cluster_list_sorted.sort(key=lambda cluster: cluster.total_population(), reverse=True)
     centers = [alg_cluster.Cluster(set([]), cluster_list_sorted[num_cluster].horiz_center(),
