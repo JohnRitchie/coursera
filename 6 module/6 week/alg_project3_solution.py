@@ -104,15 +104,6 @@ def closest_pair_strip(cluster_list, horiz_center, half_width):
     return dist, idx1, idx2
 
 
-# c0 = alg_cluster.Cluster([], 1, 1, 0, 0)
-# c1 = alg_cluster.Cluster([], 5, 18, 0, 0)
-# c2 = alg_cluster.Cluster([], 3, 3, 0, 0)
-# c3 = alg_cluster.Cluster([], 7, 20, 0, 0)
-# c4 = alg_cluster.Cluster([], 4, 4, 0, 0)
-# c_list = [c0, c1, c2, c3, c4]
-# c_list.sort(key=lambda cluster: cluster.horiz_center())
-# print slow_closest_pair(c_list)
-# print fast_closest_pair(c_list)
 ######################################################################
 # Code for hierarchical clustering
 
@@ -125,10 +116,22 @@ def hierarchical_clustering(cluster_list, num_clusters):
     Input: List of clusters, integer number of clusters
     Output: List of clusters whose length is num_clusters
     """
+    while len(cluster_list) > num_clusters:
+        cluster_list.sort(key=lambda cluster: cluster.horiz_center())
+        _, idx1, idx2 = fast_closest_pair(cluster_list)
+        cluster_list[idx1].merge_clusters(cluster_list[idx2])
+        cluster_list.pop(idx2)
 
-    return []
+    return cluster_list
 
 
+# c0 = alg_cluster.Cluster([], 1, 1, 0, 0)
+# c1 = alg_cluster.Cluster([], 5, 18, 0, 0)
+# c2 = alg_cluster.Cluster([], 3, 3, 0, 0)
+# c3 = alg_cluster.Cluster([], 7, 20, 0, 0)
+# c4 = alg_cluster.Cluster([], 4, 4, 0, 0)
+# c_list = [c0, c1, c2, c3, c4]
+# print hierarchical_clustering(c_list, 2)
 ######################################################################
 # Code for k-means clustering
 
