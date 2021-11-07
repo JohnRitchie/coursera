@@ -44,10 +44,8 @@ def slow_closest_pair(cluster_list):
     for cluster in cluster_list:
         for other_cluster in cluster_list:
             if cluster != other_cluster:
-                cur_dist, min_idx, max_idx = pair_distance(cluster_list, cluster_list.index(cluster),
-                                                           cluster_list.index(other_cluster))
-                if cur_dist < dist:
-                    dist, idx1, idx2 = cur_dist, min_idx, max_idx
+                dist, idx1, idx2 = min((dist, idx1, idx2), pair_distance(cluster_list, cluster_list.index(cluster),
+                                                                         cluster_list.index(other_cluster)))
 
     return dist, idx1, idx2
 
