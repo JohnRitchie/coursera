@@ -99,9 +99,11 @@ def closest_pair_strip(cluster_list, horiz_center, half_width):
     if len(cluster_list):
         for idx_cluster in range(len_strip_list - 1):
             for idx_other_cluster in range(idx_cluster + 1, min(idx_cluster + 3, len_strip_list)):
-                dist, idx1, idx2 = min((dist, idx1, idx2),
-                                       pair_distance(cluster_list, cluster_list.index(strip_list[idx_cluster]),
-                                                     cluster_list.index(strip_list[idx_other_cluster])))
+                dist_cur = strip_list[idx_cluster].distance(strip_list[idx_other_cluster])
+                if dist_cur < dist:
+                    dist, idx1, idx2 = min((dist, idx1, idx2),
+                                           pair_distance(cluster_list, cluster_list.index(strip_list[idx_cluster]),
+                                                         cluster_list.index(strip_list[idx_other_cluster])))
 
     return dist, idx1, idx2
 
