@@ -1,30 +1,15 @@
 """
 Example code for creating and visualizing
 cluster of county-based cancer risk data
-
-Note that you must download the file
-http://www.codeskulptor.org/#alg_clusters_matplotlib.py
-to use the matplotlib version of this code
 """
 
-# Flavor of Python - desktop or CodeSkulptor
-DESKTOP = True
-
 import math
-import random
 import urllib2
+import time
+
 import alg_cluster
-
-# conditional imports
-if DESKTOP:
-    import alg_project3_solution  # desktop project solution
-    import alg_clusters_matplotlib
-else:
-    # import userXX_XXXXXXXX as alg_project3_solution   # CodeSkulptor project solution
-    import alg_clusters_simplegui
-    import codeskulptor
-
-    codeskulptor.set_timeout(30)
+import alg_project3_solution
+import alg_clusters_matplotlib
 
 ###################################################
 # Code to load data tables
@@ -37,6 +22,8 @@ DATA_3108_URL = DIRECTORY + "data_clustering/unifiedCancerData_3108.csv"
 DATA_896_URL = DIRECTORY + "data_clustering/unifiedCancerData_896.csv"
 DATA_290_URL = DIRECTORY + "data_clustering/unifiedCancerData_290.csv"
 DATA_111_URL = DIRECTORY + "data_clustering/unifiedCancerData_111.csv"
+DATA_SIZE = DATA_3108_URL
+CLUSTERING_NAME = "sequential_clustering"
 
 
 def load_data_table(data_url):
@@ -66,7 +53,6 @@ def sequential_clustering(singleton_list, num_clusters):
     """
 
     cluster_list = []
-    cluster_idx = 0
     total_clusters = len(singleton_list)
     cluster_size = float(total_clusters) / num_clusters
 
@@ -93,27 +79,25 @@ def run_example():
 
     Set DESKTOP = True/False to use either matplotlib or simplegui
     """
-    data_table = load_data_table(DATA_3108_URL)
-
+    data_table = load_data_table(DATA_SIZE)
     singleton_list = []
+
     for line in data_table:
         singleton_list.append(alg_cluster.Cluster(set([line[0]]), line[1], line[2], line[3], line[4]))
 
-    cluster_list = sequential_clustering(singleton_list, 15)
-    print "Displaying", len(cluster_list), "sequential clusters"
+    start_time = time.clock()
 
-    # cluster_list = alg_project3_solution.hierarchical_clustering(singleton_list, 9)
-    # print "Displaying", len(cluster_list), "hierarchical clusters"
+    if CLUSTERING_NAME == "sequential_clustering":
+        cluster_list = sequential_clustering(singleton_list, 15)
+    elif CLUSTERING_NAME == "hierarchical_clustering":
+        cluster_list = alg_project3_solution.hierarchical_clustering(singleton_list, 9)
+    elif CLUSTERING_NAME == "kmeans_clustering":
+        cluster_list = alg_project3_solution.kmeans_clustering(singleton_list, 9, 5)
 
-    # cluster_list = alg_project3_solution.kmeans_clustering(singleton_list, 9, 5)
-    # print "Displaying", len(cluster_list), "k-means clusters"
-
-    # draw the clusters using matplotlib or simplegui
-    if DESKTOP:
-        alg_clusters_matplotlib.plot_clusters(data_table, cluster_list, False)
-        # alg_clusters_matplotlib.plot_clusters(data_table, cluster_list, True)  #add cluster centers
-    else:
-        alg_clusters_simplegui.PlotClusters(data_table, cluster_list)  # use toggle in GUI to add cluster centers
+    print "Displaying", len(cluster_list), CLUSTERING_NAME
+    alg_clusters_matplotlib.plot_clusters(data_table, cluster_list, False)
+    end_time = time.clock()
+    print end_time - start_time
 
 
 run_example()
