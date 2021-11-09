@@ -3,6 +3,7 @@ import random
 import time
 import alg_cluster
 import alg_project3_solution as proj
+import alg_project3_viz
 
 
 def gen_random_clusters(num_clusters):
@@ -21,32 +22,58 @@ def gen_random_clusters(num_clusters):
 
 ###################################
 # Question 1
-num_clusters = range(2, 200)
-time_slow_closest_pair = []
-time_fast_closest_pair = []
+# num_clusters = range(2, 200)
+# time_slow_closest_pair = []
+# time_fast_closest_pair = []
+#
+# for num in num_clusters:
+#     random_clusters_nums = gen_random_clusters(num)
+#     random_clusters_list = []
+#
+#     for cluster_nums in random_clusters_nums:
+#         random_clusters_list.append(alg_cluster.Cluster(set([]), cluster_nums[0], cluster_nums[1], 0, 0))
+#
+#     start_time = time.clock()
+#     proj.slow_closest_pair(random_clusters_list)
+#     end_time = time.clock()
+#     time_slow_closest_pair.append(end_time - start_time)
+#
+#     start_time = time.clock()
+#     proj.fast_closest_pair(random_clusters_list)
+#     end_time = time.clock()
+#     time_fast_closest_pair.append(end_time - start_time)
+#
+# plt.plot(num_clusters, time_slow_closest_pair, '-y', label='slow_closest_pair')
+# plt.plot(num_clusters, time_fast_closest_pair, '-g', label='fast_closest_pair')
+# plt.grid(which="major", linestyle="--", color="gray", linewidth=0.8)
+# plt.legend(loc='upper left')
+# plt.title("Slow vs fast closest pair")
+# plt.ylabel("Time")
+# plt.xlabel("Number of clusters")
+# plt.show()
 
-for num in num_clusters:
-    random_clusters_nums = gen_random_clusters(num)
-    random_clusters_list = []
+###################################
+# Question 7
+def compute_distortion(cluster_list, cluster_table):
+    dist = 0
 
-    for cluster_nums in random_clusters_nums:
-        random_clusters_list.append(alg_cluster.Cluster(set([]), cluster_nums[0], cluster_nums[1], 0, 0))
+    for cluster in cluster_list:
+        dist += cluster.cluster_error(cluster_table)
 
-    start_time = time.clock()
-    proj.slow_closest_pair(random_clusters_list)
-    end_time = time.clock()
-    time_slow_closest_pair.append(end_time - start_time)
+    return dist
 
-    start_time = time.clock()
-    proj.fast_closest_pair(random_clusters_list)
-    end_time = time.clock()
-    time_fast_closest_pair.append(end_time - start_time)
 
-plt.plot(num_clusters, time_slow_closest_pair, '-y', label='slow_closest_pair')
-plt.plot(num_clusters, time_fast_closest_pair, '-g', label='fast_closest_pair')
-plt.grid(which="major", linestyle="--", color="gray", linewidth=0.8)
-plt.legend(loc='upper left')
-plt.title("Slow vs fast closest pair")
-plt.ylabel("Time")
-plt.xlabel("Number of clusters")
-plt.show()
+data_table_hierarchical = alg_project3_viz.load_data_table(alg_project3_viz.DATA_111_URL)
+singleton_list = []
+for line in data_table_hierarchical:
+    singleton_list.append(alg_cluster.Cluster(set([line[0]]), line[1], line[2], line[3], line[4]))
+cluster_list_hierarchical = proj.hierarchical_clustering(singleton_list, 9)
+print compute_distortion(cluster_list_hierarchical, data_table_hierarchical)
+
+data_table_kmeans = alg_project3_viz.load_data_table(alg_project3_viz.DATA_111_URL)
+singleton_list = []
+for line in data_table_hierarchical:
+    singleton_list.append(alg_cluster.Cluster(set([line[0]]), line[1], line[2], line[3], line[4]))
+cluster_list_kmeans = proj.kmeans_clustering(singleton_list, 9, 5)
+print compute_distortion(cluster_list_kmeans, data_table_kmeans)
+
