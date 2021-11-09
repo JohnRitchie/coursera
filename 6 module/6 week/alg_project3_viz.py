@@ -22,7 +22,7 @@ DATA_3108_URL = DIRECTORY + "data_clustering/unifiedCancerData_3108.csv"
 DATA_896_URL = DIRECTORY + "data_clustering/unifiedCancerData_896.csv"
 DATA_290_URL = DIRECTORY + "data_clustering/unifiedCancerData_290.csv"
 DATA_111_URL = DIRECTORY + "data_clustering/unifiedCancerData_111.csv"
-DATA_SIZE = DATA_3108_URL
+DATA_SIZE = DATA_111_URL
 CLUSTERING_NAME = "sequential_clustering"
 
 
@@ -76,8 +76,6 @@ def run_example():
     """
     Load a data table, compute a list of clusters and
     plot a list of clusters
-
-    Set DESKTOP = True/False to use either matplotlib or simplegui
     """
     data_table = load_data_table(DATA_SIZE)
     singleton_list = []
