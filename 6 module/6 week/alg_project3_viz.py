@@ -90,12 +90,13 @@ def run_example():
     elif CLUSTERING_NAME == "hierarchical_clustering":
         cluster_list = alg_project3_solution.hierarchical_clustering(singleton_list, 9)
     elif CLUSTERING_NAME == "kmeans_clustering":
-        cluster_list = alg_project3_solution.kmeans_clustering(singleton_list, 9, 5)
+        cluster_list = alg_project3_solution.kmeans_clustering(singleton_list, 15, 5)
+
+    end_time = time.clock()
+    print end_time - start_time
 
     print "Displaying", len(cluster_list), CLUSTERING_NAME
     alg_clusters_matplotlib.plot_clusters(data_table, cluster_list, False)
-    end_time = time.clock()
-    print end_time - start_time
 
 
 run_example()
