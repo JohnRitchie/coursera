@@ -63,17 +63,22 @@ def compute_distortion(cluster_list, cluster_table):
     return dist
 
 
-data_table_hierarchical = alg_project3_viz.load_data_table(alg_project3_viz.DATA_111_URL)
-singleton_list = []
-for line in data_table_hierarchical:
-    singleton_list.append(alg_cluster.Cluster(set([line[0]]), line[1], line[2], line[3], line[4]))
-cluster_list_hierarchical = proj.hierarchical_clustering(singleton_list, 9)
-print compute_distortion(cluster_list_hierarchical, data_table_hierarchical)
+def make_singleton_list(cluster_table):
+    s_list = []
 
-data_table_kmeans = alg_project3_viz.load_data_table(alg_project3_viz.DATA_111_URL)
-singleton_list = []
-for line in data_table_hierarchical:
-    singleton_list.append(alg_cluster.Cluster(set([line[0]]), line[1], line[2], line[3], line[4]))
+    for line in cluster_table:
+        s_list.append(alg_cluster.Cluster(set([line[0]]), line[1], line[2], line[3], line[4]))
+
+    return s_list
+
+
+data_table = alg_project3_viz.load_data_table(alg_project3_viz.DATA_111_URL)
+
+singleton_list = make_singleton_list(data_table)
+cluster_list_hierarchical = proj.hierarchical_clustering(singleton_list, 9)
+print compute_distortion(cluster_list_hierarchical, data_table)
+
+singleton_list = make_singleton_list(data_table)
 cluster_list_kmeans = proj.kmeans_clustering(singleton_list, 9, 5)
-print compute_distortion(cluster_list_kmeans, data_table_kmeans)
+print compute_distortion(cluster_list_kmeans, data_table)
 
