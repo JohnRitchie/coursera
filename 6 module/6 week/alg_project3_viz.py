@@ -99,5 +99,5 @@ def run_example():
     alg_clusters_matplotlib.plot_clusters(data_table, cluster_list, False)
 
 
-if "__name__" == "__main__":
+if __name__ == "__main__":
     run_example()
